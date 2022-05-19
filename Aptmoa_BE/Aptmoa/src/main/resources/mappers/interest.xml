@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pjt.aptmoa.mapper.InterestMapper">
+	
+	<!-- 관심목록 전체 조회 -->
+	<select id="selectInterestById" resultType="interest">
+		select *
+		from interest
+		where userid = #{userid}
+	</select>
+	
+	<!-- 관심목록 등록 -->
+	<insert id="insertInterest" parameterType="interest">
+		insert into interest(
+			userid, aptcode, dongcode
+		) values (
+			#{userid}, #{aptcode}, #{dongcode}
+		)
+	</insert>
+	
+	<!-- 관심목록 삭제 -->
+	<delete id="deleteInterest" parameterType="int">
+		delete
+		from interest
+		where no = #{no}
+	</delete>
+	
+</mapper>

@@ -10,6 +10,7 @@
 - 실제 거주 경험이 있는 사람의 신뢰도 높은 리뷰
 
 ### 노션 주소
+https://www.notion.so/APTMOA-Springboot-Vue-e7a3ee8c53b7478e8bba3841a17cd3aa
 
 ### 프로젝트 일정
 
