@@ -36,22 +36,22 @@ public class QnaController {
 	
 	@ApiOperation(value = "qna 글목록", notes = "모든 qna글의 정보를 반환한다.", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<Qna>> retrieveBoard() throws Exception {
+	public ResponseEntity<List<Qna>> retrieveQna() throws Exception {
 		logger.debug("retrieveQna - 호출");
 		return new ResponseEntity<List<Qna>>(qService.retrieveQna(), HttpStatus.OK);
 	}
 
     @ApiOperation(value = "Qna 글보기", notes = "Qna번호에 해당하는 게시글의 정보를 반환한다.", response = Qna.class)    
 	@GetMapping("{qnano}")
-	public ResponseEntity<Qna> detailBoard(@PathVariable int qnano) {
-		logger.debug("detailNotice - 호출");
+	public ResponseEntity<Qna> detailQna(@PathVariable int qnano) {
+		logger.debug("detailQna - 호출");
 		return new ResponseEntity<Qna>(qService.detailQna(qnano), HttpStatus.OK);
 	}
 
     @ApiOperation(value = "Qna 글등록", notes = "새로운 Qna글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PostMapping
-	public ResponseEntity<String> writeBoard(@RequestBody Qna qna) {
-		logger.debug("writeNotice - 호출");
+	public ResponseEntity<String> writeQna(@RequestBody Qna qna) {
+		logger.debug("writeQna - 호출");
 		if (qService.writeQna(qna)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
@@ -60,8 +60,8 @@ public class QnaController {
 
     @ApiOperation(value = "Qna 글정보 수정", notes = "Qna번호에 해당하는 게시글의 정보를 수정한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PutMapping("{qnano}")
-	public ResponseEntity<String> updateBoard(@RequestBody Qna qna) {
-		logger.debug("updatNotice - 호출");
+	public ResponseEntity<String> updatQna(@RequestBody Qna qna) {
+		logger.debug("updatQna - 호출");
 		
 		if (qService.updateQna(qna)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
@@ -71,8 +71,8 @@ public class QnaController {
 
     @ApiOperation(value = "Qna 글삭제", notes = "Qna번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("{qnano}")
-	public ResponseEntity<String> deleteBoard(@PathVariable int qnano) {
-		logger.debug("deleteNotice - 호출");
+	public ResponseEntity<String> deleteQna(@PathVariable int qnano) {
+		logger.debug("deleteQna - 호출");
 		if (qService.deleteQna(qnano)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}

@@ -36,21 +36,21 @@ public class NoticeController {
 	
 	@ApiOperation(value = "게시판 글목록", notes = "모든 게시글의 정보를 반환한다.", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<Notice>> retrieveBoard() throws Exception {
+	public ResponseEntity<List<Notice>> retrieveNotice() throws Exception {
 		logger.debug("retrieveNotice - 호출");
 		return new ResponseEntity<List<Notice>>(nService.retrieveNotice(), HttpStatus.OK);
 	}
 
     @ApiOperation(value = "게시판 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response = Notice.class)    
 	@GetMapping("{noticeno}")
-	public ResponseEntity<Notice> detailBoard(@PathVariable int noticeno) {
+	public ResponseEntity<Notice> detailNotice(@PathVariable int noticeno) {
 		logger.debug("detailNotice - 호출");
 		return new ResponseEntity<Notice>(nService.detailNotice(noticeno), HttpStatus.OK);
 	}
 
     @ApiOperation(value = "게시판 글등록", notes = "새로운 게시글 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PostMapping
-	public ResponseEntity<String> writeBoard(@RequestBody Notice notice) {
+	public ResponseEntity<String> writeNotice(@RequestBody Notice notice) {
 		logger.debug("writeNotice - 호출");
 		if (nService.writeNotice(notice)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
@@ -60,7 +60,7 @@ public class NoticeController {
 
     @ApiOperation(value = "게시판 글정보 수정", notes = "글번호에 해당하는 게시글의 정보를 수정한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PutMapping("{noticeno}")
-	public ResponseEntity<String> updateBoard(@RequestBody Notice notice) {
+	public ResponseEntity<String> updatNotice(@RequestBody Notice notice) {
 		logger.debug("updatNotice - 호출");
 		
 		if (nService.updateNotice(notice)) {
@@ -71,7 +71,7 @@ public class NoticeController {
 
     @ApiOperation(value = "게시판 글삭제", notes = "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("{noticeno}")
-	public ResponseEntity<String> deleteBoard(@PathVariable int noticeno) {
+	public ResponseEntity<String> deleteNotice(@PathVariable int noticeno) {
 		logger.debug("deleteNotice - 호출");
 		if (nService.deleteNotice(noticeno)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
