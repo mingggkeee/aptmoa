@@ -3,10 +3,12 @@ package com.pjt.aptmoa.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.pjt.aptmoa.dto.Qna;
 import com.pjt.aptmoa.mapper.QnaMapper;
 
+@Service
 public class QnaServiceImpl implements QnaService{
 
 	@Autowired

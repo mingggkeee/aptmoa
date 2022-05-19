@@ -27,7 +27,7 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title("Aptmoa VueJS REST API").description(
-				"<h2>Aptmoa API Reference for Developers</h2>Swagger를 이용한 VUEJS API<br><img src=\"/ssafy.png\">\"")
+				"<h2>Aptmoa API Reference for Developers</h2>Swagger를 이용한 VUEJS API<br><img src=\"./ssafy.png\">\"")
 				.contact(new Contact("Aptmoa", "https://github.com/mingggkeee/aptmoa", "mksu234@naver.com")).license("Aptmoa License")
 				.licenseUrl("https://github.com/mingggkeee/aptmoa").version("1.0").build();
 	}
