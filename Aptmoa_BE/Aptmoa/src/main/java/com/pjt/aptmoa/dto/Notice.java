@@ -13,10 +13,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@ApiModel(value = "Board (게시글정보)", description = "글번호, 제목, 내용, 작성자아이디, 작성일을 가진   Domain Class")
-public class Board {
+@ApiModel(value = "Notice (공지사항정보)", description = "글번호, 제목, 내용, 작성자아이디, 작성일을 가진   Domain Class")
+public class Notice {
 	@ApiModelProperty(value = "글번호")
-	private int articleno;
+	private int noticeno;
 	@ApiModelProperty(value = "작성자아이디")
 	private String userid;
 	@ApiModelProperty(value = "제목")
