@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="py-4" dark height="auto">
+  <v-footer class="py-4" dark height="auto" id="footer">
     <v-container class="mx-auto">
       <v-row>
         <v-col cols="9">
@@ -69,3 +69,9 @@ export default {
   })
 };
 </script>
+
+<style scoped>
+#footer {
+  background: #0e3047;
+}
+</style>

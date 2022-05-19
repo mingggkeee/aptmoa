@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../views/Home.vue'
+import User from "@/views/User.vue";
 
-Vue.use(Router)
+// import store from "@/store/index.js";
+
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -12,6 +15,43 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: "/user",
+      name: "User",
+      component: User,
+      children: [
+        {
+          path: "register",
+          name: "Register",
+          component:() => import("@/components/user/UserRegister.vue"),
+        },
+        {
+          path: "login",
+          name: "Login",
+          component:() => import("@/components/user/UserLogin.vue"),
+        },
+      ]
+    },
+    {
+      path: "/apart",
+      name: "Apart",
+      component: () => import("@/views/Apart.vue"),
+    },
+    {
+      path: "/news",
+      name: "News",
+      component: () => import("@/views/News.vue"),
+    },
+    {
+      path: "/notice",
+      name: "Notice",
+      component: () => import("@/views/Notice.vue"),
+    },
+    {
+      path: "/qna",
+      name: "QnA",
+      component: () => import("@/views/QnA.vue"),
     },
   ],
 })
