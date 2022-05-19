@@ -13,10 +13,10 @@ public class UserServiceImpl implements UserService {
 	private UserMapper memberMapper;
 	
 	@Override
-	public UserDto login(UserDto memberDto) throws Exception {
-		if(memberDto.getUserid() == null || memberDto.getUserpwd() == null)
+	public UserDto login(UserDto userDto) throws Exception {
+		if(userDto.getUserid() == null || userDto.getUserpwd() == null)
 			return null;
-		return memberMapper.login(memberDto);
+		return memberMapper.login(userDto);
 	}
 
 	@Override
