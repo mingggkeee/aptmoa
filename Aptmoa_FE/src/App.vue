@@ -7,21 +7,18 @@
     <core-view />
 
     <core-footer />
-
-    <core-cta />
   </v-app>
 </template>
 
 <script>
-  export default {
-    name: 'App',
+export default {
+  name: "App",
 
-    components: {
-      CoreCta: () => import('@/components/core/Cta'),
-      CoreDrawer: () => import('@/components/core/Drawer'),
-      CoreFooter: () => import('@/components/core/Footer'),
-      CoreAppBar: () => import('@/components/core/AppBar'),
-      CoreView: () => import('@/components/core/View'),
-    },
+  components: {
+    CoreDrawer: () => import("@/components/core/Drawer"),
+    CoreFooter: () => import("@/components/core/Footer"),
+    CoreAppBar: () => import("@/components/core/AppBar"),
+    CoreView: () => import("@/components/core/View")
   }
+};
 </script>
