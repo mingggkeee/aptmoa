@@ -24,7 +24,7 @@
         <router-link :to="{ name: '' }" class="link ml-4" id="category">
           ABOUT
         </router-link>
-        <router-link :to="{ name: 'Apart' }" class="link ml-4" id="category">
+        <router-link :to="{ name: 'apart' }" class="link ml-4" id="category">
           APART
         </router-link>
         <router-link :to="{ name: 'News' }" class="link ml-4" id="category">

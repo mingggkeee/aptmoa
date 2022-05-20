@@ -1,19 +1,19 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
     <h3 class="underline-orange">
-      <b-icon icon="house-fill"></b-icon> Apart Service
+      <b-icon icon="apart-fill"></b-icon> Apart Service
     </h3>
     <b-row>
       <b-col>
-        <house-search-bar></house-search-bar>
+        <apart-search-bar></apart-search-bar>
       </b-col>
     </b-row>
     <b-row>
       <b-col cols="6" align="left">
-        <house-list />
+        <apart-list />
       </b-col>
       <b-col cols="6">
-        <house-detail />
+        <apart-detail />
       </b-col>
     </b-row>
   </b-container>
@@ -25,7 +25,7 @@ import ApartList from "@/components/apart/ApartList.vue";
 import ApartDetail from "@/components/apart/ApartDetail.vue";
 
 export default {
-  name: "HouseView",
+  name: "ApartView",
   components: {
     ApartSearchBar,
     ApartList,

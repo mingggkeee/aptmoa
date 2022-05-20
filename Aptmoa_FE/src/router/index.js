@@ -41,7 +41,7 @@ export default new Router({
     },
     {
       path: "/apart",
-      name: "Apart",
+      name: "apart",
       component: () => import("@/views/Apart.vue"),
     },
     {

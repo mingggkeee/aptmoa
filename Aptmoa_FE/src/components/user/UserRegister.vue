@@ -114,7 +114,8 @@ export default {
     idcheck() {
       //id체크하는 api 필요
       // http.get(`/user/`)
-    }
+    },
+    checkValue() {}
   }
 };
 </script>
