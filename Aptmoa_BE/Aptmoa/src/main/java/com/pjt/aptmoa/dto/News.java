@@ -19,5 +19,7 @@ public class News {
 	private String subject;
 	private String content;
 	private String regtime;
+	private String newsurl;
+	private String imgurl;
 	
 }

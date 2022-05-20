@@ -21,9 +21,9 @@
 	<!-- 뉴스 등록 -->
 	<insert id="insertNews" parameterType="news">
 		insert into news(
-			subject, content
+			subject, content, newsurl, imgurl
 		) values (
-			#{subject}, #{content}	
+			#{subject}, #{content}, #{newsurl}, #{imgurl}
 		)
 	</insert>
 	
