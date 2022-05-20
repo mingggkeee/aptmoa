@@ -15,8 +15,8 @@ public class NewsServiceImpl implements NewsService{
 	private NewsMapper newsMapper;
 	
 	@Override
-	public List<News> retrieveNews() {
-		return newsMapper.selectNews();
+	public List<News> retrieveNews(String regtime) {
+		return newsMapper.selectNews(regtime);
 	}
 
 	@Override
