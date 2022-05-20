@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class HouseInfoDto {
-	private int aptCode;
+	private long aptCode;
 	private String aptName;
 	private String dongCode;
 	private String dongName;
