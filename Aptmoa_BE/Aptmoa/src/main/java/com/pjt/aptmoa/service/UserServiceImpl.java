@@ -15,20 +15,20 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper memberMapper;
 	
-	public String encrypt(String text) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        md.update(text.getBytes());
-
-        return bytesToHex(md.digest());
-    }
-	
-	private String bytesToHex(byte[] digest) {
-		StringBuilder builder = new StringBuilder();
-        for (byte b : digest) {
-            builder.append(String.format("%02x", b));
-        }
-        return builder.toString();
-	}
+//	public String encrypt(String text) throws NoSuchAlgorithmException {
+//        MessageDigest md = MessageDigest.getInstance("SHA-256");
+//        md.update(text.getBytes());
+//
+//        return bytesToHex(md.digest());
+//    }
+//	
+//	private String bytesToHex(byte[] digest) {
+//		StringBuilder builder = new StringBuilder();
+//        for (byte b : digest) {
+//            builder.append(String.format("%02x", b));
+//        }
+//        return builder.toString();
+//	}
 	
 	@Override
 	public UserDto login(UserDto userDto) throws Exception {
@@ -50,15 +50,17 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean registerUser(UserDto userDto) throws Exception {
 		//validation check
-		System.out.println("userDto.getUserPwd() : "+userDto.getUserpwd());
-		userDto.setUserpwd(encrypt(userDto.getUserpwd()));
-		System.out.println("암호화 userDto.getUserPwd() : "+userDto.getUserpwd());
+//		System.out.println("userDto.getUserPwd() : "+userDto.getUserpwd());
+//		userDto.setUserpwd(encrypt(userDto.getUserpwd()));
+		userDto.setUserpwd(userDto.getUserpwd());
+//		System.out.println("암호화 userDto.getUserPwd() : "+userDto.getUserpwd());
 		return memberMapper.registerUser(userDto)==1;
 	}
 
 	@Override
 	public boolean updateUser(UserDto userDto) throws Exception {
-		userDto.setUserpwd(encrypt(userDto.getUserpwd()));
+//		userDto.setUserpwd(encrypt(userDto.getUserpwd()));
+		userDto.setUserpwd((userDto.getUserpwd()));
 		return memberMapper.updateUser(userDto)==1;
 	}
 

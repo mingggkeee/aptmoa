@@ -10,10 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,6 @@ import io.swagger.annotations.ApiParam;
 @Api("UserController V1")
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("*")
 public class UserController {
 
 	public static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -97,6 +97,7 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 	
+	@ApiOperation(value = "회원가입")
 	@PostMapping
 	public ResponseEntity<String> userRegister(@RequestBody UserDto userDto) throws Exception{
 		System.out.println("유저 등록 ctrl --파라메터 : "+userDto);
@@ -104,6 +105,38 @@ public class UserController {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	@ApiOperation(value = "ID 중복체크")
+	@GetMapping("/idcheck/{userId}")
+	public ResponseEntity<String> idCheck(@PathVariable("userId") String userId)throws Exception{
+		int idCount = userService.idCheck(userId);
+		if(idCount==0) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		else if(idCount == 1) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	@ApiOperation(value = "회원 탈퇴")
+	@DeleteMapping(value="/{userId}")
+	public ResponseEntity<String> userDelete(@PathVariable("userId") String userId)throws Exception{
+		if(userService.deleteUser(userId)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+	
+	@ApiOperation(value = "회원정보 수정")
+	@PutMapping
+	public ResponseEntity<String> userModify(@RequestBody UserDto userDto)throws Exception{
+		if(userService.updateUser(userDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		
 	}
 	
 }
