@@ -83,7 +83,33 @@ export default new Router({
     {
       path: "/qna",
       name: "QnA",
-      component: () => import("@/views/QnA.vue")
+      component: () => import("@/views/QnA.vue"),
+      redirect: "/qna/list",
+      children: [
+        {
+          path: "list",
+          name: "qnaList",
+          component: () => import("@/components/qna/QnaList.vue")
+        },
+        {
+          path: "write",
+          name: "qnaRegister",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/qna/QnaRegister.vue")
+        },
+        {
+          path: "detail/:qnano",
+          name: "qnaDetail",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/qna/QnaDetail.vue")
+        },
+        {
+          path: "modify/:qnano",
+          name: "qnaModify",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/qna/QnaModify.vue")
+        }
+      ]
     }
   ]
 });
