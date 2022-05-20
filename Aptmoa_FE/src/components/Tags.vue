@@ -1,7 +1,7 @@
 <template>
   <v-container class="pa-0">
     <base-subheading>Tags</base-subheading>
-    <!-- 
+
     <v-chip
       v-for="(category, i) in categories"
       :key="i"
@@ -11,9 +11,9 @@
       small
       tag
       text-color="white"
-    > -->
-    <!-- {{ category.text }} -->
-    <!-- </v-chip> -->
+    >
+      {{ category.text }}
+    </v-chip>
   </v-container>
 </template>
 
@@ -23,7 +23,18 @@
 
 export default {
   name: "Tags",
-
+  data() {
+    return {
+      categories: [
+        { text: "News" },
+        { text: "Notice" },
+        { text: "Q&A" },
+        { text: "Apart" },
+        { text: "CCTV" },
+        { text: "Infra" }
+      ]
+    };
+  },
   computed: {
     // ...mapGetters(["categories"])
   }
