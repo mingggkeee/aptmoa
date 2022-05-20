@@ -8,6 +8,7 @@
 	<select id="selectNews" resultType="news">
 		select *
 		from news
+		where regtime = #{regtime}
 		order by newsno desc
 	</select>
 	
@@ -21,9 +22,9 @@
 	<!-- 뉴스 등록 -->
 	<insert id="insertNews" parameterType="news">
 		insert into news(
-			subject, content, newsurl, imgurl
+			subject, content, newsurl, imgurl, regtime
 		) values (
-			#{subject}, #{content}, #{newsurl}, #{imgurl}
+			#{subject}, #{content}, #{newsurl}, #{imgurl}, #{regtime}
 		)
 	</insert>
 	
