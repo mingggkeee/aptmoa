@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '../views/Home.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import Home from "../views/Home.vue";
 import User from "@/views/User.vue";
 
 // import store from "@/store/index.js";
@@ -8,13 +8,13 @@ import User from "@/views/User.vue";
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home,
+      path: "/",
+      name: "home",
+      component: Home
     },
     {
       path: "/user",
@@ -24,40 +24,66 @@ export default new Router({
         {
           path: "register",
           name: "register",
-          component:() => import("@/components/user/UserRegister.vue"),
+          component: () => import("@/components/user/UserRegister.vue")
         },
         {
           path: "login",
           name: "login",
-          component:() => import("@/components/user/UserLogin.vue"),
+          component: () => import("@/components/user/UserLogin.vue")
         },
         {
           path: "mypage",
           name: "mypage",
           // beforeEnter: onlyAuthUser,
-          component: () => import("@/components/user/UserMyPage.vue"),
-        },
+          component: () => import("@/components/user/UserMyPage.vue")
+        }
       ]
     },
     {
       path: "/apart",
       name: "apart",
-      component: () => import("@/views/Apart.vue"),
+      component: () => import("@/views/Apart.vue")
     },
     {
       path: "/news",
       name: "News",
-      component: () => import("@/views/News.vue"),
+      component: () => import("@/views/News.vue")
     },
     {
       path: "/notice",
       name: "Notice",
       component: () => import("@/views/Notice.vue"),
+      redirect: "/notice/list",
+      children: [
+        {
+          path: "list",
+          name: "noticeList",
+          component: () => import("@/components/notice/NoticeList.vue")
+        },
+        {
+          path: "write",
+          name: "noticeRegister",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/notice/NoticeRegister.vue")
+        },
+        {
+          path: "detail/:noticeno",
+          name: "noticeDetail",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/notice/NoticeDetail.vue")
+        },
+        {
+          path: "modify/:noticeno",
+          name: "noticeModify",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/notice/NoticeModify.vue")
+        }
+      ]
     },
     {
       path: "/qna",
       name: "QnA",
-      component: () => import("@/views/QnA.vue"),
-    },
-  ],
-})
+      component: () => import("@/views/QnA.vue")
+    }
+  ]
+});

@@ -1,7 +1,7 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
     <h3 class="underline-orange">
-      <b-icon icon="apart-fill"></b-icon> Apart Service
+      <b-icon icon="apart-fill"></b-icon> 아파트 조회
     </h3>
     <b-row>
       <b-col>
