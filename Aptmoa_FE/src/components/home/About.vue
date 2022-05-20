@@ -3,7 +3,8 @@
     <base-subheading>About Us</base-subheading>
 
     <p>
-      이용 중 문제가 생기시면 ~~
+      이용 중 문제가 생기시면 아래의 연락처로 문의주시기 바랍니다. <br />APTMOA
+      Team
     </p>
   </v-container>
 </template>

@@ -1,15 +1,35 @@
 [
 	{
-		"title": "NEWS1",
-		"author": "John L",
-		"category": "Apart",
-		"hero": "moroccandays.jpg"
+		"title": "똘똘한 한채 사자…서울 주택 외지인 매입 비중 '최대'",
+		"author": "1분기 전체 거래의 30% 차지 용산구 39.4%로 가장 높아...",
+		"category": "News",
+		"date": "2022-05-18",
+		"newsno": 75,
+		"hero": "news1.jpg"
 	},
 	{
-		"title": "NEWS2",
-		"author": "Rachel L",
+		"title": "'우리 아파트 사랑' 추억으로 남기세요",
+		"author": "'제7회 사진 공모전' 5월말까지…7월 당선작 발표 1인당 3점까지 온라인 접수 “5월 가정의 달, 온 가족이 아파트에서 정다운 모습을 추억으로 남기세요.”",
 		"category": "News",
-		"hero": "autumnclouds.jpg"
+		"date": "2022-05-17",
+		"newsno": 84,
+		"hero": "news2.jpg"
+	},
+	{
+		"title": "원희룡 “무리한 집값 잡기 안 해…청년 내 집 마련안 곧 발표”",
+		"author": "주거복지·안정이 정책 추진 방향 공급 확대 구체적 방안 8월 제시 청년층의 내 집 마련을 위한 구체적인 로드맵을 조만간 제시하겠다고 밝혔다.",
+		"category": "News",
+		"date": "2022-05-16",
+		"newsno": 93,
+		"hero": "news3.jpg"
+	},
+	{
+		"title": "성남 매지봉 자락 타운하우스 ‘분당이매 더스카이52’",
+		"author": "매지봉 아랫자락에 조성되는 타운하우스 ‘분당이매 더스카이52’가 5월 중 공개된다. A·B·C 총 3가지 타입의 단독주택형으로 모든 가구는 4~6대의 차를 수용...",
+		"category": "News",
+		"date": "2022-05-15",
+		"newsno": 112,
+		"hero": "news4.jpg"
 	},
 	{
 		"title": "The Adventure Begins",
@@ -17,51 +37,39 @@
 		"prominent": true
 	},
 	{
-		"title": "Paris in Spring",
-		"author": "John L",
-		"category": "Notice",
-		"hero": "christmas.jpg"
-	},
-	{
-		"title": "Youthful Independence",
-		"author": "Rachel L",
-		"category": "Q&A",
-		"hero": "july4.jpg"
-	},
-	{
-		"title": "Trial By Fire",
-		"author": "Anthony R",
-		"category": "Cooking",
-		"hero": "firepots.jpg"
-	},
-	{
-		"title": "Water Ventures",
-		"author": "Rachel L",
-		"category": "Leisure",
-		"hero": "jellyfish.jpg"
-	},
-	{
-		"title": "Mt. Zekial",
-		"author": "Rachel L",
-		"category": "Travel",
-		"hero": "mountaincabin.jpg"
-	},
-	{
 		"title": "Cozumel Caves",
 		"author": "Rachel L",
-		"category": "Travel",
+		"category": "Notice",
 		"hero": "lightcave.jpg"
 	},
 	{
 		"title": "Amazing Ireland",
 		"author": "Rachel L",
-		"category": "Travel",
+		"category": "Notice",
 		"hero": "greengrass.jpg"
 	},
 	{
 		"title": "Cabin Fever",
 		"author": "Rachel L",
-		"category": "Travel",
+		"category": "Notice",
 		"hero": "snowcabin.jpg"
+	},
+	{
+		"title": "Trial By Fire",
+		"author": "Anthony R",
+		"category": "Q&A",
+		"hero": "firepots.jpg"
+	},
+	{
+		"title": "Water Ventures",
+		"author": "Rachel L",
+		"category": "Q&A",
+		"hero": "jellyfish.jpg"
+	},
+	{
+		"title": "Mt. Zekial",
+		"author": "Rachel L",
+		"category": "Q&A",
+		"hero": "mountaincabin.jpg"
 	}
 ]

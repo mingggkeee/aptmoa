@@ -2,7 +2,7 @@
   <v-footer class="py-4" dark height="auto" id="footer">
     <v-container class="mx-auto">
       <v-row>
-        <v-col cols="9">
+        <v-col cols="5">
           <base-btn
             v-for="(item, i) in items"
             :key="i"
@@ -14,6 +14,21 @@
           >
             <v-icon v-text="item.icon" />
           </base-btn>
+        </v-col>
+
+        <v-col cols="6">
+          <div id="logo">
+            © 2022.
+            <v-img
+              :src="require('@/assets/logo2.jpg')"
+              class="mr-5"
+              contain
+              height="50"
+              width="50"
+              max-width="100"
+            />
+            all rights reserved.
+          </div>
         </v-col>
 
         <v-spacer />
@@ -38,31 +53,27 @@ export default {
   data: () => ({
     items: [
       {
-        href: "#!",
+        href: "https://twitter.com/?lang=ko",
         icon: "mdi-twitter"
       },
       {
-        href: "#!",
+        href: "https://www.instagram.com/",
         icon: "mdi-instagram"
       },
       {
-        href: "#!",
+        href: "https://www.facebook.com/",
         icon: "mdi-facebook"
       },
       {
-        href: "#!",
-        icon: "mdi-google-plus"
-      },
-      {
-        href: "#!",
+        href: "https://www.reddit.com/",
         icon: "mdi-reddit"
       },
       {
-        href: "#!",
+        href: "https://discord.com/",
         icon: "mdi-discord"
       },
       {
-        href: "#!",
+        href: "https://www.pinterest.co.kr/",
         icon: "mdi-pinterest"
       }
     ]
@@ -73,5 +84,9 @@ export default {
 <style scoped>
 #footer {
   background: #0e3047;
+}
+#logo {
+  display: flex;
+  font-size: 30px;
 }
 </style>
