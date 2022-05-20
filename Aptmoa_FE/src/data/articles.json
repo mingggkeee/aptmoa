@@ -32,15 +32,15 @@
 		"hero": "news4.jpg"
 	},
 	{
-		"title": "The Adventure Begins",
-		"hero": "snowcup.jpg",
+		"title": "HanGang",
+		"hero": "hangang.jpg",
 		"prominent": true
 	},
 	{
 		"title": "Cozumel Caves",
 		"author": "Rachel L",
 		"category": "Notice",
-		"hero": "lightcave.jpg"
+		"hero": "notice.jpg"
 	},
 	{
 		"title": "Amazing Ireland",

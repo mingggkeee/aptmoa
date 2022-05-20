@@ -17,7 +17,7 @@
 import ApartListItem from "@/components/apart/ApartListItem.vue";
 import { mapState } from "vuex";
 
-const aprtStore = "apartStore";
+const apartStore = "apartStore";
 
 export default {
   name: "ApartList",
