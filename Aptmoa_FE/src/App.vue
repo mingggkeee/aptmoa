@@ -2,7 +2,7 @@
   <v-app>
     <core-app-bar />
 
-    <core-drawer />
+    <!-- <core-drawer /> -->
 
     <core-view />
 
@@ -15,7 +15,7 @@ export default {
   name: "App",
 
   components: {
-    CoreDrawer: () => import("@/components/core/Drawer"),
+    // CoreDrawer: () => import("@/components/core/Drawer"),
     CoreFooter: () => import("@/components/core/Footer"),
     CoreAppBar: () => import("@/components/core/AppBar"),
     CoreView: () => import("@/components/core/View")

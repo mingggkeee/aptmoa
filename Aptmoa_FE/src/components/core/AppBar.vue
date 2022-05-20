@@ -52,44 +52,35 @@
         <v-spacer />
 
         <div id="detail">
-          <b-navbar-nav v-if="userInfo">
-            <b-nav-item class="align-self-center"
-              ><b-avatar
-                variant="light"
-                v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
-              ></b-avatar
-              >{{ userInfo.username }}({{ userInfo.userid }})님</b-nav-item
+          <div v-if="userInfo">
+            <a class="mr-4" id="username"
+              >{{ userInfo.username }}({{ userInfo.userid }})님</a
             >
-            <b-nav-item class="align-self-center"
-              ><router-link
-                :to="{ name: 'mypage' }"
-                class="link align-self-center"
-                >내정보보기</router-link
-              ></b-nav-item
+            <router-link
+              :to="{ name: 'mypage' }"
+              class="link align-self-center mr-4"
+              id="category"
+              >내정보보기</router-link
             >
-            <b-nav-item
+            <a
               class="link align-self-center"
               @click.prevent="onClickLogout"
-              >로그아웃</b-nav-item
+              id="category"
+              >로그아웃</a
             >
-          </b-navbar-nav>
-          <b-navbar-nav class="ml-auto" v-else>
-            <b-nav-item-dropdown right>
-              <template #button-content>
-                <b-icon icon="people" font-scale="2" color="white"></b-icon>
-              </template>
-              <b-dropdown-item href="#"
-                ><router-link :to="{ name: 'register' }" class="link"
-                  ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
-                ></b-dropdown-item
-              >
-              <b-dropdown-item href="#"
-                ><router-link :to="{ name: 'login' }" class="link"
-                  ><b-icon icon="key"></b-icon> 로그인</router-link
-                ></b-dropdown-item
-              >
-            </b-nav-item-dropdown>
-          </b-navbar-nav>
+          </div>
+          <div v-else>
+            <router-link
+              :to="{ name: 'register' }"
+              class="link mr-4"
+              id="category"
+              ><b-icon icon="person-circle" class="mr-1"></b-icon>
+              회원가입</router-link
+            >
+            <router-link :to="{ name: 'login' }" class="link" id="category"
+              ><b-icon icon="key" class="mr-1"></b-icon> 로그인</router-link
+            >
+          </div>
         </div>
         <!-- <v-text-field
           append-icon="mdi-magnify"
@@ -152,5 +143,11 @@ export default {
 #detail {
   display: flex;
   color: white;
+}
+
+#username {
+  font-size: 18px;
+  color: #f0f4c3;
+  text-decoration-line: none;
 }
 </style>
