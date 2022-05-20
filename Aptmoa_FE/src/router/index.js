@@ -23,17 +23,18 @@ export default new Router({
       children: [
         {
           path: "register",
-          name: "Register",
+          name: "register",
           component:() => import("@/components/user/UserRegister.vue"),
         },
         {
           path: "login",
-          name: "Login",
+          name: "login",
           component:() => import("@/components/user/UserLogin.vue"),
         },
         {
           path: "mypage",
           name: "mypage",
+          // beforeEnter: onlyAuthUser,
           component: () => import("@/components/user/UserMyPage.vue"),
         },
       ]

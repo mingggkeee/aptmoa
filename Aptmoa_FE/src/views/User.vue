@@ -1,21 +1,11 @@
 <template>
-  <div>
-    유저관련 페이지입니다.
-  </div>
+  <b-container class="bv-example-row mt-3 text-center">
+    <router-view></router-view>
+  </b-container>
 </template>
 
 <script>
 export default {
-  name: "WorkspaceJsonUser",
-
-  data() {
-    return {};
-  },
-
-  mounted() {},
-
-  methods: {}
+  name: "User"
 };
 </script>
-
-<style scoped></style>

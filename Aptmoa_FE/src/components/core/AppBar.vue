@@ -15,23 +15,26 @@
           />
         </router-link>
 
+        <!-- <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> -->
+
         <router-link :to="{ name: 'home' }" class="link" id="category">
-          <h1>HOME</h1>
+          HOME
         </router-link>
+
         <router-link :to="{ name: '' }" class="link ml-4" id="category">
-          <h1>ABOUT</h1>
+          ABOUT
         </router-link>
         <router-link :to="{ name: 'Apart' }" class="link ml-4" id="category">
-          <h1>APART</h1>
+          APART
         </router-link>
         <router-link :to="{ name: 'News' }" class="link ml-4" id="category">
-          <h1>NEWS</h1>
+          NEWS
         </router-link>
         <router-link :to="{ name: 'Notice' }" class="link ml-4" id="category">
-          <h1>NOTICE</h1>
+          NOTICE
         </router-link>
         <router-link :to="{ name: 'QnA' }" class="link ml-4" id="category">
-          <h1>Q&A</h1>
+          Q&A
         </router-link>
 
         <!-- <v-btn
@@ -48,17 +51,46 @@
 
         <v-spacer />
 
-        <router-link :to="{ name: 'Register' }" class="link">
-          <v-btn class="hidden-sm-and-down">
-            회원가입
-          </v-btn>
-        </router-link>
-        <router-link :to="{ name: 'Login' }" class="link">
-          <v-btn class="hidden-sm-and-down ml-3">
-            로그인
-          </v-btn>
-        </router-link>
-
+        <div id="detail">
+          <b-navbar-nav v-if="userInfo">
+            <b-nav-item class="align-self-center"
+              ><b-avatar
+                variant="light"
+                v-text="userInfo ? userInfo.userid.charAt(0).toUpperCase() : ''"
+              ></b-avatar
+              >{{ userInfo.username }}({{ userInfo.userid }})님</b-nav-item
+            >
+            <b-nav-item class="align-self-center"
+              ><router-link
+                :to="{ name: 'mypage' }"
+                class="link align-self-center"
+                >내정보보기</router-link
+              ></b-nav-item
+            >
+            <b-nav-item
+              class="link align-self-center"
+              @click.prevent="onClickLogout"
+              >로그아웃</b-nav-item
+            >
+          </b-navbar-nav>
+          <b-navbar-nav class="ml-auto" v-else>
+            <b-nav-item-dropdown right>
+              <template #button-content>
+                <b-icon icon="people" font-scale="2" color="white"></b-icon>
+              </template>
+              <b-dropdown-item href="#"
+                ><router-link :to="{ name: 'register' }" class="link"
+                  ><b-icon icon="person-circle"></b-icon> 회원가입</router-link
+                ></b-dropdown-item
+              >
+              <b-dropdown-item href="#"
+                ><router-link :to="{ name: 'login' }" class="link"
+                  ><b-icon icon="key"></b-icon> 로그인</router-link
+                ></b-dropdown-item
+              >
+            </b-nav-item-dropdown>
+          </b-navbar-nav>
+        </div>
         <!-- <v-text-field
           append-icon="mdi-magnify"
           flat
@@ -73,23 +105,34 @@
 
 <script>
 // Utilities
-import { mapGetters, mapMutations } from "vuex";
+import { mapState, mapGetters, mapMutations } from "vuex";
+
+const userStore = "userStore";
 
 export default {
   name: "CoreAppBar",
 
   computed: {
+    ...mapState(userStore, ["isLogin", "userInfo"]),
     ...mapGetters(["links"])
   },
 
   methods: {
     ...mapMutations(["toggleDrawer"]),
+    ...mapMutations(userStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     onClick(e, item) {
       e.stopPropagation();
 
       if (item.to || !item.href) return;
 
       this.$vuetify.goTo(item.href.endsWith("!") ? 0 : item.href);
+    },
+    onClickLogout() {
+      // console.log("memberStore : ", ms);
+      this.SET_IS_LOGIN(false);
+      this.SET_USER_INFO(null);
+      sessionStorage.removeItem("access-token");
+      if (this.$route.path != "/") this.$router.push({ name: "home" });
     }
   }
 };
@@ -101,8 +144,13 @@ export default {
 }
 
 #category {
-  font-size: 9px;
+  font-size: 18px;
   color: white;
   text-decoration-line: none;
+}
+
+#detail {
+  display: flex;
+  color: white;
 }
 </style>
