@@ -1,6 +1,6 @@
 <template>
   <v-container id="contact" tag="section">
-    <base-card color="rgba(203, 170, 92, 0.51)" class="pa-3">
+    <base-card color="background_light" class="pa-3">
       <v-container>
         <v-row>
           <v-col cols="12" md="6" offset-md="1">
@@ -17,7 +17,7 @@
                 <v-list-item-title>EMAIL</v-list-item-title>
 
                 <v-list-item-subtitle>
-                  THEARTOFTRAVEL@GMAIL.COM
+                  gpfls0506@gmail.com & mksu234@gmail.com
                 </v-list-item-subtitle>
               </v-list-item>
 

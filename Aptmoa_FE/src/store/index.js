@@ -1,7 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
+// import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
+
+import userStore from "@/store/modules/userStore.js";
+import apartStore from "@/store/modules/apartStore.js";
+import noticeStore from "@/store/modules/noticeStore.js";
 
 export default new Vuex.Store({
   state: {
@@ -19,33 +24,21 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    categories: state => {
-      const categories = [];
-
-      for (const article of state.articles) {
-        if (
-          !article.category ||
-          categories.find(category => category.text === article.category)
-        )
-          continue;
-
-        const text = article.category;
-
-        categories.push({
-          text,
-          href: "#!"
-        });
-      }
-
-      return categories.sort().slice(0, 4);
-    },
-    links: (state, getters) => {
-      return state.items.concat(getters.categories);
-    }
   },
   mutations: {
     setDrawer: (state, payload) => (state.drawer = payload),
     toggleDrawer: state => (state.drawer = !state.drawer)
   },
-  actions: {}
+  actions: {},
+  modules: {
+    userStore,
+    apartStore,
+    noticeStore,
+  },
+  plugins: [
+    // createPersistedState({
+    //   // 브라우저 종료시 제거하기 위해 localStorage가 아닌 sessionStorage로 변경. (default: localStorage)
+    //   storage : sessionStorage,
+    // }),
+  ],
 });
