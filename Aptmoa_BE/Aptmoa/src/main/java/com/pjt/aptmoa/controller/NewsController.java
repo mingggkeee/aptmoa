@@ -35,9 +35,9 @@ public class NewsController {
 	
 	@ApiOperation(value = "news 목록", notes = "모든 news를 반환한다.", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<News>> retrieveNews() throws Exception {
+	public ResponseEntity<List<News>> retrieveNews(String regtime) throws Exception {
 		logger.debug("retrieveNews - 호출");
-		return new ResponseEntity<List<News>>(nService.retrieveNews(), HttpStatus.OK);
+		return new ResponseEntity<List<News>>(nService.retrieveNews(regtime), HttpStatus.OK);
 	}
 
     @ApiOperation(value = "news 글보기", notes = "news번호에 해당하는 news의 정보를 반환한다.", response = News.class)    
