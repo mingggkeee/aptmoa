@@ -1,10 +1,10 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        <b-alert show><h3>글수정</h3></b-alert>
-      </b-col>
-    </b-row>
+    <v-row>
+      <v-col>
+        <v-alert show><h1>글수정</h1></v-alert>
+      </v-col>
+    </v-row>
     <notice-input-item type="modify" />
   </b-container>
 </template>

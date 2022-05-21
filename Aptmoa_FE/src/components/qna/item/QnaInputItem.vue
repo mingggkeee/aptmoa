@@ -1,68 +1,35 @@
 <template>
-  <b-row>
-    <b-col class="col-3"></b-col>
-    <b-col class="col-6">
-      <v-card class="text-center">
-        <v-form>
-          <v-col>
-            <v-row class="ma-3">
-              <v-text-field
-                v-model="qna.subject"
-                placeholder="제목"
-                required
-                id="userId"
-                name="userId"
-                @keyup="idcheck"
-              ></v-text-field>
-            </v-row>
-            <v-row class="ma-3">
-              <v-textarea
-                v-model="qna.content"
-                required
-                placeholder="내용 입력..."
-                rows="10"
-                max-rows="15"
-              ></v-textarea>
-            </v-row>
-            <div class="text-sm-center">
-              <v-btn
-                color="primary"
-                elevation="2"
-                class="m-1 ma-3"
-                id="submitbtn"
-                @click="onSubmit"
-                v-if="this.type === 'register'"
-                >글 작성</v-btn
-              >
-              <v-btn
-                color="primary"
-                elevation="2"
-                class="m-1 ma-3"
-                v-else
-                @click="onSubmit"
-                >글수정</v-btn
-              >
-              <v-btn
-                color="second"
-                elevation="2"
-                class="m-1 ma-3"
-                id="resetBrn"
-                type="reset"
-                >초기화</v-btn
-              >
-            </div>
-          </v-col>
-        </v-form>
-      </v-card>
-    </b-col>
-  </b-row>
+  <v-row class="mb-1">
+    <v-col style="text-align: left">
+      <form @submit.prevent="submit">
+        <v-text-field
+          v-model="qna.subject"
+          label="제목"
+          required
+        ></v-text-field>
+        <v-textarea v-model="qna.content" label="내용" required></v-textarea>
+      </form>
+
+      <v-btn
+        @click="registQna"
+        variant="primary"
+        class="m-1"
+        v-if="this.type === 'register'"
+        >작성</v-btn
+      >
+      <v-btn @click="modifyQna" variant="primary" class="m-1" v-else
+        >수정</v-btn
+      >
+      <v-btn @click="onReset" variant="danger" class="m-1">초기화</v-btn>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
 import { writeQna, getQna, modifyQna } from "@/api/qna";
 import { mapState } from "vuex";
 
-const memberStore = "memberStore";
+const userStore = "userStore";
 
 export default {
   name: "QnaInputItem",
@@ -70,7 +37,7 @@ export default {
     return {
       qna: {
         // 유저아이디 어떻게 가져오지?
-        userid: "",
+        userId: "",
         subject: "",
         content: ""
       }
@@ -80,26 +47,22 @@ export default {
     type: { type: String }
   },
   computed: {
-    ...mapState(memberStore, ["userInfo"])
+    ...mapState(userStore, ["userInfo"])
   },
   created() {
     if (this.type === "modify") {
       getQna(
         this.$route.params.qnano,
         ({ data }) => {
-          // this.qna.qnano = data.qna.qnano;
-          // this.qna.userid = data.qna.userid;
-          // this.qna.subject = data.qna.subject;
-          // this.qna.content = data.qna.content;
           this.qna = data;
         },
         error => {
           console.log(error);
         }
       );
-      this.isUserid = true;
+      this.isUserId = true;
     } else {
-      this.qna.userid = this.userInfo.userid;
+      this.qna.userId = this.userInfo.userId;
     }
   },
   methods: {
@@ -108,10 +71,10 @@ export default {
 
       let err = true;
       let msg = "";
-      !this.qna.userid &&
+      !this.qna.userId &&
         ((msg = "작성자 입력해주세요"),
         (err = false),
-        this.$refs.userid.focus());
+        this.$refs.userId.focus());
       err &&
         !this.qna.subject &&
         ((msg = "제목 입력해주세요"),
@@ -131,12 +94,12 @@ export default {
       this.qna.qnano = 0;
       this.qna.subject = "";
       this.qna.content = "";
-      this.$router.push({ name: "qnaList" });
+      // this.$router.push({ name: "qnaList" });
     },
     registQna() {
       writeQna(
         {
-          userid: this.qna.userid,
+          userId: this.qna.userId,
           subject: this.qna.subject,
           content: this.qna.content
         },
@@ -157,7 +120,7 @@ export default {
       modifyQna(
         {
           qnano: this.qna.qnano,
-          userid: this.qna.userid,
+          userId: this.qna.userId,
           subject: this.qna.subject,
           content: this.qna.content
         },

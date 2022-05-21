@@ -7,7 +7,7 @@
       }}</router-link>
     </b-th>
     <b-td>{{ hit }}</b-td>
-    <b-td>{{ userid }}</b-td>
+    <b-td>{{ userId }}</b-td>
     <b-td>{{ regtime | dateFormat }}</b-td>
   </b-tr>
 </template>
@@ -19,7 +19,7 @@ export default {
   name: "QnaListItem",
   props: {
     qnano: Number,
-    userid: String,
+    userId: String,
     subject: String,
     hit: Number,
     regtime: String

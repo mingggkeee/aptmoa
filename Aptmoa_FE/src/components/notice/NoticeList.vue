@@ -20,13 +20,7 @@
           :items-per-page="5"
           item-key="subject"
           class="elevation-1"
-          :footer-props="{
-            showFirstLastPage: true,
-            firstIcon: 'mdi-arrow-collapse-left',
-            lastIcon: 'mdi-arrow-collapse-right',
-            prevIcon: 'mdi-minus',
-            nextIcon: 'mdi-plus'
-          }"
+          @click:row="goDetail"
         ></v-data-table>
       </v-col>
       <v-col v-else class="text-center">공지사항이 없습니다.</v-col>
@@ -47,14 +41,18 @@ export default {
     return {
       notices: [],
       headers: [
-        {
-          text: "제목",
-          align: "start",
-          value: "subject"
-        },
+        { text: "번호", value: "noticeno" },
+        { text: "제목", value: "subject" },
         { text: "내용", value: "content" }
       ]
     };
+  },
+  props: {
+    noticeno: Number,
+    userId: String,
+    subject: String,
+    hit: Number,
+    regtime: String
   },
   created() {
     let param = {
@@ -77,6 +75,12 @@ export default {
   methods: {
     moveWrite() {
       this.$router.push({ name: "noticeRegister" });
+    },
+    goDetail(value) {
+      this.$router.push({
+        name: "noticeDetail",
+        params: { noticeno: value.noticeno }
+      });
     }
   }
 };

@@ -20,13 +20,7 @@
           :items-per-page="5"
           item-key="subject"
           class="elevation-1"
-          :footer-props="{
-            showFirstLastPage: true,
-            firstIcon: 'mdi-arrow-collapse-left',
-            lastIcon: 'mdi-arrow-collapse-right',
-            prevIcon: 'mdi-minus',
-            nextIcon: 'mdi-plus'
-          }"
+          @click:row="goDetail"
         ></v-data-table>
       </v-col>
       <v-col v-else class="text-center">Q&A 목록이 없습니다.</v-col>
@@ -39,19 +33,23 @@ import { listQna } from "@/api/qna.js";
 import QnaListItem from "@/components/qna/item/QnaListItem";
 
 export default {
-  name: "BoardList",
+  name: "QnaList",
   components: {
     QnaListItem
+  },
+  props: {
+    qnano: Number,
+    userId: String,
+    subject: String,
+    hit: Number,
+    regtime: String
   },
   data() {
     return {
       qnas: [],
       headers: [
-        {
-          text: "제목",
-          align: "start",
-          value: "subject"
-        },
+        { text: "번호", value: "qnano" },
+        { text: "제목", value: "subject" },
         { text: "내용", value: "content" }
       ]
     };
@@ -77,6 +75,12 @@ export default {
   methods: {
     moveWrite() {
       this.$router.push({ name: "qnaRegister" });
+    },
+    goDetail(value) {
+      this.$router.push({
+        name: "qnaDetail",
+        params: { qnano: value.qnano }
+      });
     }
   }
 };

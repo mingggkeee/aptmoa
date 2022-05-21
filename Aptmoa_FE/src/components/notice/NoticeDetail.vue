@@ -1,44 +1,52 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        <b-alert show><h3>글보기</h3></b-alert>
-      </b-col>
-    </b-row>
-    <b-row class="mb-1">
-      <b-col class="text-left">
-        <b-button variant="outline-primary" @click="listNotice">목록</b-button>
-      </b-col>
-      <b-col class="text-right">
-        <b-button
+    <v-row>
+      <v-col>
+        <v-alert show
+          ><h1>{{ notice.noticeno }}번 글보기</h1></v-alert
+        >
+      </v-col>
+    </v-row>
+    <v-row class="mb-1">
+      <v-col class="text-left">
+        <v-btn variant="outline-primary" @click="listNotice">목록</v-btn>
+      </v-col>
+      <v-col class="text-right">
+        <v-btn
           variant="outline-info"
           size="sm"
+          color="primary"
           @click="moveModifyNotice"
           class="mr-2"
-          >글수정</b-button
+          >글수정</v-btn
         >
-        <b-button variant="outline-danger" size="sm" @click="deleteNotice"
-          >글삭제</b-button
+        <v-btn
+          color="primary"
+          variant="outline-danger"
+          size="sm"
+          @click="deleteNotice"
+          >글삭제</v-btn
         >
-      </b-col>
-    </b-row>
-    <b-row class="mb-1">
-      <b-col>
-        <b-card
-          :header-html="
-            `<h3>${notice.noticeno}.
-          ${notice.subject} [${notice.hit}]</h3><div><h6>${notice.userid}</div><div>${notice.regtime}</h6></div>`
-          "
-          class="mb-2"
-          border-variant="dark"
-          no-body
-        >
-          <b-card-body class="text-left">
-            <div v-html="message"></div>
-          </b-card-body>
-        </b-card>
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
+    <v-row class="mb-1">
+      <v-col>
+        <v-card>
+          <div>
+            <h3>작성자 : {{ notice.userId }}</h3>
+          </div>
+          <div>
+            <h3>제목 : {{ notice.subject }}</h3>
+          </div>
+          <div>
+            <h3>내용 : {{ notice.content }}</h3>
+          </div>
+          <div>
+            <h3>작성일 : {{ notice.regtime }}</h3>
+          </div>
+        </v-card>
+      </v-col>
+    </v-row>
   </b-container>
 </template>
 
@@ -83,7 +91,7 @@ export default {
       //   this.$router.push({ path: `/notice/modify/${this.notice.noticeno}` });
     },
     deleteNotice() {
-      if (confirm("정말로 삭제?")) {
+      if (confirm("정말로 삭제하시겠습니까?")) {
         deleteNotice(this.notice.noticeno, () => {
           this.$router.push({ name: "noticeList" });
         });
