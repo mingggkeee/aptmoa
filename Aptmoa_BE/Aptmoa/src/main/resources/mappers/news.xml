@@ -8,7 +8,6 @@
 	<select id="selectNews" resultType="news">
 		select *
 		from news
-		where regtime = #{regtime}
 		order by newsno desc
 	</select>
 	
