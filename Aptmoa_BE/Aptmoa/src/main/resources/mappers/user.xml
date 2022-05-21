@@ -37,4 +37,9 @@
 		where userId = #{userId}
 	</update>
 	
+	<delete id="deleteUser" parameterType="String">
+		delete from user
+		where userId=#{userId}
+	</delete>
+	
 </mapper>

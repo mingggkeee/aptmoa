@@ -121,7 +121,7 @@ public class UserController {
 	}
 	
 	@ApiOperation(value = "회원 탈퇴")
-	@DeleteMapping(value="/{userId}")
+	@DeleteMapping("/{userId}")
 	public ResponseEntity<String> userDelete(@PathVariable("userId") String userId)throws Exception{
 		if(userService.deleteUser(userId)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);

@@ -36,6 +36,11 @@ export default new Router({
           name: "mypage",
           // beforeEnter: onlyAuthUser,
           component: () => import("@/components/user/UserMyPage.vue")
+        },
+        {
+          path: "update/:userId",
+          name: "userupdate",
+          component:() => import("@/components/user/UserUpdate.vue"),
         }
       ]
     },
