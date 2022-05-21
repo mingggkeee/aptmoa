@@ -17,11 +17,11 @@ import lombok.ToString;
 public class UserDto {
 
 	@ApiModelProperty(value = "회원 아이디")
-	private String userid;
+	private String userId;
 	@ApiModelProperty(value = "회원 이름")
-	private String username;
+	private String userName;
 	@ApiModelProperty(value = "회원 비밀번호")
-	private String userpwd;
+	private String userPwd;
 	@ApiModelProperty(value = "회원 이메일")
 	private String email;
 	@ApiModelProperty(value = "회원 가입일")

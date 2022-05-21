@@ -51,9 +51,10 @@
                 </v-row>
 
                 <!-- 이름 한글 입력이 안됨,, -->
+                <!-- https://yado.tistory.com/31 한글..?? -->
                 <v-row class="ma-3">
                   <v-text-field
-                    v-model="username"
+                    v-model="userName"
                     label="NAME"
                     type="String"
                     required

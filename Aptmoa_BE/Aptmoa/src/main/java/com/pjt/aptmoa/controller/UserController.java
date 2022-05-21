@@ -51,7 +51,7 @@ public class UserController {
 		try {
 			UserDto loginUser = userService.login(userDto);
 			if (loginUser != null) {
-				String token = jwtService.create("userid", loginUser.getUserid(), "access-token");// key, data, subject
+				String token = jwtService.create("userid", loginUser.getUserId(), "access-token");// key, data, subject
 				logger.debug("로그인 토큰정보 : {}", token);
 				resultMap.put("access-token", token);
 				resultMap.put("message", SUCCESS);

@@ -1,37 +1,36 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        <b-alert show><h3>Q&A목록</h3></b-alert>
-      </b-col>
-    </b-row>
-    <b-row class="mb-1">
-      <b-col class="text-right">
-        <b-button variant="outline-primary" @click="moveWrite()"
-          >Q&A쓰기</b-button
+    <v-row>
+      <v-col>
+        <v-alert show><h1>Q&A목록</h1></v-alert>
+      </v-col>
+    </v-row>
+    <v-row class="mb-1">
+      <v-col class="text-right">
+        <v-btn color="primary" variant="outline-primary" @click="moveWrite()"
+          >Q&A쓰기</v-btn
         >
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col v-if="qnas.length">
-        <b-table-simple hover responsive>
-          <b-thead head-variant="dark">
-            <b-tr>
-              <b-th>Q&A번호</b-th>
-              <b-th>제목</b-th>
-              <b-th>조회수</b-th>
-              <b-th>작성자</b-th>
-              <b-th>작성일</b-th>
-            </b-tr>
-          </b-thead>
-          <tbody>
-            <!-- 하위 component인 ListRow에 데이터 전달(props) -->
-            <qna-list-item v-for="qna in qnas" :key="qna.qnano" v-bind="qna" />
-          </tbody>
-        </b-table-simple>
-      </b-col>
-      <!-- <b-col v-else class="text-center">도서 목록이 없습니다.</b-col> -->
-    </b-row>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col v-if="qnas.length">
+        <v-data-table
+          :headers="headers"
+          :items="qnas"
+          :items-per-page="5"
+          item-key="subject"
+          class="elevation-1"
+          :footer-props="{
+            showFirstLastPage: true,
+            firstIcon: 'mdi-arrow-collapse-left',
+            lastIcon: 'mdi-arrow-collapse-right',
+            prevIcon: 'mdi-minus',
+            nextIcon: 'mdi-plus'
+          }"
+        ></v-data-table>
+      </v-col>
+      <v-col v-else class="text-center">Q&A 목록이 없습니다.</v-col>
+    </v-row>
   </b-container>
 </template>
 
@@ -46,7 +45,15 @@ export default {
   },
   data() {
     return {
-      qnas: []
+      qnas: [],
+      headers: [
+        {
+          text: "제목",
+          align: "start",
+          value: "subject"
+        },
+        { text: "내용", value: "content" }
+      ]
     };
   },
   created() {

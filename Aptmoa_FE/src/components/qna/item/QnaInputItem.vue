@@ -1,60 +1,59 @@
 <template>
-  <b-row class="mb-1">
-    <b-col style="text-align: left">
-      <b-form @submit="onSubmit" @reset="onReset">
-        <b-form-group
-          id="userid-group"
-          label="작성자:"
-          label-for="userid"
-          description="작성자를 입력하세요."
-        >
-          <b-form-input
-            id="userid"
-            disabled
-            v-model="qna.userid"
-            type="text"
-            required
-            placeholder="작성자 입력..."
-          ></b-form-input>
-        </b-form-group>
-
-        <b-form-group
-          id="subject-group"
-          label="제목:"
-          label-for="subject"
-          description="제목을 입력하세요."
-        >
-          <b-form-input
-            id="subject"
-            v-model="qna.subject"
-            type="text"
-            required
-            placeholder="제목 입력..."
-          ></b-form-input>
-        </b-form-group>
-
-        <b-form-group id="content-group" label="내용:" label-for="content">
-          <b-form-textarea
-            id="content"
-            v-model="qna.content"
-            placeholder="내용 입력..."
-            rows="10"
-            max-rows="15"
-          ></b-form-textarea>
-        </b-form-group>
-
-        <b-button
-          type="submit"
-          variant="primary"
-          class="m-1"
-          v-if="this.type === 'register'"
-          >글작성</b-button
-        >
-        <b-button type="submit" variant="primary" class="m-1" v-else
-          >글수정</b-button
-        >
-        <b-button type="reset" variant="danger" class="m-1">초기화</b-button>
-      </b-form>
+  <b-row>
+    <b-col class="col-3"></b-col>
+    <b-col class="col-6">
+      <v-card class="text-center">
+        <v-form>
+          <v-col>
+            <v-row class="ma-3">
+              <v-text-field
+                v-model="qna.subject"
+                placeholder="제목"
+                required
+                id="userId"
+                name="userId"
+                @keyup="idcheck"
+              ></v-text-field>
+            </v-row>
+            <v-row class="ma-3">
+              <v-textarea
+                v-model="qna.content"
+                required
+                placeholder="내용 입력..."
+                rows="10"
+                max-rows="15"
+              ></v-textarea>
+            </v-row>
+            <div class="text-sm-center">
+              <v-btn
+                color="primary"
+                elevation="2"
+                class="m-1 ma-3"
+                id="submitbtn"
+                @click="onSubmit"
+                v-if="this.type === 'register'"
+                >글 작성</v-btn
+              >
+              <v-btn
+                color="primary"
+                elevation="2"
+                class="m-1 ma-3"
+                v-else
+                @click="onSubmit"
+                >글수정</v-btn
+              >
+              <v-btn
+                color="second"
+                elevation="2"
+                class="m-1 ma-3"
+                id="resetBrn"
+                type="reset"
+                >초기화</v-btn
+              >
+            </div>
+          </v-col>
+        </v-form>
+      </v-card>
     </b-col>
   </b-row>
 </template>
@@ -70,7 +69,7 @@ export default {
   data() {
     return {
       qna: {
-        qnano: 0,
+        // 유저아이디 어떻게 가져오지?
         userid: "",
         subject: "",
         content: ""

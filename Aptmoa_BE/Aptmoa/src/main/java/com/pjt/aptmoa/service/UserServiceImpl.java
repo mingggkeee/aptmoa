@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public UserDto login(UserDto userDto) throws Exception {
-		if(userDto.getUserid() == null || userDto.getUserpwd() == null)
+		if(userDto.getUserId() == null || userDto.getUserPwd() == null)
 			return null;
 		return memberMapper.login(userDto);
 	}
@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
 		//validation check
 //		System.out.println("userDto.getUserPwd() : "+userDto.getUserpwd());
 //		userDto.setUserpwd(encrypt(userDto.getUserpwd()));
-		userDto.setUserpwd(userDto.getUserpwd());
+		userDto.setUserPwd(userDto.getUserPwd());
 //		System.out.println("암호화 userDto.getUserPwd() : "+userDto.getUserpwd());
 		return memberMapper.registerUser(userDto)==1;
 	}
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean updateUser(UserDto userDto) throws Exception {
 //		userDto.setUserpwd(encrypt(userDto.getUserpwd()));
-		userDto.setUserpwd((userDto.getUserpwd()));
+		userDto.setUserPwd((userDto.getUserPwd()));
 		return memberMapper.updateUser(userDto)==1;
 	}
 
