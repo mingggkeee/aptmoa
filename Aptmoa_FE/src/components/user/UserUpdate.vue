@@ -14,7 +14,7 @@
               <v-col>
                 <v-row class="ma-3">
                   <v-text-field
-                    v-model="userId"
+                    v-model="userInfo.userId"
                     label="ID"
                     required
                     id="userId"
@@ -27,7 +27,7 @@
                 <v-row class="ma-3">
                   <v-text-field
                     :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                    v-model="userPwd"
+                    v-model="userInfo.userPwd"
                     label="PASSWORD"
                     :type="show1 ? 'text' : 'password'"
                     @click:append="show1 = !show1"
@@ -54,7 +54,7 @@
                 <!-- https://yado.tistory.com/31 한글..?? -->
                 <v-row class="ma-3">
                   <v-text-field
-                    v-model="userName"
+                    v-model="userInfo.userName"
                     label="NAME"
                     type="String"
                     required
@@ -63,7 +63,7 @@
 
                 <v-row class="ma-3">
                   <v-text-field
-                    v-model="email"
+                    v-model="userInfo.email"
                     label="E-mail"
                     required
                   ></v-text-field>
@@ -98,40 +98,82 @@
 </template>
 
 <script>
-import {mapState} from "vuex";
+import { mapState } from "vuex";
 import http from "@/util/http-common";
 
 const userStore = "userStore";
 
 export default {
-  name: "UserUpdate",
+  name: "userupdate",
 
   data() {
-    return {};
+    return {
+      show1: false,
+      show2: false,
+      userName: "",
+      userId: "",
+      email: "",
+      userPwd: "",
+      pwdcheck: "",
+      isId: false,
+      isPwd: false,
+      idresult: ""
+    };
   },
-  components:{},
+  components: {},
 
-  mounted() {},
+  computed: {
+    ...mapState(userStore, ["userInfo"])
+  },
 
   methods: {
-      moveMyPage(){
-          this.$router.push({name:"MyPage"});
-      },
-      updateUserInfo(){
-          if(!this.userInfo.userPwd){
-              alert("수정할 비밀번호를 입력하세요");
-          }else{
-              http.put(`/user/`, this.userInfo).then(({data})=>{
-                  let msg = "수정 처리시 문제가 발생했습니다.";
-                  if(data==="success"){
-                      msg="수정이 완료되었습니다.";
-                  }
-                  alert(msg);
-                  this.$router.push({name:"MyPage"});
-              })
-          },
-      },
-  },
+    idcheck() {
+      //id체크하는 api 필요
+      http.get(`/user/idcheck/${this.userId}`).then(({ data }) => {
+        if (data === "success") {
+          this.idresult = "사용가능한 아이디입니다.";
+          this.isId = true;
+        } else {
+          this.idresult = "사용중인 아이디입니다.";
+          this.isId = false;
+        }
+      });
+    },
+    checkValue() {
+      let err = true;
+      let msg = "";
+      err &&
+        this.userPwd != this.pwdcheck &&
+        ((msg = "입력하신 비밀번호가 다릅니다."), (err = false));
+
+      if (!err) alert(msg);
+      else this.registUser();
+    },
+    moveMyPage() {
+      this.$router.push({ name: "mypage" });
+    },
+    updateUserInfo() {
+      if (!this.userInfo.userPwd) {
+        alert("수정할 비밀번호를 입력하세요");
+      } else {
+        http
+          .put(`/user/`, {
+            userId: this.userInfo.userId,
+            userPwd: this.userInfo.userPwd,
+            userName: this.userInfo.userName,
+            email: this.userInfo.email
+          })
+          .then(({ data }) => {
+            let msg = "수정 처리시 문제가 발생했습니다.";
+            if (data === "success") {
+              msg = "수정이 완료되었습니다.";
+            }
+            alert(msg);
+            this.$router.push({ name: "mypage" });
+          });
+      }
+    }
+  }
 };
 </script>
 
