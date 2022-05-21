@@ -46,30 +46,30 @@
 		"title": "Amazing Ireland",
 		"author": "Rachel L",
 		"category": "Notice",
-		"hero": "greengrass.jpg"
+		"hero": "notice.jpg"
 	},
 	{
 		"title": "Cabin Fever",
 		"author": "Rachel L",
 		"category": "Notice",
-		"hero": "snowcabin.jpg"
+		"hero": "notice.jpg"
 	},
 	{
 		"title": "Trial By Fire",
 		"author": "Anthony R",
 		"category": "Q&A",
-		"hero": "firepots.jpg"
+		"hero": "qna.jpg"
 	},
 	{
 		"title": "Water Ventures",
 		"author": "Rachel L",
 		"category": "Q&A",
-		"hero": "jellyfish.jpg"
+		"hero": "qna.jpg"
 	},
 	{
 		"title": "Mt. Zekial",
 		"author": "Rachel L",
 		"category": "Q&A",
-		"hero": "mountaincabin.jpg"
+		"hero": "qna.jpg"
 	}
 ]

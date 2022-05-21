@@ -5,36 +5,36 @@
 <mapper namespace="com.pjt.aptmoa.mapper.UserMapper">
 
 	<select id="login" parameterType="userDto" resultType="userDto">
-		select username, userid, email
+		select userName, userId, email
 		from user
-		where userid = #{userid} and userpwd = #{userpwd}
+		where userId = #{userId} and userPwd = #{userPwd}
 	</select>
 	
 	<select id="userInfo" parameterType="String" resultType="userDto">
-		select username, userid, email, joindate
+		select userName, userId, email, joindate
 		from user
-		where userid = #{userid}
+		where userId = #{userId}
 	</select>
 	
 	<select id="idCheck" parameterType="string" resultType="int">
-		select count(userid)
+		select count(userId)
 		from user
-		where userid=#{userid}
+		where userId=#{userId}
 	</select>
 	
 	<insert id="registerUser" parameterType="UserDto">
-		insert into member (userid, username, userpwd, email, joindate)
+		insert into user (userId, userName, userPwd, email, joindate)
 		values (#{userId}, #{userName}, #{userPwd}, #{email}, now())
 	</insert>
 	
 	<update id="updateUser" parameterType="UserDto">
 		update user
 		<trim prefix="set" suffixOverrides=",">
-			<if test="userPwd != null">userpwd = #{userPwd},</if>
+			<if test="userPwd != null">userPwd = #{userPwd},</if>
 			<if test="email != null">email = #{email},</if>
-			<if test="userName != null">username = #{userName},</if>
+			<if test="userName != null">userName = #{userName},</if>
 		</trim>
-		where userid = #{userId}
+		where userId = #{userId}
 	</update>
 	
 </mapper>
