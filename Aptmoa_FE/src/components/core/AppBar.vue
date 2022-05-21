@@ -50,7 +50,7 @@
         <div id="detail">
           <div v-if="userInfo">
             <a class="mr-4" id="username"
-              >{{ userInfo.username }}({{ userInfo.userid }})님</a
+              >{{ userInfo.userName }}({{ userInfo.userId }})님</a
             >
             <router-link
               :to="{ name: 'mypage' }"

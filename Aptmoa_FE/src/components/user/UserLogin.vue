@@ -18,7 +18,7 @@
               <v-row class="ma-3">
                 <v-text-field
                   id="userid"
-                  v-model="user.userid"
+                  v-model="user.userId"
                   required
                   placeholder="아이디 입력...."
                   @keyup.enter="confirm"
@@ -30,7 +30,7 @@
                 <v-text-field
                   type="password"
                   id="userpwd"
-                  v-model="user.userpwd"
+                  v-model="user.userPwd"
                   required
                   placeholder="비밀번호 입력...."
                   @keyup.enter="confirm"
@@ -75,8 +75,8 @@ export default {
   data() {
     return {
       user: {
-        userid: null,
-        userpwd: null
+        userId: null,
+        userPwd: null
       }
     };
   },
