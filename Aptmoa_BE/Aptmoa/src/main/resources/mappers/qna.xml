@@ -28,9 +28,9 @@
 	<!-- 게시글 등록 -->
 	<insert id="insertQna" parameterType="qna">
 		insert into qna(
-			subject, userid, content
+			subject, userId, content
 		) values (
-			#{subject}, #{userid}, #{content}
+			#{subject}, #{userId}, #{content}
 		)
 	</insert>
 	
@@ -38,7 +38,7 @@
 	<update id="updateQna" parameterType="qna">
 		update qna 
 		   set subject = #{subject}, 
-		   	   userid = #{userid}, 
+		   	   userId = #{userId}, 
 		   	   content = #{content}
 		 where qnano = #{qnano}
 	</update>

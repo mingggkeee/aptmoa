@@ -1,21 +1,21 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-orange">
-      <b-icon icon="apart-fill"></b-icon> 아파트 조회
-    </h3>
-    <b-row>
-      <b-col>
+    <v-row>
+      <v-container id="map"></v-container>
+    </v-row>
+    <v-row>
+      <v-col cols="100">
         <apart-search-bar></apart-search-bar>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col cols="6" align="left">
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="6" align="left">
         <apart-list />
-      </b-col>
-      <b-col cols="6">
+      </v-col>
+      <v-col cols="6">
         <apart-detail />
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
   </b-container>
 </template>
 
@@ -30,16 +30,42 @@ export default {
     ApartSearchBar,
     ApartList,
     ApartDetail
+  },
+  data() {
+    return {
+      map: null
+    };
+  },
+  mounted() {
+    if (!window.kakao || !window.kakao.maps) {
+      const script = document.createElement("script");
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAOMAP_KEY}`;
+      script.addEventListener("load", () => {
+        console.log("loaded", window.kakao);
+        kakao.maps.load(this.initMap);
+      });
+      document.head.appendChild(script);
+    } else {
+      console.log("이미 로딩 완료: ", window.kakao);
+      this.initMap();
+    }
+  },
+  methods: {
+    initMap() {
+      const container = document.getElementById("map");
+      console.log(container);
+      const options = {
+        center: new kakao.maps.LatLng(37.5666, 126.9774),
+        level: 3
+      };
+      this.map = new kakao.maps.Map(container, options);
+    }
   }
 };
 </script>
 <style scoped>
-.underline-orange {
-  display: inline-block;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 70%,
-    rgba(231, 149, 27, 0.3) 30%
-  );
+#map {
+  width: 3000px;
+  height: 1000px;
 }
 </style>

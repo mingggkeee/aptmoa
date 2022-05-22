@@ -1,5 +1,6 @@
 package com.pjt.aptmoa.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pjt.aptmoa.crawler.NaverNewsCrawler;
 import com.pjt.aptmoa.dto.News;
 import com.pjt.aptmoa.service.NewsService;
 
@@ -35,9 +37,9 @@ public class NewsController {
 	
 	@ApiOperation(value = "news 목록", notes = "모든 news를 반환한다.", response = List.class)
 	@GetMapping
-	public ResponseEntity<List<News>> retrieveNews(String regtime) throws Exception {
+	public ResponseEntity<List<News>> retrieveNews() throws Exception {
 		logger.debug("retrieveNews - 호출");
-		return new ResponseEntity<List<News>>(nService.retrieveNews(regtime), HttpStatus.OK);
+		return new ResponseEntity<List<News>>(nService.retrieveNews(), HttpStatus.OK);
 	}
 
     @ApiOperation(value = "news 글보기", notes = "news번호에 해당하는 news의 정보를 반환한다.", response = News.class)    
@@ -45,6 +47,19 @@ public class NewsController {
 	public ResponseEntity<News> detailNews(@PathVariable int newsno) {
 		logger.debug("detailNews - 호출");
 		return new ResponseEntity<News>(nService.detailNews(newsno), HttpStatus.OK);
+	}
+    
+    @ApiOperation(value = "news 크롤링", notes = "해당 날짜의 news를 수집한다.", response = String.class)    
+	@PostMapping("/crawl")
+	public ResponseEntity<String> crawlNews(@RequestBody String regtime) {
+		logger.debug("crawlNews - 호출");
+		try {
+			NaverNewsCrawler.crawling(regtime);
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 
     @ApiOperation(value = "News 등록", notes = "새로운 News 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)

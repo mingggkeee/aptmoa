@@ -1,49 +1,42 @@
 <template>
   <b-container v-if="apart" class="bv-example-row">
-    <b-row>
-      <b-col
-        ><h3>{{ apart.아파트 }}</h3></b-col
+    <v-row>
+      <v-col
+        ><h3>{{ apart.아파트 }}</h3></v-col
       >
-    </b-row>
-    <b-row class="mb-2 mt-1">
-      <b-col
-        ><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img
-      ></b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="secondary"
-          >일련번호 : {{ apart.일련번호 }}</b-alert
-        >
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="primary"
+    </v-row>
+    <v-row class="mb-1 mt-1">
+      <v-col
+        ><v-img :src="require('@/assets/apt.jpg')" fluid-grow></v-img
+      ></v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-alert show variant="primary"
           >아파트 이름 : {{ apart.아파트 }}
-        </b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="info">법정동 : {{ apart.법정동 }} </b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="warning">층수 : {{ apart.층 }}층</b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="danger"
+        </v-alert>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-alert show variant="info">법정동 : {{ apart.법정동 }} </v-alert>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-alert show variant="warning">층수 : {{ apart.층 }}층</v-alert>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-alert show variant="danger"
           >거래금액 :
           {{
             (parseInt(apart.거래금액.replace(",", "")) * 10000) | price
-          }}원</b-alert
+          }}원</v-alert
         >
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
   </b-container>
 </template>
 

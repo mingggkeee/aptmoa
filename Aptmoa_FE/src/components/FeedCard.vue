@@ -39,7 +39,7 @@
               color="primary"
               label
               small
-              @click="goNews"
+              @click="goDetail"
             >
               Read More
             </v-chip>
@@ -65,8 +65,13 @@ export default {
     }
   },
   methods: {
-    goNews() {
-      console.log(this.value.newsno);
+    goDetail() {
+      if (this.value.category === "News") {
+        this.$router.push({
+          name: "newsDetail",
+          params: { newsno: this.value.newsno }
+        });
+      }
     }
   }
 };

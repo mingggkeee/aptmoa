@@ -16,7 +16,7 @@ public class NaverNewsCrawler {
 	
 	private static DBUtil dbUtil = DBUtil.getInstance();
 	
-	static void insert(String subject, String content, String newsurl, String imgurl, String regtime) {
+	public static void insert(String subject, String content, String newsurl, String imgurl, String regtime) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -42,7 +42,7 @@ public class NaverNewsCrawler {
 		
 	}
 	
-	static void crawling(String regtime) throws IOException {
+	public static void crawling(String regtime) throws IOException {
 		int pages = 5;
 		
 		for(int page=1; page<=pages; page++) {
@@ -72,7 +72,7 @@ public class NaverNewsCrawler {
 				insert(subject, content, newsurl, imgurl, regtime);
 			}
 			
-			element = elements.get(1);
+			element = elements.get(2);
 			photoElements = element.getElementsByAttributeValue("class", "photo");
 			
 			for(int i=0; i<photoElements.size(); i++) {

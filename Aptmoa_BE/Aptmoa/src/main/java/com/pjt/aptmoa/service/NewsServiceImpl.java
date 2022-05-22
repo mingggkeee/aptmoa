@@ -15,8 +15,8 @@ public class NewsServiceImpl implements NewsService{
 	private NewsMapper newsMapper;
 	
 	@Override
-	public List<News> retrieveNews(String regtime) {
-		return newsMapper.selectNews(regtime);
+	public List<News> retrieveNews() {
+		return newsMapper.selectNews();
 	}
 
 	@Override
@@ -32,6 +32,11 @@ public class NewsServiceImpl implements NewsService{
 	@Override
 	public boolean deleteNews(int newsno) {
 		return newsMapper.deleteNews(newsno) == 1;
+	}
+
+	@Override
+	public List<News> crawlNews(String regtime) {
+		return newsMapper.crawlNews(regtime);
 	}
 
 }

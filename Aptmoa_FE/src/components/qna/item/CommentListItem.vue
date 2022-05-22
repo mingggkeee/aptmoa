@@ -1,12 +1,12 @@
 <template>
   <b-tr>
-    <b-td>{{ qnano }}</b-td>
+    <b-td>{{ commentno }}</b-td>
     <b-th class="text-left">
       <router-link :to="{ name: 'qnaDetail', params: { qnano: qnano } }">{{
-        subject
+        qnano
       }}</router-link>
     </b-th>
-    <b-td>{{ hit }}</b-td>
+    <b-td>{{ content }}</b-td>
     <b-td>{{ userId }}</b-td>
     <b-td>{{ regtime | dateFormat }}</b-td>
   </b-tr>
@@ -20,8 +20,8 @@ export default {
   props: {
     qnano: Number,
     userId: String,
-    subject: String,
-    hit: Number,
+    content: String,
+    commentno: Number,
     regtime: String
   },
   filters: {

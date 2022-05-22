@@ -40,7 +40,7 @@ export default new Router({
         {
           path: "update/:userId",
           name: "userupdate",
-          component:() => import("@/components/user/UserUpdate.vue"),
+          component: () => import("@/components/user/UserUpdate.vue")
         }
       ]
     },
@@ -48,11 +48,6 @@ export default new Router({
       path: "/apart",
       name: "apart",
       component: () => import("@/views/Apart.vue")
-    },
-    {
-      path: "/news",
-      name: "News",
-      component: () => import("@/views/News.vue")
     },
     {
       path: "/notice",
@@ -113,6 +108,25 @@ export default new Router({
           name: "qnaModify",
           // beforeEnter: onlyAuthUser,
           component: () => import("@/components/qna/QnaModify.vue")
+        }
+      ]
+    },
+    {
+      path: "/news",
+      name: "News",
+      component: () => import("@/views/News.vue"),
+      redirect: "/news/list",
+      children: [
+        {
+          path: "list",
+          name: "newsList",
+          component: () => import("@/components/news/NewsList.vue")
+        },
+        {
+          path: "detail/:newsno",
+          name: "newsDetail",
+          // beforeEnter: onlyAuthUser,
+          component: () => import("@/components/news/NewsDetail.vue")
         }
       ]
     }

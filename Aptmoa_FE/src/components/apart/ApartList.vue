@@ -7,9 +7,9 @@
     />
   </b-container>
   <b-container v-else class="bv-example-row mt-3">
-    <b-row>
-      <b-col><b-alert show>주택 목록이 없습니다.</b-alert></b-col>
-    </b-row>
+    <v-row>
+      <v-col><v-alert show>주택 목록이 없습니다.</v-alert></v-col>
+    </v-row>
   </b-container>
 </template>
 

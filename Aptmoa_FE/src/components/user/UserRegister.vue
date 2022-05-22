@@ -56,7 +56,6 @@
                   <v-text-field
                     v-model="userName"
                     label="NAME"
-                    type="String"
                     required
                   ></v-text-field>
                 </v-row>

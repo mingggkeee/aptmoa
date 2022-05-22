@@ -1,13 +1,13 @@
 <template>
   <b-tr>
-    <b-td>{{ qnano }}</b-td>
+    <b-td>{{ newsno }}</b-td>
     <b-th class="text-left">
-      <router-link :to="{ name: 'qnaDetail', params: { qnano: qnano } }">{{
+      <router-link :to="{ name: 'newsDetail', params: { newsno: newsno } }">{{
         subject
       }}</router-link>
     </b-th>
     <b-td>{{ hit }}</b-td>
-    <b-td>{{ userId }}</b-td>
+    <b-td>{{ newsurl }}</b-td>
     <b-td>{{ regtime | dateFormat }}</b-td>
   </b-tr>
 </template>
@@ -16,10 +16,10 @@
 import moment from "moment";
 
 export default {
-  name: "QnaListItem",
+  name: "NewsListItem",
   props: {
-    qnano: Number,
-    userId: String,
+    newsno: Number,
+    newsurl: String,
     subject: String,
     hit: Number,
     regtime: String

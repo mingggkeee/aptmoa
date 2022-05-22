@@ -18,7 +18,7 @@ public class Notice {
 	@ApiModelProperty(value = "글번호")
 	private int noticeno;
 	@ApiModelProperty(value = "작성자아이디")
-	private String userid;
+	private String userId;
 	@ApiModelProperty(value = "제목")
 	private String subject;
 	@ApiModelProperty(value = "내용")
