@@ -1,21 +1,21 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-orange">
-      <b-icon icon="apart-fill"></b-icon> 아파트 조회
-    </h3>
-    <b-row>
-      <b-col>
+    <h2 class="underline-orange">
+      <b-icon icon="journals"></b-icon> 아파트 조회
+    </h2>
+    <v-row>
+      <v-col>
         <apart-search-bar></apart-search-bar>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col cols="6" align="left">
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="6" align="left">
         <apart-list />
-      </b-col>
-      <b-col cols="6">
+      </v-col>
+      <v-col cols="6">
         <apart-detail />
-      </b-col>
-    </b-row>
+      </v-col>
+    </v-row>
   </b-container>
 </template>
 

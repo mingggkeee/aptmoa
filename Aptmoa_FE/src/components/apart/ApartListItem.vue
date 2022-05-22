@@ -1,22 +1,22 @@
 <template>
-  <b-row
+  <v-row
     class="m-2"
     @click="selectApart"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
   >
-    <b-col cols="2" class="text-center align-self-center">
-      <b-img
+    <v-col cols="2" class="text-center align-self-center">
+      <v-img
         thumbnail
-        src="https://picsum.photos/250/250/?image=58"
+        src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/201809/14/8f85c1c7-7e6c-438a-92ba-24ae1e57615e.jpg"
         alt="Image 1"
-      ></b-img>
-    </b-col>
-    <b-col cols="10" class="align-self-center">
+      ></v-img>
+    </v-col>
+    <v-col cols="10" class="align-self-center">
       [{{ apart.일련번호 }}] {{ apart.아파트 }}
-    </b-col>
-  </b-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
