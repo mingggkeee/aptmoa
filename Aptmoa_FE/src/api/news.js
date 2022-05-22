@@ -16,4 +16,11 @@ function getNews(newsno, success, fail) {
     .catch(fail);
 }
 
-export { listNews, getNews };
+function newsCrawl(regtime, success, fail) {
+  api
+    .post(`/news/crawl`, JSON.stringify(regtime))
+    .then(success)
+    .catch(fail);
+}
+
+export { listNews, getNews, newsCrawl };

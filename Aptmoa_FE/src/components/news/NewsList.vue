@@ -2,7 +2,7 @@
   <b-container class="bv-example-row mt-3">
     <v-row class="mb-1">
       <v-col class="text-left">
-        <v-btn variant="outline-primary" @click="newsCrawl"
+        <v-btn variant="outline-primary" @click="goCrawl"
           >오늘의 뉴스 가져오기</v-btn
         >
       </v-col>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { listNews } from "@/api/news.js";
+import { listNews, newsCrawl } from "@/api/news.js";
 import NewsListItem from "@/components/news/item/NewsListItem";
 import moment from "moment";
 
@@ -50,13 +50,15 @@ export default {
         { text: "날짜", value: "regtime" },
         { text: "제목", value: "subject" }
         // { text: "내용", value: "content" }
-      ]
+      ],
+      newstime: ""
     };
   },
   props: {
     newsno: Number,
     subject: String,
-    regtime: String
+    regtime: String,
+    type: { type: String }
   },
   created() {
     let param = {
@@ -83,14 +85,30 @@ export default {
         params: { newsno: value.newsno }
       });
     },
-    newsCrawl() {
+    goCrawl() {
       const today = new Date();
       let year = today.getFullYear();
       let month = ("0" + (today.getMonth() + 1)).slice(-2);
       let day = ("0" + today.getDate()).slice(-2);
 
-      const getNewsDate = year + month + day;
+      let getNewsDate = year + month + day;
       console.log(getNewsDate);
+      if (confirm("오늘의 뉴스를 크롤링하시겠습니까?")) {
+        newsCrawl(
+          (getNewsDate *= 1),
+          ({ data }) => {
+            console.log(data);
+            let msg = "크롤링 중 문제가 발생하였습니다.";
+            if (data === "success") {
+              msg = "오늘의 뉴스를 가져오는 데 성공했습니다!";
+            }
+            alert(msg);
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
     }
   },
   filters: {
