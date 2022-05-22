@@ -103,6 +103,7 @@ export default {
               msg = "오늘의 뉴스를 가져오는 데 성공했습니다!";
             }
             alert(msg);
+            this.$router.go();
           },
           error => {
             console.log(error);

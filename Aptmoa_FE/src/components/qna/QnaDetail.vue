@@ -196,12 +196,8 @@ export default {
         deleteComment(value.commentno, () => {
           this.$router.push({ name: "deleteComment" });
         });
-        this.listQna();
+        this.$router.go();
       }
-      // this.$router.push({
-      //   name: "deleteComment",
-      //   params: { commentno: value.commentno }
-      // });
     },
     commentSave() {
       console.log("댓글저장");
@@ -217,6 +213,7 @@ export default {
             msg = "등록이 완료되었습니다.";
           }
           alert(msg);
+          this.$router.go();
         }
       );
       this.dialog = false;
