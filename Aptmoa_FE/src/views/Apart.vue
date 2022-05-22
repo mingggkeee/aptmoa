@@ -4,9 +4,12 @@
       <b-icon icon="journals"></b-icon> 아파트 조회
     </h2>
     <v-row>
-      <v-col>
+      <v-col cols="100">
         <apart-search-bar></apart-search-bar>
       </v-col>
+    </v-row>
+    <v-row>
+      <v-container id="map"></v-container>
     </v-row>
     <v-row>
       <v-col cols="6" align="left">
@@ -30,6 +33,36 @@ export default {
     ApartSearchBar,
     ApartList,
     ApartDetail
+  },
+  data() {
+    return {
+      map: null
+    };
+  },
+  mounted() {
+    if (!window.kakao || !window.kakao.maps) {
+      const script = document.createElement("script");
+      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAOMAP_KEY}`;
+      script.addEventListener("load", () => {
+        console.log("loaded", window.kakao);
+        kakao.maps.load(this.initMap);
+      });
+      document.head.appendChild(script);
+    } else {
+      console.log("이미 로딩 완료: ", window.kakao);
+      this.initMap();
+    }
+  },
+  methods: {
+    initMap() {
+      const container = document.getElementById("map");
+      console.log(container);
+      const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 3
+      };
+      this.map = new kakao.maps.Map(container, options);
+    }
   }
 };
 </script>
@@ -41,5 +74,9 @@ export default {
     rgba(255, 255, 255, 0) 70%,
     rgba(231, 149, 27, 0.3) 30%
   );
+}
+#map {
+  width: 3000px;
+  height: 1000px;
 }
 </style>
