@@ -28,9 +28,9 @@
 	<!-- 게시글 등록 -->
 	<insert id="insertNotice" parameterType="notice">
 		insert into notice(
-			subject, userid, content
+			subject, userId, content
 		) values (
-			#{subject}, #{userid}, #{content}
+			#{subject}, #{userId}, #{content}
 		)
 	</insert>
 	
@@ -38,7 +38,7 @@
 	<update id="updateNotice" parameterType="notice">
 		update notice 
 		   set subject = #{subject}, 
-		   	   userid = #{userid}, 
+		   	   userId = #{userId}, 
 		   	   content = #{content}
 		 where noticeno = #{noticeno}
 	</update>

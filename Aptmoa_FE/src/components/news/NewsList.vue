@@ -2,7 +2,7 @@
   <b-container class="bv-example-row mt-3">
     <v-row class="mb-1">
       <v-col class="text-left">
-        <v-btn variant="outline-primary" @click="goCrawl"
+        <v-btn color="primary" variant="outline-primary" @click="goCrawl"
           >오늘의 뉴스 가져오기</v-btn
         >
       </v-col>
