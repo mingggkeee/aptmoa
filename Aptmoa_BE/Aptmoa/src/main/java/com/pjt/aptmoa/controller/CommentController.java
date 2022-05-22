@@ -34,8 +34,8 @@ public class CommentController {
 	private CommentService cService;
 	
 	@ApiOperation(value = "댓글목록", notes = "qna글의 모든 댓글을 반환한다.", response = List.class)
-	@GetMapping
-	public ResponseEntity<List<Comment>> retrieveComment(int qnano) throws Exception {
+	@GetMapping("{qnano}")
+	public ResponseEntity<List<Comment>> retrieveComment(@PathVariable int qnano) throws Exception {
 		logger.debug("retrieveComment - 호출");
 		return new ResponseEntity<List<Comment>>(cService.retrieveComment(qnano), HttpStatus.OK);
 	}

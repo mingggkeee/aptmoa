@@ -9,4 +9,5 @@ public interface NewsService {
 	public News detailNews(int newsno);
 	public boolean writeNews(News news);
 	public boolean deleteNews(int newsno);
+	public List<News> crawlNews(String regtime);
 }

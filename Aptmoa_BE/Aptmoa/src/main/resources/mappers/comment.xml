@@ -6,7 +6,7 @@
 
 	<!-- 댓글 전체 조회 -->
 	<select id="selectComment" resultType="comment">
-		select commentno, userid, content, regtime
+		select commentno, userId, content, regtime
 		from comment
 		where qnano = #{qnano}
 		order by commentno desc;
@@ -15,9 +15,9 @@
 	<!-- 댓글 삽입 -->
 	<insert id="insertComment" parameterType="comment">
 		insert into comment(
-			qnano, userid, content
+			qnano, userId, content
 		) values (
-			#{qnano}, #{userid}, #{content}
+			#{qnano}, #{userId}, #{content}
 		)
 	</insert>
 	

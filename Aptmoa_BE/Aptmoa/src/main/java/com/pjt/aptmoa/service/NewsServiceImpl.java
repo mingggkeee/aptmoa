@@ -34,4 +34,9 @@ public class NewsServiceImpl implements NewsService{
 		return newsMapper.deleteNews(newsno) == 1;
 	}
 
+	@Override
+	public List<News> crawlNews(String regtime) {
+		return newsMapper.crawlNews(regtime);
+	}
+
 }

@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Comment {
 	private int commentno;
 	private int qnano;
-	private String userid;
+	private String userId;
 	private String content;
 	private String regtime;
 }

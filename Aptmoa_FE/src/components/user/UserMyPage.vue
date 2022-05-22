@@ -1,64 +1,62 @@
 <template>
   <b-container class="mt-4" v-if="userInfo">
-    <b-row>
-      <b-col>
-        <b-alert variant="secondary" show><h3>내정보</h3></b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col></b-col>
-      <b-col cols="8">
+    <v-row>
+      <v-col>
+        <v-alert show><h1>내 정보</h1></v-alert>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col></v-col>
+      <v-col cols="8">
         <b-jumbotron>
           <template #lead> 내 정보 확인페이지입니다. </template>
-
           <hr class="my-4" />
-
           <b-container class="mt-4">
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">아이디</b-col
-              ><b-col cols="4" align-self="start">{{ userInfo.userId }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">이름</b-col
-              ><b-col cols="4" align-self="start">{{
+            <v-row>
+              <v-col cols="2"></v-col>
+              <v-col cols="2" align-self="end">아이디</v-col
+              ><v-col cols="4" align-self="start">{{ userInfo.userId }}</v-col>
+              <v-col cols="2"></v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="2"></v-col>
+              <v-col cols="2" align-self="end">이름</v-col
+              ><v-col cols="4" align-self="start">{{
                 userInfo.userName
-              }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">이메일</b-col
-              ><b-col cols="4" align-self="start">{{ userInfo.email }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">가입일</b-col
-              ><b-col cols="4" align-self="start">{{
+              }}</v-col>
+              <v-col cols="2"></v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="2"></v-col>
+              <v-col cols="2" align-self="end">이메일</v-col
+              ><v-col cols="4" align-self="start">{{ userInfo.email }}</v-col>
+              <v-col cols="2"></v-col>
+            </v-row>
+            <v-row>
+              <v-col cols="2"></v-col>
+              <v-col cols="2" align-self="end">가입일</v-col
+              ><v-col cols="4" align-self="start">{{
                 userInfo.joindate
-              }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
+              }}</v-col>
+              <v-col cols="2"></v-col>
+            </v-row>
           </b-container>
           <hr class="my-4" />
 
-          <b-button
+          <v-btn
             variant="primary"
             href="#"
             class="mr-1"
             @click="moveModifyUserInfo"
-            >정보수정</b-button
+            >정보수정</v-btn
           >
-          <b-button variant="danger" href="#" @click="removeUserInfo"
-            >회원탈퇴</b-button
+          <v-btn variant="danger" href="#" @click="removeUserInfo"
+            >회원탈퇴</v-btn
           >
         </b-jumbotron>
-      </b-col>
-      <b-col></b-col>
-    </b-row>
+      </v-col>
+      <v-col></v-col>
+    </v-row>
   </b-container>
 </template>
 
@@ -106,4 +104,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scope>
+.tdClass {
+  width: 50px;
+  text-align: center;
+}
+.tdSubject {
+  width: 300px;
+  text-align: left;
+}
+</style>

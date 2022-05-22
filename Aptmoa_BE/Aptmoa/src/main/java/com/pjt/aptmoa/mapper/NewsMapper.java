@@ -13,5 +13,6 @@ public interface NewsMapper {
 	public News selectNewsByNo(int newsno);
 	public int insertNews(News news);
 	public int deleteNews(int newsno);
+	public List<News> crawlNews(String regtime);
 	
 }

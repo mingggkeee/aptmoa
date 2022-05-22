@@ -20,8 +20,13 @@
           :items-per-page="10"
           item-key="subject"
           class="elevation-1"
+          sort-by="regtime"
+          :sort-desc="true"
           @click:row="goDetail"
-        ></v-data-table>
+        >
+          >
+          <v-toolbar-title>My CRUD</v-toolbar-title>
+        </v-data-table>
       </v-col>
       <v-col v-else class="text-center">뉴스가 없습니다.</v-col>
     </v-row>
@@ -79,7 +84,13 @@ export default {
       });
     },
     newsCrawl() {
-      console.log("아직 미구현");
+      const today = new Date();
+      let year = today.getFullYear();
+      let month = ("0" + (today.getMonth() + 1)).slice(-2);
+      let day = ("0" + today.getDate()).slice(-2);
+
+      const getNewsDate = year + month + day;
+      console.log(getNewsDate);
     }
   },
   filters: {

@@ -33,6 +33,8 @@ public class NewsController {
 	@Autowired
 	private NewsService nService;
 	
+	
+	
 	@ApiOperation(value = "news 목록", notes = "모든 news를 반환한다.", response = List.class)
 	@GetMapping
 	public ResponseEntity<List<News>> retrieveNews() throws Exception {
@@ -46,6 +48,13 @@ public class NewsController {
 		logger.debug("detailNews - 호출");
 		return new ResponseEntity<News>(nService.detailNews(newsno), HttpStatus.OK);
 	}
+    
+//    @ApiOperation(value = "news 크롤링", notes = "해당 날짜의 news를 수집한다.", response = String.class)    
+//	@GetMapping("{regtime}")
+//	public ResponseEntity<String> crawlNews(@PathVariable String regtime) {
+//		logger.debug("crawlNews - 호출");
+//		return 
+//	}
 
     @ApiOperation(value = "News 등록", notes = "새로운 News 정보를 입력한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PostMapping
