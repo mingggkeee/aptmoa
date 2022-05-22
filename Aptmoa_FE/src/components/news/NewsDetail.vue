@@ -8,10 +8,11 @@
     <v-row class="mb-1">
       <v-col>
         <v-card>
+          <v-treeview :items="news"></v-treeview>
           <div>
             <h3>제목 : {{ news.subject }}</h3>
           </div>
-          <v-img max-height="300" max-width="300" :src="news.imgurl"></v-img>
+          <v-img max-height="150" max-width="150" :src="news.imgurl"></v-img>
           <div>
             <h3>내용 : {{ news.content }}</h3>
           </div>
