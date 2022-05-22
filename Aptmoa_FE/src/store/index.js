@@ -38,5 +38,8 @@ export default new Vuex.Store({
       // 브라우저 종료시 제거하기 위해 localStorage가 아닌 sessionStorage로 변경. (default: localStorage)
       storage : sessionStorage,
     }),
+    // new webpack.definePlugin({
+    //   VUE_APP_APT_DEAL_API_KEY: JSON.stringify(env.VUE_APP_APT_DEAL_API_KEY),
+    // }),
   ],
 });

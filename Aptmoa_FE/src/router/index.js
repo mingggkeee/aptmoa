@@ -3,9 +3,24 @@ import Router from "vue-router";
 import Home from "../views/Home.vue";
 import User from "@/views/User.vue";
 
-// import store from "@/store/index.js";
+import store from "@/store/index.js";
 
 Vue.use(Router);
+
+const onlyAuthUser = async (to, from, next) => {
+  const checkUserInfo = store.getters["userStore/checkUserInfo"];
+  const getUserInfo = store._actions["userStore/getUserInfo"];
+  let token = sessionStorage.getItem("access-token");
+  if (checkUserInfo == null && token) {
+    await getUserInfo(token);
+  }
+  if (checkUserInfo === null) {
+    alert("로그인이 필요한 페이지입니다.");
+    next({ name: "register" });
+  } else {
+    next();
+  }
+}
 
 export default new Router({
   mode: "history",
@@ -47,7 +62,20 @@ export default new Router({
     {
       path: "/apart",
       name: "apart",
-      component: () => import("@/views/Apart.vue")
+      component: () => import("@/views/Apart.vue"),
+      redirect: "/apart/list",
+      children: [
+        {
+          path: "list",
+          name: "houselist",
+          component:() => import("../components/apart/ApartList.vue"),
+        },
+        {
+          path: "detail",
+          name: "housedetail",
+          component:() => import("../components/apart/ApartDetail.vue"),
+        }
+      ]
     },
     {
       path: "/notice",
