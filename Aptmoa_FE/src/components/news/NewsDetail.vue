@@ -36,16 +36,6 @@
           <v-col>
             <v-text-field label="제목" readonly :value="news.subject" />
           </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-text-field
-              label="원문주소"
-              readonly
-              dense
-              :value="news.newsurl"
-            />
-          </v-col>
           <v-col>
             <v-text-field
               label="작성 시간"
@@ -54,14 +44,19 @@
               :value="news.regtime"
             />
           </v-col>
-          <!-- <v-col>
-            <v-text-field label="View" readonly dense :value="news.hit" />
-          </v-col> -->
         </v-row>
         <v-row>
           <v-col align="center">
             <v-img :src="news.imgurl" height="200" width="250" align="center">
             </v-img>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col align="right">
+            <v-btn :href="news.newsurl" target="_blank">
+              <v-icon>mdi-alpha-n-circle</v-icon>
+              <span>원문 보러가기</span>
+            </v-btn>
           </v-col>
         </v-row>
         <v-row>
