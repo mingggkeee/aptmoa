@@ -43,6 +43,7 @@ export default {
       map: null
     };
   },
+
   mounted() {
     // if (!window.kakao || !window.kakao.maps) {
     //   const script = document.createElement("script");

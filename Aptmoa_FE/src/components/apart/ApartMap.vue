@@ -30,7 +30,7 @@
     </b-container>
     <b-container class="button-group">
       <v-btn @click="changeSize(0)">Hide</v-btn>
-      <v-btn @click="changeSize(1000)">show</v-btn>
+      <v-btn @click="changeSize(3000)">show</v-btn>
     </b-container>
   </b-container>
 </template>
@@ -61,17 +61,16 @@ export default {
     };
   },
   created() {
-    if (window.kakao && window.kakao.maps) {
-      this.initMap();
-    } else {
-      // console.log("여기도 지도뜸");
-      const script = document.createElement("script");
-      /* global kakao */
-      script.onload = () => kakao.maps.load(this.initMap);
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=42e048e8ec29da9ca8929be862cf0d24&libraries=services";
-      document.head.appendChild(script);
-    }
+    // if (window.kakao && window.kakao.maps) {
+    //   this.initMap();
+    // } else {
+    const script = document.createElement("script");
+    /* global kakao */
+    script.onload = () => kakao.maps.load(this.initMap);
+    script.src =
+      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=42e048e8ec29da9ca8929be862cf0d24&libraries=services";
+    document.head.appendChild(script);
+    // }
   },
   watch: {
     aparts: function(object, old) {
@@ -317,7 +316,7 @@ export default {
     changeSize(size) {
       const container = document.getElementById("map");
       container.style.width = `${size}px`;
-      container.style.height = `${size / 2}px`;
+      container.style.height = `${size / 3}px`;
       this.map.relayout();
     },
     // 아파트 데이터 가져오기
@@ -492,6 +491,9 @@ button {
   padding: 6px 0;
   text-align: center;
   cursor: pointer;
+  position: relative;
+  z-index: 2;
+  background-color: white;
 }
 #category li.on {
   background: #eee;
