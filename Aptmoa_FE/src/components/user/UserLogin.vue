@@ -54,12 +54,7 @@
                   elevation="2"
                   >회원가입</v-btn
                 >
-                <v-btn
-                  type="button"
-                  variant="success"
-                  class="m-1 ma-3"
-                  @click="movePwFindPage"
-                  elevation="2"
+                <v-btn type="button" @click="movePwFindPage"
                   >비밀번호찾기</v-btn
                 >
                 <v-btn type="button" @click="kakaoLoginBtn">카카오 연동</v-btn>
