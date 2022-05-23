@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div id="map">
+  <b-container class="bv-example-row mt-3 text-center">
+    <b-container id="map">
       <ul id="category" style="padding-left: 0px">
         <li id="BK9" data-order="0">
           <span class="category_bg bank"></span>
@@ -27,12 +27,12 @@
           편의점
         </li>
       </ul>
-    </div>
-    <div class="button-group">
-      <button @click="changeSize(0)">Hide</button>
-      <button @click="changeSize(1000)">show</button>
-    </div>
-  </div>
+    </b-container>
+    <b-container class="button-group">
+      <v-btn @click="changeSize(0)">Hide</v-btn>
+      <v-btn @click="changeSize(1000)">show</v-btn>
+    </b-container>
+  </b-container>
 </template>
 
 <script>

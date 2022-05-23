@@ -17,19 +17,19 @@
 
         <!-- <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> -->
 
-        <router-link :to="{ name: 'home' }" class="link" id="category">
+        <router-link :to="{ name: 'home' }" class="link" id="appbar">
           HOME
         </router-link>
-        <router-link :to="{ name: 'apart' }" class="link ml-4" id="category">
+        <router-link :to="{ name: 'apart' }" class="link ml-4" id="appbar">
           APART
         </router-link>
-        <router-link :to="{ name: 'News' }" class="link ml-4" id="category">
+        <router-link :to="{ name: 'News' }" class="link ml-4" id="appbar">
           NEWS
         </router-link>
-        <router-link :to="{ name: 'Notice' }" class="link ml-4" id="category">
+        <router-link :to="{ name: 'Notice' }" class="link ml-4" id="appbar">
           NOTICE
         </router-link>
-        <router-link :to="{ name: 'QnA' }" class="link ml-4" id="category">
+        <router-link :to="{ name: 'QnA' }" class="link ml-4" id="appbar">
           Q&A
         </router-link>
 
@@ -55,13 +55,13 @@
             <router-link
               :to="{ name: 'mypage' }"
               class="link align-self-center mr-4"
-              id="category"
+              id="appbar"
               >내정보보기</router-link
             >
             <a
               class="link align-self-center"
               @click.prevent="onClickLogout"
-              id="category"
+              id="appbar"
               >로그아웃</a
             >
           </div>
@@ -69,11 +69,11 @@
             <router-link
               :to="{ name: 'register' }"
               class="link mr-4"
-              id="category"
+              id="appbar"
               ><b-icon icon="person-circle" class="mr-1"></b-icon>
               회원가입</router-link
             >
-            <router-link :to="{ name: 'login' }" class="link" id="category"
+            <router-link :to="{ name: 'login' }" class="link" id="appbar"
               ><b-icon icon="key" class="mr-1"></b-icon> 로그인</router-link
             >
           </div>
@@ -130,7 +130,7 @@ export default {
   background: #0e3047;
 }
 
-#category {
+#appbar {
   font-size: 18px;
   color: white;
   text-decoration-line: none;
