@@ -44,10 +44,10 @@
         </li>
       </ul>
     </b-container>
-    <b-container class="button-group">
+    <!-- <b-container class="button-group">
       <v-btn @click="changeSize(0)">Hide</v-btn>
-      <v-btn @click="changeSize(3000)">show</v-btn>
-    </b-container>
+      <v-btn @click="changeSize(800)">show</v-btn>
+    </b-container> -->
   </b-container>
 </template>
 
@@ -347,7 +347,7 @@ export default {
     changeSize(size) {
       const container = document.getElementById("map");
       container.style.width = `${size}px`;
-      container.style.height = `${size / 3}px`;
+      container.style.height = `${(size / 8) * 5}px`;
       this.map.relayout();
     },
     getAPTNameData() {
@@ -538,8 +538,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 #map {
-  width: 3000px;
-  height: 1000px;
+  width: 800px;
+  height: 500px;
   position: relative;
   overflow: hidden;
 }

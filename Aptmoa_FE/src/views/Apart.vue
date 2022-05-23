@@ -1,27 +1,28 @@
 <template>
   <b-container class="bv-example-row mt-3 text-center">
-    <h1 class="underline-hotpink">
+    <h3 class="underline-hotpink">
       Apart Service
-    </h1>
+    </h3>
     <v-row>
-      <v-col cols="12" align="center">
+      <v-col>
         <apart-map class="map"></apart-map>
       </v-col>
+      <v-col>
+        <apart-search-bar></apart-search-bar>
+        <apart-list />
+      </v-col>
     </v-row>
-    <v-row>
+    <!-- <v-row>
       <v-col cols="100">
         <apart-search-bar></apart-search-bar>
       </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="6" align="left">
-        <apart-list />
-      </v-col>
+    </v-row> -->
+    <!-- <v-row>
       <v-col cols="6">
         <apart-detail />
         <apart-detail2 />
       </v-col>
-    </v-row>
+    </v-row> -->
   </b-container>
 </template>
 

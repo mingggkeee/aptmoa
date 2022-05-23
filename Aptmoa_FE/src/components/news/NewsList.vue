@@ -8,16 +8,11 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col>
-        <v-alert show><h1>뉴스 목록</h1></v-alert>
-      </v-col>
-    </v-row>
-    <v-row>
       <v-col v-if="news.length">
         <v-data-table
           :headers="headers"
           :items="news"
-          :items-per-page="10"
+          :items-per-page="8"
           item-key="subject"
           class="elevation-1"
           sort-by="regtime"
