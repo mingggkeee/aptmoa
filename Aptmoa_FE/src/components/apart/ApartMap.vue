@@ -26,6 +26,18 @@
           <span class="category_bg store"></span>
           편의점
         </li>
+        <li id="SW8" data-order="5">
+          <span class="category_bg store"></span>
+          지하철
+        </li>
+        <li id="PK6" data-order="5">
+          <span class="category_bg store"></span>
+          주차장
+        </li>
+        <li id="AC5" data-order="5">
+          <span class="category_bg store"></span>
+          학원
+        </li>
       </ul>
     </b-container>
     <b-container class="button-group">

@@ -188,6 +188,41 @@ const apartStore = {
       // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_NAME_APART", nameApt);
     }
+    // MOVEMAP: (store, payload) => {
+    //   return axios
+    //     .get(`${SERVER_URL}/map/range`, {
+    //       params: payload
+    //     })
+    //     .then(res => {
+    //       store.commit("HOUSEINFO", res.data);
+    //       console.log(
+    //         "현재 [지도 범위]에서 [" +
+    //           res.data.length +
+    //           "]개의 거래정보를 발견했습니다!"
+    //       );
+    //     })
+    //     .catch(err => {
+    //       console.error(err);
+    //     });
+    // },
+
+    // SEARCHBYLATLNG: (store, payload) => {
+    //   return axios
+    //     .get(`${SERVER_URL}/map/search/latlng`, {
+    //       params: payload
+    //     })
+    //     .then(res => {
+    //       store.commit("SEARCHBYLATLNG", res.data);
+    //       console.log(
+    //         "현재 [좌표]에서 [" +
+    //           res.data.length +
+    //           "]개의 거래정보를 발견했습니다!"
+    //       );
+    //     })
+    //     .catch(err => {
+    //       console.error(err);
+    //     });
+    // }
   }
 };
 

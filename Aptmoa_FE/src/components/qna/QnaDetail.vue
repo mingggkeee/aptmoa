@@ -1,12 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
-    <v-row>
-      <v-col>
-        <v-alert show
-          ><h1>{{ qna.qnano }}번 글보기</h1></v-alert
-        >
-      </v-col>
-    </v-row>
+  <v-container>
     <v-row class="mb-1">
       <v-col class="text-left">
         <v-btn variant="outline-primary" @click="listQna">목록</v-btn>
@@ -29,24 +22,106 @@
         >
       </v-col>
     </v-row>
-    <v-row class="mb-1">
-      <v-col>
-        <v-card>
-          <div>
-            <h3>작성자 : {{ qna.userId }}</h3>
-          </div>
-          <div>
-            <h3>제목 : {{ qna.subject }}</h3>
-          </div>
-          <div>
-            <h3>내용 : {{ qna.content }}</h3>
-          </div>
-          <div>
-            <h3>작성일 : {{ qna.regtime }}</h3>
-          </div>
-        </v-card>
-      </v-col>
-    </v-row>
+    <v-card elevation="10" outlined width="100%" class="mx-auto">
+      <v-card-title>
+        <span class="mr-2">Detail</span>
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col>
+            <v-text-field label="제목" readonly :value="qna.subject" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field label="작성자" readonly dense :value="qna.userId" />
+          </v-col>
+          <v-col>
+            <v-text-field
+              label="작성 시간"
+              readonly
+              dense
+              :value="qna.regtime"
+            />
+          </v-col>
+          <!-- <v-col>
+            <v-text-field label="View" readonly dense :value="qna.hit" />
+          </v-col> -->
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field label="내용" readonly dense :value="qna.content" />
+          </v-col>
+        </v-row>
+        Reply ({{ comments.length }})<br />
+        <v-simple-table dense>
+          <tbody>
+            <tr v-for="(comment, index) in comments" :key="index">
+              <td style="width:110px; padding: 0;" v-if="comments.length">
+                <v-icon small>
+                  mdi-account
+                </v-icon>
+                {{ comment.userId }}
+              </td>
+              <td style="width:40px; padding: 0;" v-else>
+                <Tooltip
+                  bottom
+                  iconName="mdi-account"
+                  title="작성자"
+                  :content="userInfo.userId"
+                />
+              </td>
+              <td style="padding: 0;">{{ comment.content }}</td>
+              <td style="width:140px; padding: 0;" v-if="comments.length">
+                {{ comment.regtime }}
+              </td>
+              <td style="width:40px; padding: 0;" v-else>
+                <Tooltip
+                  bottom
+                  iconName="mdi-clock-outline"
+                  title="작성일시"
+                  :content="comment.regtime"
+                />
+              </td>
+              <td style="width:30px; padding: 0;">
+                <v-btn
+                  depressed
+                  small
+                  color="warning"
+                  variant="outline-danger"
+                  size="xsm"
+                  @click="deleteComment(comment.commentno, $event)"
+                  >댓글삭제</v-btn
+                >
+              </td>
+            </tr>
+          </tbody>
+        </v-simple-table>
+        <v-divider></v-divider>
+        <v-row>
+          <v-col cols="12" md="11" style="padding: 0px 12px;">
+            <v-textarea
+              clearable
+              clear-icon="mdi-close-circle"
+              rows="2"
+              no-resize
+              full-width
+              v-model="comment.content"
+            ></v-textarea>
+          </v-col>
+          <v-col md="1" align-self="center" style="padding: 0px 10px;">
+            <v-btn
+              color="primary"
+              variant="outline-danger"
+              size="sm"
+              @click="commentSave('comment.commentno')"
+              >댓글 작성</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+    <!-- <v-row> <br /><br /> </v-row>
     <h2 class="underline-hotpink">댓글</h2>
     <v-row>
       <v-col v-if="comments.length">
@@ -96,8 +171,9 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-row>
-  </b-container>
+    </v-row> -->
+  </v-container>
+  <!-- </b-container> -->
 </template>
 
 <script>
@@ -191,9 +267,9 @@ export default {
       }
     },
     deleteComment(value) {
-      console.log(value.commentno);
+      console.log(value);
       if (confirm("정말로 삭제하시겠습니까?")) {
-        deleteComment(value.commentno, () => {
+        deleteComment(value, () => {
           this.$router.push({ name: "deleteComment" });
         });
         this.$router.go();
