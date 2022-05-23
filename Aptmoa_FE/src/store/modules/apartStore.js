@@ -24,16 +24,10 @@ const apartStore = {
         state.sidos.push({ value: sido.sidoCode, text: sido.sidoName });
       });
     },
-    SET_SIDO(state, payload) {
-      state.sido = { code: payload[1], name: payload[0] };0
-    },
     SET_GUGUN_LIST: (state, guguns) => {
       guguns.forEach(gugun => {
         state.guguns.push({ value: gugun.gugunCode, text: gugun.gugunName });
       });
-    },
-    SET_GUGUN(state, payload) {
-      state.gugun = { code: payload[1], name: payload[0] };
     },
     CLEAR_SIDO_LIST: state => {
       state.sidos = [{ value: null, text: "선택하세요" }];
@@ -109,7 +103,6 @@ const apartStore = {
           let data;
           let pagination;
           if (!Array.isArray(body.items.item)) {
-            console.log("한개만 나오라이마리야");
             data = [];
             data.push(body.items.item);
           } else data = body.items.item;

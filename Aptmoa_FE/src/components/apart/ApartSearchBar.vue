@@ -15,9 +15,10 @@
       ></v-select>
     </v-col>
     <v-col class="sm-3">
-      <b-form-input :id="`type-date`" type="date" v-model="date"></b-form-input>
+      <!-- <b-form-input :id="`type-date`" type="date" v-model="date"></b-form-input> -->
+      <v-date-picker v-model="date"></v-date-picker>
     </v-col>
-    <v-col class="sm-3">
+    <!-- <v-col class="sm-3">
       <b-form-input
         :id="`type-number`"
         type="number"
@@ -25,7 +26,7 @@
         max="50"
         v-model="datanum"
       ></b-form-input>
-    </v-col>
+    </v-col> -->
     <v-col class="text-right">
       <v-btn variant="outline-primary" @click="searchApt">조회</v-btn>
     </v-col>
@@ -126,14 +127,14 @@ export default {
       console.log(this.gugunCode);
       if (!this.sidoCode || !this.gugunCode)
         alert("조회할 지역을 선택해주세요.");
-      // else if (!this.date) alert("조회할 년-월을 선택해주세요.");
-      // console.log(this.date);
-      // let date = this.date.replace(/-/g, "").substr(0, 6);
-      // console.log(date);
-      // console.log(this.datanum);
+      else if (!this.date) alert("조회할 년-월을 선택해주세요.");
+      console.log(this.date);
+      let date = this.date.replace(/-/g, "").substr(0, 6);
+      console.log(date);
+      console.log(this.datanum);
       const param = {
         page: 1,
-        // date: date,
+        date: date,
         rows: this.datanum,
         gugunCode: this.gugunCode
       };

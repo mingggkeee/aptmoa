@@ -13,8 +13,8 @@
       prev-text="Prev"
       next-text="Next"
       last-text="Last"
-      @change="searchApt"
     ></b-pagination>
+    <!-- @change="searchApt" -->
   </b-container>
   <b-container v-else class="bv-example-row mt-3">
     <v-row>
@@ -25,7 +25,7 @@
 
 <script>
 import ApartListItem from "@/components/apart/ApartListItem.vue";
-import { tsImportEqualsDeclaration } from "@babel/types";
+// import { tsImportEqualsDeclaration } from "@babel/types";
 import { mapState, mapActions } from "vuex";
 
 const apartStore = "apartStore";
@@ -50,23 +50,23 @@ export default {
     //   return this.$store.state.houses;
     // },
     methods: {
-      ...mapActions(apartStore, ["getApartList"]),
+      ...mapActions(apartStore, ["getApartList"])
 
-      searchApt(pageNum) {
-        console.log(pageNum);
-        if (!this.pagination.gugunCode) alert("조회할 지역을 선택해주세요.");
-        else if (!this.pagination.date) alert("조회할 년-월을 선택해주세요.");
+      // searchApt(pageNum) {
+      //   console.log(pageNum);
+      //   if (!this.pagination.gugunCode) alert("조회할 지역을 선택해주세요.");
+      //   else if (!this.pagination.date) alert("조회할 년-월을 선택해주세요.");
 
-        let page = pageNum;
-        if (!pageNum) page = this.currentPage;
-        const param = {
-          page: page,
-          date: this.pagination.date,
-          rows: this.pagination.perPage,
-          gugunCode: this.pagination.gugunCode
-        };
-        if (this.pagination.gugunCode) this.getApartList(param);
-      }
+      //   let page = pageNum;
+      //   if (!pageNum) page = this.currentPage;
+      //   const param = {
+      //     page: page,
+      //     date: this.pagination.date,
+      //     rows: this.pagination.perPage,
+      //     gugunCode: this.pagination.gugunCode
+      //   };
+      //   if (this.pagination.gugunCode) this.getApartList(param);
+      // }
     }
   }
 };
