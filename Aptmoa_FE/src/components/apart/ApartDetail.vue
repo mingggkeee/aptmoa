@@ -7,7 +7,7 @@
     </b-row>
     <b-row class="mb-2 mt-1">
       <b-col
-        ><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img
+        ><b-img :src="require('@/assets/apt.jpg')" fluid-grow></b-img
       ></b-col>
     </b-row>
     <b-row>
