@@ -15,11 +15,7 @@ export default new Vuex.Store({
     items: [
       {
         text: "Home",
-        href: "#!"
-      },
-      {
-        text: "About",
-        href: "#about"
+        href: "/"
       }
     ]
   },
@@ -31,15 +27,15 @@ export default new Vuex.Store({
   modules: {
     userStore,
     apartStore,
-    noticeStore,
+    noticeStore
   },
   plugins: [
     createPersistedState({
       // 브라우저 종료시 제거하기 위해 localStorage가 아닌 sessionStorage로 변경. (default: localStorage)
-      storage : sessionStorage,
-    }),
+      storage: sessionStorage
+    })
     // new webpack.definePlugin({
     //   VUE_APP_APT_DEAL_API_KEY: JSON.stringify(env.VUE_APP_APT_DEAL_API_KEY),
     // }),
-  ],
+  ]
 });

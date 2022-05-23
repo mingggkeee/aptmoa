@@ -49,6 +49,14 @@ export default {
         { text: "이름", value: "아파트" },
         { text: "거래금액", value: "거래금액" },
         { text: "전용면적", value: "전용면적" }
+      ],
+      headers2: [
+        { text: "법정구", value: "gugunName" },
+        { text: "법정동", value: "dong" },
+        // { text: "거래월", value: "월" },
+        { text: "이름", value: "apartmentName" },
+        { text: "거래금액", value: "recentPrice" }
+        // { text: "전용면적", value: "전용면적" }
       ]
     };
   },
@@ -59,14 +67,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions(apartStore, ["detailApart"]),
+    ...mapActions(apartStore, ["detailApart", "detailApart2"]),
     selectApart(value) {
       // console.log(value);
       this.detailApart(value);
     },
     selectApart2(value) {
       // console.log(value);
-      this.detailApart(value);
+      this.detailApart2(value);
     }
   }
 };

@@ -122,6 +122,7 @@ export default {
       if (this.sidoCode) this.getGugun(this.sidoCode);
     },
     searchApt() {
+      this.CLEAR_APART_LIST();
       if (this.row === "locations") {
         eventBus.$emit("getMap", param);
         console.log(this.gugunCode);

@@ -4,7 +4,6 @@
       :height="value.prominent ? 450 : 350"
       color="grey lighten-1"
       dark
-      href="#!"
     >
       <v-img
         :src="require(`@/assets/articles/${value.hero}`)"
@@ -71,6 +70,10 @@ export default {
           name: "newsDetail",
           params: { newsno: this.value.newsno }
         });
+      } else if (this.value.category === "Notice") {
+        console.log("notice");
+      } else {
+        console.log("Q&A");
       }
     }
   }

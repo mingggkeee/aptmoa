@@ -58,6 +58,12 @@
               id="appbar"
               >내정보보기</router-link
             >
+            <router-link
+              :to="{ name: 'Interest' }"
+              class="link align-self-center mr-4"
+              id="appbar"
+              >관심목록 조회</router-link
+            >
             <a
               class="link align-self-center"
               @click.prevent="onClickLogout"

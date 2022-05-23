@@ -30,7 +30,6 @@ export default {
         { text: "Notice" },
         { text: "Q&A" },
         { text: "Apart" },
-        { text: "CCTV" },
         { text: "Infra" }
       ]
     };

@@ -30,13 +30,17 @@
           <span class="category_bg store"></span>
           편의점
         </li>
-        <li id="PS3" data-order="5">
-          <span class="category_bg kindergarden"></span>
-          유치원
-        </li>
         <li id="SW8" data-order="5">
-          <span class="category_bg metro"></span>
-          지하철역
+          <span class="category_bg store"></span>
+          지하철
+        </li>
+        <li id="PK6" data-order="5">
+          <span class="category_bg store"></span>
+          주차장
+        </li>
+        <li id="AC5" data-order="5">
+          <span class="category_bg store"></span>
+          학원
         </li>
       </ul>
     </b-container>
@@ -92,13 +96,21 @@ export default {
       } else {
         console.log(old);
       }
+    },
+    nameApts: function(object, old) {
+      if (object != null) {
+        this.index = object.length;
+        this.getAPTNameData();
+      } else {
+        console.log(old);
+      }
     }
   },
   computed: {
-    ...mapState(apartStore, ["aparts"])
+    ...mapState(apartStore, ["aparts", "nameApts"])
   },
   methods: {
-    ...mapActions(apartStore, ["getApartList"]),
+    ...mapActions(apartStore, ["getApartList", "getApartListByName"]),
     initMap() {
       // console.log("init에서 지도새로뜸!");
       this.placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
@@ -338,6 +350,43 @@ export default {
       container.style.height = `${size / 3}px`;
       this.map.relayout();
     },
+    getAPTNameData() {
+      this.removeMarker();
+      console.log("full_address");
+      console.warn(full_address);
+      let building_code = 0;
+      let building_sub_code = 0;
+      let full_address = [];
+      for (var i = 0; i < this.nameApts.length; i++) {
+        building_code = Number.parseInt(this.nameApts[i]["roadNameBonbun"]);
+        building_sub_code =
+          Number.parseInt(this.nameApts[i]["roadNameBubun"]) + "";
+        console.log(building_code);
+        if (building_sub_code != 0) {
+          building_code += "-" + building_sub_code;
+        }
+        full_address.push(
+          this.nameApts[i]["dong"] +
+            " " +
+            this.nameApts[i]["roadName"] +
+            " " +
+            building_code
+        );
+        this.Addr.push(
+          this.nameApts[i]["dong"] +
+            " " +
+            this.nameApts[i]["roadName"] +
+            " " +
+            building_code
+        );
+        this.Dong.push(this.nameApts[i]["dong"]);
+        console.log(building_code);
+      }
+      this.movePosition(full_address[0]);
+      for (let i = 0; i < full_address.length; i++) {
+        this.setMark(full_address[i]);
+      }
+    },
     // 아파트 데이터 가져오기
     getAPTData() {
       this.removeMarker();
@@ -383,7 +432,6 @@ export default {
       geocoder.addressSearch(address, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
           var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
           var marker = new kakao.maps.Marker({
             map: this.map, // 마커를 표시할 지도
             position: coords, // 마커를 표시할 위치

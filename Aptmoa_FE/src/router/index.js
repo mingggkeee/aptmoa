@@ -16,11 +16,27 @@ const onlyAuthUser = async (to, from, next) => {
   }
   if (checkUserInfo === null) {
     alert("로그인이 필요한 페이지입니다.");
-    next({ name: "register" });
+    next({ name: "login" });
   } else {
     next();
   }
-}
+};
+
+// admin만 확인하는 함수 만들어보기
+// const onlyAuthUser = async (to, from, next) => {
+//   const checkUserInfo = store.getters["userStore/checkUserInfo"];
+//   const getUserInfo = store._actions["userStore/getUserInfo"];
+//   let token = sessionStorage.getItem("access-token");
+//   if (checkUserInfo == null && token) {
+//     await getUserInfo(token);
+//   }
+//   if (checkUserInfo === null) {
+//     alert("로그인이 필요한 페이지입니다.");
+//     next({ name: "login" });
+//   } else {
+//     next();
+//   }
+// };
 
 export default new Router({
   mode: "history",
@@ -49,7 +65,7 @@ export default new Router({
         {
           path: "mypage",
           name: "mypage",
-          // beforeEnter: onlyAuthUser,
+          beforeEnter: onlyAuthUser,
           component: () => import("@/components/user/UserMyPage.vue")
         },
         {
@@ -62,24 +78,26 @@ export default new Router({
     {
       path: "/apart",
       name: "apart",
+      beforeEnter: onlyAuthUser,
       component: () => import("@/views/Apart.vue"),
       redirect: "/apart/list",
       children: [
         {
           path: "list",
           name: "houselist",
-          component:() => import("../components/apart/ApartList.vue"),
+          component: () => import("../components/apart/ApartList.vue")
         },
         {
           path: "detail",
           name: "housedetail",
-          component:() => import("../components/apart/ApartDetail.vue"),
+          component: () => import("../components/apart/ApartDetail.vue")
         }
       ]
     },
     {
       path: "/notice",
       name: "Notice",
+      beforeEnter: onlyAuthUser,
       component: () => import("@/views/Notice.vue"),
       redirect: "/notice/list",
       children: [
@@ -91,19 +109,19 @@ export default new Router({
         {
           path: "write",
           name: "noticeRegister",
-          // beforeEnter: onlyAuthUser,
+          beforeEnter: onlyAuthUser,
           component: () => import("@/components/notice/NoticeRegister.vue")
         },
         {
           path: "detail/:noticeno",
           name: "noticeDetail",
-          // beforeEnter: onlyAuthUser,
+          beforeEnter: onlyAuthUser,
           component: () => import("@/components/notice/NoticeDetail.vue")
         },
         {
           path: "modify/:noticeno",
           name: "noticeModify",
-          // beforeEnter: onlyAuthUser,
+          beforeEnter: onlyAuthUser,
           component: () => import("@/components/notice/NoticeModify.vue")
         }
       ]
@@ -111,6 +129,7 @@ export default new Router({
     {
       path: "/qna",
       name: "QnA",
+      beforeEnter: onlyAuthUser,
       component: () => import("@/views/QnA.vue"),
       redirect: "/qna/list",
       children: [
@@ -122,19 +141,19 @@ export default new Router({
         {
           path: "write",
           name: "qnaRegister",
-          // beforeEnter: onlyAuthUser,
+          beforeEnter: onlyAuthUser,
           component: () => import("@/components/qna/QnaRegister.vue")
         },
         {
           path: "detail/:qnano",
           name: "qnaDetail",
-          // beforeEnter: onlyAuthUser,
+          beforeEnter: onlyAuthUser,
           component: () => import("@/components/qna/QnaDetail.vue")
         },
         {
           path: "modify/:qnano",
           name: "qnaModify",
-          // beforeEnter: onlyAuthUser,
+          beforeEnter: onlyAuthUser,
           component: () => import("@/components/qna/QnaModify.vue")
         }
       ]
@@ -155,6 +174,19 @@ export default new Router({
           name: "newsDetail",
           // beforeEnter: onlyAuthUser,
           component: () => import("@/components/news/NewsDetail.vue")
+        }
+      ]
+    },
+    {
+      path: "/interest",
+      name: "Interest",
+      component: () => import("@/views/Interest.vue"),
+      redirect: "/interest/list",
+      children: [
+        {
+          path: "list",
+          name: "interestList",
+          component: () => import("@/components/interest/InterestList.vue")
         }
       ]
     }

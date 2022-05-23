@@ -1,34 +1,78 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <v-container>
     <v-row class="mb-1">
       <v-col class="text-left">
         <v-btn variant="outline-primary" @click="listNews">목록</v-btn>
+        <!-- </v-col>
+      <v-col class="text-right">
+        <v-btn
+          variant="outline-info"
+          size="sm"
+          color="primary"
+          @click="moveModifyNews"
+          class="mr-2"
+          >글수정</v-btn
+        >
+        <v-btn
+          color="primary"
+          variant="outline-danger"
+          size="sm"
+          @click="deleteNews"
+          >글삭제</v-btn
+        > -->
       </v-col>
     </v-row>
-    <v-row class="mb-1">
-      <v-col>
-        <v-card>
-          <v-treeview :items="news"></v-treeview>
-          <div>
-            <h3>제목 : {{ news.subject }}</h3>
-          </div>
-          <v-img max-height="150" max-width="150" :src="news.imgurl"></v-img>
-          <div>
-            <h3>내용 : {{ news.content }}</h3>
-          </div>
-          <div>
-            <h3>작성일 : {{ news.regtime }}</h3>
-          </div>
-          <div>
-            <h3>
-              원문주소 :
-              <a :href="news.newsurl">{{ news.newsurl }}</a>
-            </h3>
-          </div>
-        </v-card>
-      </v-col>
-    </v-row>
-  </b-container>
+    <v-card elevation="10" outlined width="100%" class="mx-auto">
+      <v-card-title>
+        <span class="mr-2">Detail</span>
+      </v-card-title>
+      <v-card-text>
+        <v-row>
+          <v-col>
+            <v-text-field label="No" readonly :value="news.newsno" />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-text-field label="제목" readonly :value="news.subject" />
+          </v-col>
+          <v-col>
+            <v-text-field
+              label="작성 시간"
+              readonly
+              dense
+              :value="news.regtime"
+            />
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col align="center">
+            <v-img :src="news.imgurl" height="200" width="250" align="center">
+            </v-img>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col align="right">
+            <v-btn :href="news.newsurl" target="_blank">
+              <v-icon>mdi-alpha-n-circle</v-icon>
+              <span>원문 보러가기</span>
+            </v-btn>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col>
+            <v-textarea
+              label="내용"
+              readonly
+              dense
+              :value="news.content"
+              rows="15"
+            />
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
