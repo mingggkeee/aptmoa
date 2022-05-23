@@ -1,20 +1,12 @@
 <template>
   <b-container v-if="aparts && aparts.length != 0" class="bv-example-row mt-3">
-    <apart-list-item
-      v-for="(apart, index) in aparts"
-      :key="index"
-      :apart="apart"
-    />
-    <b-pagination
-      v-model="currentPage"
-      :total-rows="pagination.rows"
-      :per-page="pagination.perPage"
-      first-text="First"
-      prev-text="Prev"
-      next-text="Next"
-      last-text="Last"
-      @change="searchApt"
-    ></b-pagination>
+    <v-data-table
+      :headers="headers"
+      :items="aparts"
+      :items-per-page="15"
+      class="elevation-1"
+      @click:row="selectApart"
+    ></v-data-table>
   </b-container>
   <b-container v-else class="bv-example-row mt-3">
     <v-row>
@@ -25,7 +17,6 @@
 
 <script>
 import ApartListItem from "@/components/apart/ApartListItem.vue";
-import { tsImportEqualsDeclaration } from "@babel/types";
 import { mapState, mapActions } from "vuex";
 
 const apartStore = "apartStore";
@@ -37,18 +28,19 @@ export default {
   },
   data() {
     return {
-      currentPage: 1
+      currentPage: 1,
+      headers: [
+        { text: "법정동", value: "법정동" },
+        { text: "거래년도", value: "년" },
+        { text: "거래월", value: "월" },
+        { text: "이름", value: "아파트" },
+        { text: "거래금액", value: "거래금액" },
+        { text: "전용면적", value: "전용면적" }
+      ]
     };
   },
   computed: {
-    ...mapState(apartStore, ["aparts", "pagination"]),
-    changePage: function() {
-      console.log(this.currentPage);
-      return this.currentPage;
-    },
-    // houses() {
-    //   return this.$store.state.houses;
-    // },
+    ...mapState(apartStore, ["aparts"]),
     methods: {
       ...mapActions(apartStore, ["getApartList"]),
 
@@ -56,17 +48,14 @@ export default {
         console.log(pageNum);
         if (!this.pagination.gugunCode) alert("조회할 지역을 선택해주세요.");
         else if (!this.pagination.date) alert("조회할 년-월을 선택해주세요.");
-
-        let page = pageNum;
-        if (!pageNum) page = this.currentPage;
-        const param = {
-          page: page,
-          date: this.pagination.date,
-          rows: this.pagination.perPage,
-          gugunCode: this.pagination.gugunCode
-        };
-        if (this.pagination.gugunCode) this.getApartList(param);
       }
+    }
+  },
+  methods: {
+    ...mapActions(apartStore, ["detailApart"]),
+    selectApart(value) {
+      // console.log(value);
+      this.detailApart(value);
     }
   }
 };

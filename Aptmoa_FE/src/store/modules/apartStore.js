@@ -5,6 +5,7 @@ const apartStore = {
   state: {
     sidos: [{ value: null, text: "시.도" }],
     guguns: [{ value: null, text: "구.군" }],
+    // date: [{ value: null, text: "거래일시" }],
     aparts: [],
     apart: null,
     pagination: {
@@ -12,8 +13,8 @@ const apartStore = {
       gugunCode: null,
       rows: 100,
       perPage: 10,
-      currentPage: 1,
-    },
+      currentPage: 1
+    }
   },
 
   getters: {},
@@ -25,7 +26,8 @@ const apartStore = {
       });
     },
     SET_SIDO(state, payload) {
-      state.sido = { code: payload[1], name: payload[0] };0
+      state.sido = { code: payload[1], name: payload[0] };
+      0;
     },
     SET_GUGUN_LIST: (state, guguns) => {
       guguns.forEach(gugun => {
@@ -61,14 +63,14 @@ const apartStore = {
           console.log(data);
           commit("SET_SIDO_LIST", data);
         },
-        (error) => {
+        error => {
           console.log(error);
         }
       );
     },
     getGugun: ({ commit }, sidoCode) => {
       const params = {
-        sido: sidoCode,
+        sido: sidoCode
       };
       gugunList(
         params,
@@ -76,7 +78,7 @@ const apartStore = {
           // console.log(commit, response);
           commit("SET_GUGUN_LIST", data);
         },
-        (error) => {
+        error => {
           console.log(error);
         }
       );
@@ -99,11 +101,11 @@ const apartStore = {
         numOfRows: numOfRows,
         pageNo: param.page,
         DEAL_YMD: DEAL_YMD,
-        serviceKey: decodeURIComponent(SERVICE_KEY),
+        serviceKey: decodeURIComponent(SERVICE_KEY)
       };
       apartList(
         params,
-        (response) => {
+        response => {
           console.log(response);
           const body = response.data.response.body;
           let data;
@@ -119,12 +121,12 @@ const apartStore = {
             gugunCode: param.gugunCode,
             rows: body.totalCount,
             perPage: body.numOfRows,
-            currentPage: body.pageNo,
+            currentPage: body.pageNo
           };
           commit("SET_APART_LIST", data);
           commit("SET_PAGINATION", pagination);
         },
-        (error) => {
+        error => {
           console.log(error);
         }
       );
@@ -132,8 +134,8 @@ const apartStore = {
     detailApart: ({ commit }, apart) => {
       // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_APART", apart);
-    },
-  },
+    }
+  }
 };
 
 export default apartStore;

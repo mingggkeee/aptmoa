@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-row
     class="m-2"
     @click="selectApart"
@@ -55,4 +55,4 @@ export default {
 .mouse-over-bgcolor {
   background-color: lightblue;
 }
-</style>
+</style> -->

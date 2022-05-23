@@ -77,7 +77,7 @@ export default {
   watch: {
     aparts: function(object, old) {
       if (object != null) {
-        console.log("감지했늬?");
+        console.log("감지했나요?");
         this.index = object.length;
         //console.log(object.length);
         //console.log(this.index);
@@ -96,11 +96,11 @@ export default {
 
     initMap() {
       this.placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
-      this.contentNode = document.createElement("div"); // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
+      this.contentNode = document.createElement("b-container"); // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 5
+        level: 3
       };
       this.map = new kakao.maps.Map(container, options);
 
@@ -112,7 +112,7 @@ export default {
             lon = position.coords.longitude; // 경도
 
           let locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+            message = '<v-row style="padding:5px;">여기에 계신가요?!</v-row>'; // 인포윈도우에 표시될 내용입니다
           console.log(locPosition);
           // 마커와 인포윈도우를 표시합니다
           this.displayMarker(locPosition, message);
@@ -587,8 +587,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 #map {
-  width: 1000px;
-  height: 500px;
+  width: 3000px;
+  height: 1000px;
   position: relative;
   overflow: hidden;
 }

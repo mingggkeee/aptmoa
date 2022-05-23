@@ -1,5 +1,5 @@
 <template>
-  <b-row class="mt-4 mb-4 text-center">
+  <v-row class="mt-4 mb-4 text-center">
     <v-col class="sm-3">
       <v-select
         v-model="sidoCode"
@@ -8,81 +8,23 @@
       ></v-select>
     </v-col>
     <v-col class="sm-3">
-      <v-select
-        v-model="gugunCode"
-        :items="guguns"
-        @change="searchApt"
-      ></v-select>
+      <v-select v-model="gugunCode" :items="guguns" label="지역"></v-select>
     </v-col>
     <v-col class="sm-3">
-      <b-form-input :id="`type-date`" type="date" v-model="date"></b-form-input>
+      <v-select v-model="year" :items="years" label="Year"></v-select>
     </v-col>
     <v-col class="sm-3">
-      <b-form-input
-        :id="`type-number`"
-        type="number"
-        min="0"
-        max="50"
-        v-model="datanum"
-      ></b-form-input>
+      <v-select v-model="month" :items="months" label="Month"></v-select>
     </v-col>
     <v-col class="text-right">
       <v-btn variant="outline-primary" @click="searchApt">조회</v-btn>
     </v-col>
-  </b-row>
+  </v-row>
 </template>
-
-<!-- <template>
-  <b-row class="mt-4 mb-4 text-center">
-    // <b-col class="sm-3">
-    //   <b-form-input
-    //     v-model.trim="dongCode"
-    //     placeholder="동코드 입력...(예 : 11110)"
-    //     @keypress.enter="sendKeyword"
-    //   ></b-form-input>
-    // </b-col>
-    // <b-col class="sm-3" align="left">
-    //   <b-button variant="outline-primary" @click="sendKeyword">검색</b-button>
-    // </b-col>
-    <b-col class="sm-3">
-      <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList">
-      </b-form-select>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-select v-model="gugunCode" :options="guguns"></b-form-select>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-input :id="`type-date`" type="date" v-model="date"></b-form-input>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-input
-        :id="`type-number`"
-        type="number"
-        min="0"
-        max="50"
-        v-model="datanum"
-      ></b-form-input>
-    </b-col>
-    <b-col class="text-right">
-      <b-button variant="outline-primary" @click="searchApt">조회</b-button>
-    </b-col>
-  </b-row>
-</template> -->
 
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
 import eventBus from "./eventBus";
-
-/*
-  namespaced: true를 사용했기 때문에 선언해줍니다.
-  index.js 에서 modules 객체의 '키' 이름입니다.
-*
-  modules: {
-    키: 값
-    userStore: userStore,
-    apartStore: apartStore
-  }
-*/
 const apartStore = "apartStore";
 
 export default {
@@ -91,28 +33,55 @@ export default {
     return {
       sidoCode: null,
       gugunCode: null,
+      year: "null",
+      month: null,
       date: null,
-      datanum: 100
+      datanum: 100,
+      years: [
+        { value: 2022, text: "2022년" },
+        { value: 2021, text: "2021년" },
+        { value: 2020, text: "2020년" },
+        { value: 2019, text: "2019년" },
+        { value: 2022, text: "2018년" },
+        { value: 2017, text: "2017년" },
+        { value: 2016, text: "2016년" },
+        { value: 2015, text: "2015년" },
+        { value: 2014, text: "2014년" },
+        { value: 2013, text: "2013년" },
+        { value: 2012, text: "2012년" },
+        { value: 2011, text: "2011년" },
+        { value: 2010, text: "2010년" },
+        { value: 2009, text: "2009년" },
+        { value: 2008, text: "2008년" },
+        { value: 2007, text: "2007년" },
+        { value: 2006, text: "2006년" }
+      ],
+      months: [
+        { value: "01", text: "1월" },
+        { value: "02", text: "2월" },
+        { value: "03", text: "3월" },
+        { value: "04", text: "4월" },
+        { value: "05", text: "5월" },
+        { value: "06", text: "6월" },
+        { value: "07", text: "7월" },
+        { value: "08", text: "8월" },
+        { value: "09", text: "9월" },
+        { value: 10, text: "10월" },
+        { value: 11, text: "11월" },
+        { value: 12, text: "12월" }
+      ]
     };
   },
   computed: {
     ...mapState(apartStore, ["sidos", "guguns"])
-    // sidos() {
-    //   return this.$store.state.sidos;
-    // },
   },
   created() {
-    // this.$store.dispatch("getSido");
-    // this.sidoList();
     this.CLEAR_SIDO_LIST();
     this.getSido();
   },
   methods: {
     ...mapActions(apartStore, ["getSido", "getGugun", "getApartList"]),
     ...mapMutations(apartStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST"]),
-    // sidoList() {
-    //   this.getSido();
-    // },
     gugunList() {
       console.log(this.sidoCode);
       this.CLEAR_GUGUN_LIST();
@@ -120,20 +89,18 @@ export default {
       if (this.sidoCode) this.getGugun(this.sidoCode);
     },
     searchApt() {
-      // if (this.gugunCode) this.getApartList(this.gugunCode);
       eventBus.$emit("getMap", param);
 
       console.log(this.gugunCode);
       if (!this.sidoCode || !this.gugunCode)
         alert("조회할 지역을 선택해주세요.");
-      // else if (!this.date) alert("조회할 년-월을 선택해주세요.");
-      // console.log(this.date);
-      // let date = this.date.replace(/-/g, "").substr(0, 6);
-      // console.log(date);
-      // console.log(this.datanum);
+      else if (!this.year || !this.month) alert("조회할 년-월을 선택해주세요.");
+      let date = this.year + this.month;
+      console.log(date);
+      console.log(this.datanum);
       const param = {
         page: 1,
-        // date: date,
+        date: date,
         rows: this.datanum,
         gugunCode: this.gugunCode
       };
