@@ -72,6 +72,11 @@ export default new Router({
           path: "update/:userId",
           name: "userupdate",
           component: () => import("@/components/user/UserUpdate.vue")
+        },
+        {
+          path: "findpwd",
+          name: "findpwd",
+          component: () => import("@/components/user/FindPwd.vue"),
         }
       ]
     },

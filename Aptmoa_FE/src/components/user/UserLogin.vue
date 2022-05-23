@@ -54,6 +54,14 @@
                   elevation="2"
                   >회원가입</v-btn
                 >
+                <v-btn
+                  type="button"
+                  variant="success"
+                  class="m-1 ma-3"
+                  @click="movePwFindPage"
+                  elevation="2"
+                  >비밀번호찾기</v-btn
+                >
                 <v-btn type="button" @click="kakaoLoginBtn">카카오 연동</v-btn>
               </div>
             </v-col>
@@ -100,6 +108,9 @@ export default {
     },
     movePage() {
       this.$router.push({ name: "register" });
+    },
+    movePwFindPage() {
+      this.$router.push({ name: "findpwd" });
     },
     kakaoLoginBtn() {
       window.Kakao.init("b2c30ed4ecb0bcb26c3807c56a8be980"); // Kakao Developers에서 요약 정보 -> JavaScript 키
