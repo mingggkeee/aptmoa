@@ -32,7 +32,6 @@ const apartStore = {
         state.sidos.push({ value: sido.sidoCode, text: sido.sidoName });
       });
     },
-
     SET_SIDO_NAME_LIST: (state, sidosName) => {
       sidosName.forEach(sido => {
         state.sidosName.push({ value: sido.sidoName, text: sido.sidoName });
@@ -53,6 +52,10 @@ const apartStore = {
     },
     CLEAR_SIDO_NAME_LIST: state => {
       state.sidosName = [{ value: null, text: "선택하세요" }];
+    },
+    CLEAR_APART_LIST: state => {
+      state.aparts = [];
+      state.nameApts = [];
     },
     CLEAR_GUGUN_LIST: state => {
       state.guguns = [{ value: null, text: "선택하세요" }];

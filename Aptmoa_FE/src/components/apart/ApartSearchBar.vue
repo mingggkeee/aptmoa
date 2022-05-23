@@ -99,6 +99,7 @@ export default {
     this.CLEAR_SIDO_LIST();
     this.getSido();
     this.getSidoName();
+    this.CLEAR_APART_LIST();
   },
   methods: {
     ...mapActions(apartStore, [
@@ -111,7 +112,8 @@ export default {
     ...mapMutations(apartStore, [
       "CLEAR_SIDO_LIST",
       "CLEAR_GUGUN_LIST",
-      "CLEAR_SIDO_NAME_LIST"
+      "CLEAR_SIDO_NAME_LIST",
+      "CLEAR_APART_LIST"
     ]),
     gugunList() {
       console.log(this.sidoCode);
