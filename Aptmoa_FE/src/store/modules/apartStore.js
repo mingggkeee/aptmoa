@@ -14,6 +14,7 @@ const apartStore = {
     // date: [{ value: null, text: "거래일시" }],
     aparts: [],
     nameApts: [],
+    nameApt: null,
     apart: null,
     pagination: {
       date: null,
@@ -56,6 +57,8 @@ const apartStore = {
     CLEAR_APART_LIST: state => {
       state.aparts = [];
       state.nameApts = [];
+      state.apart = null;
+      state.nameApt = null;
     },
     CLEAR_GUGUN_LIST: state => {
       state.guguns = [{ value: null, text: "선택하세요" }];
@@ -70,6 +73,9 @@ const apartStore = {
     },
     SET_DETAIL_APART: (state, apart) => {
       state.apart = apart;
+    },
+    SET_DETAIL_NAME_APART: (state, nameApt) => {
+      state.nameApt = nameApt;
     },
     SET_PAGINATION: (state, pagination) => {
       state.pagination = pagination;
@@ -177,6 +183,10 @@ const apartStore = {
     detailApart: ({ commit }, apart) => {
       // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_APART", apart);
+    },
+    detailApart2: ({ commit }, nameApt) => {
+      // 나중에 house.일련번호를 이용하여 API 호출
+      commit("SET_DETAIL_NAME_APART", nameApt);
     }
   }
 };

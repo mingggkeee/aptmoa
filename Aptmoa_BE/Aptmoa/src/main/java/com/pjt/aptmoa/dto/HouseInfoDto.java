@@ -15,7 +15,7 @@ public class HouseInfoDto {
 	private long aptCode;
 	private String apartmentName;
 	private String dongCode;
-	private String dongName;
+	private String dong;
 	private String sidoName;
 	private String gugunName;
 	private int buildYear;
@@ -24,4 +24,8 @@ public class HouseInfoDto {
 	private String lng;
 	private String img;
 	private String recentPrice;
+	private String floor;
+	private String roadName;
+	private String roadNameBonbun;
+	private String roadNameBubun;
 }

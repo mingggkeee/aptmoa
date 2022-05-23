@@ -19,6 +19,7 @@
       </v-col>
       <v-col cols="6">
         <apart-detail />
+        <apart-detail2 />
       </v-col>
     </v-row>
   </b-container>
@@ -28,6 +29,7 @@
 import ApartSearchBar from "@/components/apart/ApartSearchBar.vue";
 import ApartList from "@/components/apart/ApartList.vue";
 import ApartDetail from "@/components/apart/ApartDetail.vue";
+import ApartDetail2 from "@/components/apart/ApartDetail2.vue";
 import ApartMap from "@/components/apart/ApartMap.vue";
 
 export default {
@@ -36,6 +38,7 @@ export default {
     ApartSearchBar,
     ApartList,
     ApartDetail,
+    ApartDetail2,
     ApartMap
   },
   data() {
