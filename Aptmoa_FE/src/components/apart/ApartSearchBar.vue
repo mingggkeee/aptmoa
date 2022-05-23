@@ -14,6 +14,21 @@
         @change="searchApt"
       ></v-select>
     </v-col>
+    <v-col class="sm-3">
+      <b-form-input :id="`type-date`" type="date" v-model="date"></b-form-input>
+    </v-col>
+    <v-col class="sm-3">
+      <b-form-input
+        :id="`type-number`"
+        type="number"
+        min="0"
+        max="50"
+        v-model="datanum"
+      ></b-form-input>
+    </v-col>
+    <v-col class="text-right">
+      <v-btn variant="outline-primary" @click="searchApt">조회</v-btn>
+    </v-col>
   </b-row>
 </template>
 
@@ -77,7 +92,7 @@ export default {
       sidoCode: null,
       gugunCode: null,
       date: null,
-      datanum: 10
+      datanum: 100
     };
   },
   computed: {

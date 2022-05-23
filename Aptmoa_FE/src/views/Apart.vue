@@ -53,7 +53,9 @@ export default {
 <template>
   <b-container class="bv-example-row mt-3 text-center">
     <v-row>
-      <v-container id="map"></v-container>
+      <v-col cols="12" align="center">
+        <apart-map class="map"></apart-map>
+      </v-col>
     </v-row>
     <v-row>
       <v-col cols="100">
@@ -75,13 +77,15 @@ export default {
 import ApartSearchBar from "@/components/apart/ApartSearchBar.vue";
 import ApartList from "@/components/apart/ApartList.vue";
 import ApartDetail from "@/components/apart/ApartDetail.vue";
+import ApartMap from "@/components/apart/ApartMap.vue";
 
 export default {
   name: "ApartView",
   components: {
     ApartSearchBar,
     ApartList,
-    ApartDetail
+    ApartDetail,
+    ApartMap
   },
   data() {
     return {
