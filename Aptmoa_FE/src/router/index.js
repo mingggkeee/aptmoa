@@ -187,12 +187,6 @@ export default new Router({
           path: "list",
           name: "interestList",
           component: () => import("@/components/interest/InterestList.vue")
-        },
-        {
-          path: "detail/:newsno",
-          name: "newsDetail",
-          // beforeEnter: onlyAuthUser,
-          component: () => import("@/components/news/NewsDetail.vue")
         }
       ]
     }
