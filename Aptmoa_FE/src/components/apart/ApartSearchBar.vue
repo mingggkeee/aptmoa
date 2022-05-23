@@ -66,7 +66,7 @@ import eventBus from "./eventBus";
     키: 값
     userStore: userStore,
     apartStore: apartStore
-  }  
+  }
 */
 const apartStore = "apartStore";
 
@@ -111,14 +111,14 @@ export default {
       console.log(this.gugunCode);
       if (!this.sidoCode || !this.gugunCode)
         alert("조회할 지역을 선택해주세요.");
-      else if (!this.date) alert("조회할 년-월을 선택해주세요.");
-      console.log(this.date);
-      let date = this.date.replace(/-/g, "").substr(0, 6);
-      console.log(date);
-      console.log(this.datanum);
+      // else if (!this.date) alert("조회할 년-월을 선택해주세요.");
+      // console.log(this.date);
+      // let date = this.date.replace(/-/g, "").substr(0, 6);
+      // console.log(date);
+      // console.log(this.datanum);
       const param = {
         page: 1,
-        date: date,
+        // date: date,
         rows: this.datanum,
         gugunCode: this.gugunCode
       };
