@@ -2,6 +2,10 @@
   <b-container class="bv-example-row mt-3 text-center">
     <b-container id="map">
       <ul id="category" style="padding-left: 0px">
+        <!-- <li id="SW8" data-order="0">
+          <span class="category_bg metro"></span>
+          지하철역
+        </li> -->
         <li id="BK9" data-order="0">
           <span class="category_bg bank"></span>
           은행
@@ -25,6 +29,14 @@
         <li id="CS2" data-order="5">
           <span class="category_bg store"></span>
           편의점
+        </li>
+        <li id="PS3" data-order="5">
+          <span class="category_bg kindergarden"></span>
+          유치원
+        </li>
+        <li id="SW8" data-order="5">
+          <span class="category_bg metro"></span>
+          지하철역
         </li>
       </ul>
     </b-container>
@@ -166,6 +178,8 @@ export default {
       var order = document
         .getElementById(this.currCategory)
         .getAttribute("data-order");
+      console.log("currCategory?");
+      console.log(this.currCategory);
       for (var i = 0; i < places.length; i++) {
         this.markerCategory = this.addMarker2(
           new kakao.maps.LatLng(places[i].y, places[i].x),
@@ -180,13 +194,16 @@ export default {
       }
     },
     addMarker2(position, order) {
+      // var imageSrc =
+      //     "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png",
       var imageSrc =
-          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_category.png",
-        imageSize = new kakao.maps.Size(27, 28),
+          "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png",
+        imageSize = new kakao.maps.Size(24, 35),
+        // imageSize = new kakao.maps.Size(27, 28),
         imgOptions = {
-          spriteSize: new kakao.maps.Size(72, 208),
-          spriteOrigin: new kakao.maps.Point(46, order * 36),
-          offset: new kakao.maps.Point(11, 28)
+          // spriteSize: new kakao.maps.Size(72, 208),
+          // spriteOrigin: new kakao.maps.Point(46, order * 36),
+          // offset: new kakao.maps.Point(11, 28)
         },
         markerImage = new kakao.maps.MarkerImage(
           imageSrc,
@@ -199,6 +216,8 @@ export default {
       });
       this.markerCategory.setMap(this.map);
       this.markersCategory.push(this.markerCategory);
+      console.log("markerCategory length");
+      console.log(this.markerCategory);
       return this.markerCategory;
     },
 
@@ -535,6 +554,12 @@ button {
 #category li .store {
   background-position: -10px -180px;
 }
+/* #category li .kindergarden {
+  background-position: -10px -216px;
+}
+#category li .metro {
+  background-position: -10px -252px;
+} */
 #category li.on .category_bg {
   background-position-x: -46px;
 }
