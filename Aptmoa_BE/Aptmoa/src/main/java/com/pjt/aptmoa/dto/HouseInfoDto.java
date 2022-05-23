@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 public class HouseInfoDto {
 	private long aptCode;
-	private String aptName;
+	private String apartmentName;
 	private String dongCode;
 	private String dongName;
 	private String sidoName;

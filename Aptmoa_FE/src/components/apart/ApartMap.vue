@@ -91,7 +91,8 @@ export default {
     initMap() {
       // console.log("init에서 지도새로뜸!");
       this.placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
-      this.contentNode = document.createElement("v-container");
+
+      this.contentNode = document.createElement("b-container"); // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
