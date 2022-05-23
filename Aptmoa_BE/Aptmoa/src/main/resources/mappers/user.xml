@@ -42,4 +42,10 @@
 		where userId=#{userId}
 	</delete>
 	
+	<select id="getUser" parameterType="String" resultType="userDto">
+		select *
+		from user
+		where userId=#{userID}
+	</select>
+	
 </mapper>

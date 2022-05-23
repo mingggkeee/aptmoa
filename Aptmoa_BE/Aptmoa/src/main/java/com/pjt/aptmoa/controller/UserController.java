@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pjt.aptmoa.dto.UserDto;
 import com.pjt.aptmoa.service.JwtServiceImpl;
+import com.pjt.aptmoa.service.MailService;
 import com.pjt.aptmoa.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -41,6 +43,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	MailService mailService;
 	
 	@ApiOperation(value = "로그인", notes = "Access-token과 로그인 결과 메세지를 반환한다.", response = Map.class)
 	@PostMapping("/login")
@@ -138,5 +143,23 @@ public class UserController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 		
 	}
+	
+	@ApiOperation(value="비밀번호 찾기를 위한 이메일 인증")
+	@GetMapping("/send")
+	public ResponseEntity<String> sendPwd(@RequestParam("userId") String userId, @RequestParam("email") String email){
+		System.out.println("sendpwd ID : "+userId);
+		System.out.println("sendPwd EMAIL : "+email);
+		
+		try {
+			mailService.sendMail(userId,  email);
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	
+	
 	
 }

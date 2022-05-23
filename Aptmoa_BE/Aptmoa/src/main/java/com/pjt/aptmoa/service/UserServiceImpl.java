@@ -69,4 +69,10 @@ public class UserServiceImpl implements UserService {
 		return memberMapper.deleteUser(userId)==1;
 	}
 
+
+	@Override
+	public UserDto getUser(String userId) throws Exception {
+		return memberMapper.getUser(userId);
+	}
+
 }

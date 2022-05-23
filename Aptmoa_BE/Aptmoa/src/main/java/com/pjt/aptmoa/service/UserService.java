@@ -13,6 +13,7 @@ public interface UserService {
 	public boolean registerUser(UserDto userDto) throws Exception;
 	public boolean updateUser(UserDto userDto) throws Exception;
 	public boolean deleteUser(String userId) throws Exception;
+	public UserDto getUser(String userId) throws Exception;
 	
 //	public String encrypt(String text) throws NoSuchAlgorithmException;
 //	boolean setFavorite(String userid, String sido, String gugun);
