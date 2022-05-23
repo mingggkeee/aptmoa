@@ -44,29 +44,29 @@ export default {
     };
   },
   mounted() {
-    if (!window.kakao || !window.kakao.maps) {
-      const script = document.createElement("script");
-      script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAOMAP_KEY}`;
-      script.addEventListener("load", () => {
-        console.log("loaded", window.kakao);
-        kakao.maps.load(this.initMap);
-      });
-      document.head.appendChild(script);
-    } else {
-      console.log("이미 로딩 완료: ", window.kakao);
-      this.initMap();
-    }
+    // if (!window.kakao || !window.kakao.maps) {
+    //   const script = document.createElement("script");
+    //   script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAOMAP_KEY}`;
+    //   script.addEventListener("load", () => {
+    //     console.log("loaded", window.kakao);
+    //     kakao.maps.load(this.initMap);
+    //   });
+    //   document.head.appendChild(script);
+    // } else {
+    //   console.log("이미 로딩 완료: ", window.kakao);
+    //   this.initMap();
+    // }
   },
   methods: {
-    initMap() {
-      const container = document.getElementById("map");
-      console.log(container);
-      const options = {
-        center: new kakao.maps.LatLng(37.5666, 126.9774),
-        level: 3
-      };
-      this.map = new kakao.maps.Map(container, options);
-    }
+    // initMap() {
+    //   const container = document.getElementById("map");
+    //   console.log(container);
+    //   const options = {
+    //     center: new kakao.maps.LatLng(37.5666, 126.9774),
+    //     level: 3
+    //   };
+    //   this.map = new kakao.maps.Map(container, options);
+    // }
   }
 };
 </script>

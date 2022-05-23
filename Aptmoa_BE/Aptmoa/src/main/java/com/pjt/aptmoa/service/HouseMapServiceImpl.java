@@ -36,8 +36,8 @@ public class HouseMapServiceImpl implements HouseMapService {
 	}
 
 	@Override
-	public List<HouseInfoDto> getAptInSearch(String apartName) throws Exception {
-		return houseMapMapper.getAptInSearch(apartName);
+	public List<HouseInfoDto> getAptInSearch(String apartName, String sido) throws Exception {
+		return houseMapMapper.getAptInSearch(apartName, sido);
 	}
 
 }

@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="getAptInDong" parameterType="string" resultType="houseInfoDto">
-		select h.aptCode, h.aptName, h.buildyear, h.dongCode, h.dongName, h.jibun, h.lat, h.lng, si.sidoname, gu.gugunname,
+		select h.aptCode, h.apartmentName, h.buildyear, h.dongCode, h.jibun, h.lat, h.lng, si.sidoname, gu.gugunname,
 				(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice
 		from houseinfo h
 		left join sidocode si
@@ -33,7 +33,15 @@
 		left join guguncode gu
 		on left(h.dongcode,5) = left(gu.guguncode,5)
 		where dongCode = #{dong} 
-		order by aptName
+		order by apartmentName
+	</select>
+	
+	<select id="getAptInSearch" parameterType="string" resultType="houseInfoDto"> 
+		select h.aptCode, h.apartmentName, h.buildyear, h.dongCode, h.jibun, h.lat, h.lng, si.sidoname, gu.gugunname, 
+			(select dealAmount from housedeal where aptCode = h.aptCode and no = (select max(no) from housedeal where aptCode = h.aptCode)) recentPrice 
+		from houseinfo h left join sidocode si on left(h.dongcode,2) = left(si.sidocode,2) left join guguncode gu on left(h.dongcode,5) = left(gu.guguncode,5) 
+		where apartmentName like concat('%', #{apartName} ,'%') and sidoname = #{sido}
+		order by sidoname, gugunname, recentPrice desc
 	</select>
 	
 </mapper>

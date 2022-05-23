@@ -8,6 +8,18 @@
       @click:row="selectApart"
     ></v-data-table>
   </b-container>
+  <b-container
+    v-else-if="nameApts && nameApts.length != 0"
+    class="bv-example-row mt-3"
+  >
+    <v-data-table
+      :headers="headers2"
+      :items="nameApts"
+      :items-per-page="15"
+      class="elevation-1"
+      @click:row="selectApart2"
+    ></v-data-table>
+  </b-container>
   <b-container v-else class="bv-example-row mt-3">
     <v-row>
       <v-col><v-alert show>주택 목록이 없습니다.</v-alert></v-col>
@@ -16,16 +28,12 @@
 </template>
 
 <script>
-import ApartListItem from "@/components/apart/ApartListItem.vue";
 import { mapState, mapActions } from "vuex";
 
 const apartStore = "apartStore";
 
 export default {
   name: "ApartList",
-  components: {
-    ApartListItem
-  },
   data() {
     return {
       currentPage: 1,
@@ -40,20 +48,18 @@ export default {
     };
   },
   computed: {
-    ...mapState(apartStore, ["aparts"]),
+    ...mapState(apartStore, ["aparts", "nameApts"]),
     methods: {
-      ...mapActions(apartStore, ["getApartList"]),
-
-      searchApt(pageNum) {
-        console.log(pageNum);
-        if (!this.pagination.gugunCode) alert("조회할 지역을 선택해주세요.");
-        else if (!this.pagination.date) alert("조회할 년-월을 선택해주세요.");
-      }
+      ...mapActions(apartStore, ["getApartList", "getApartListByName"])
     }
   },
   methods: {
     ...mapActions(apartStore, ["detailApart"]),
     selectApart(value) {
+      // console.log(value);
+      this.detailApart(value);
+    },
+    selectApart2(value) {
       // console.log(value);
       this.detailApart(value);
     }

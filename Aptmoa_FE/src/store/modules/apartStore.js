@@ -1,12 +1,19 @@
-import { sidoList, gugunList, apartList } from "@/api/apart.js";
+import {
+  sidoList,
+  gugunList,
+  apartList,
+  apartListByName
+} from "@/api/apart.js";
 
 const apartStore = {
   namespaced: true,
   state: {
     sidos: [{ value: null, text: "시.도" }],
+    sidosName: [{ value: null, text: "시.도" }],
     guguns: [{ value: null, text: "구.군" }],
     // date: [{ value: null, text: "거래일시" }],
     aparts: [],
+    nameApts: [],
     apart: null,
     pagination: {
       date: null,
@@ -25,6 +32,11 @@ const apartStore = {
         state.sidos.push({ value: sido.sidoCode, text: sido.sidoName });
       });
     },
+    SET_SIDO_NAME_LIST: (state, sidosName) => {
+      sidosName.forEach(sido => {
+        state.sidosName.push({ value: sido.sidoName, text: sido.sidoName });
+      });
+    },
     SET_SIDO(state, payload) {
       state.sido = { code: payload[1], name: payload[0] };
       0;
@@ -40,12 +52,19 @@ const apartStore = {
     CLEAR_SIDO_LIST: state => {
       state.sidos = [{ value: null, text: "선택하세요" }];
     },
+    CLEAR_SIDO_NAME_LIST: state => {
+      state.sidosName = [{ value: null, text: "선택하세요" }];
+    },
     CLEAR_GUGUN_LIST: state => {
       state.guguns = [{ value: null, text: "선택하세요" }];
     },
     SET_APART_LIST: (state, aparts) => {
       //   console.log(houses);
       state.aparts = aparts;
+    },
+    SET_APART_NAME_LIST: (state, nameApts) => {
+      //   console.log(houses);
+      state.nameApts = nameApts;
     },
     SET_DETAIL_APART: (state, apart) => {
       state.apart = apart;
@@ -62,6 +81,17 @@ const apartStore = {
         ({ data }) => {
           console.log(data);
           commit("SET_SIDO_LIST", data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    },
+    getSidoName: ({ commit }) => {
+      sidoList(
+        ({ data }) => {
+          console.log(data);
+          commit("SET_SIDO_NAME_LIST", data);
         },
         error => {
           console.log(error);
@@ -125,6 +155,18 @@ const apartStore = {
           };
           commit("SET_APART_LIST", data);
           commit("SET_PAGINATION", pagination);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    },
+    getApartListByName: ({ commit }, params) => {
+      apartListByName(
+        params,
+        ({ data }) => {
+          console.log(data);
+          commit("SET_APART_NAME_LIST", data);
         },
         error => {
           console.log(error);

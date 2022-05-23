@@ -50,8 +50,8 @@ public class HouseMapController {
 	}
 	
 	@GetMapping("/search")
-	public ResponseEntity<List<HouseInfoDto>> searchApt(@RequestParam("apartName") String apartName) throws Exception {
-		return new ResponseEntity<List<HouseInfoDto>>(hmService.getAptInSearch(apartName), HttpStatus.OK);
+	public ResponseEntity<List<HouseInfoDto>> searchApt(@RequestParam("apartName") String apartName, @RequestParam("sido") String sido) throws Exception {
+		return new ResponseEntity<List<HouseInfoDto>>(hmService.getAptInSearch(apartName, sido), HttpStatus.OK);
 	}
 	
 }
