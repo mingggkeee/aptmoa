@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <b-container class="bv-example-row mt-3 text-center">
     <h3 class="underline-orange">
       <b-icon icon="apart-fill"></b-icon> Apart Service
@@ -48,9 +48,9 @@ export default {
     rgba(231, 149, 27, 0.3) 30%
   );
 }
-</style>
+</style> -->
 
-<!-- <template>
+<template>
   <b-container class="bv-example-row mt-3 text-center">
     <v-row>
       <v-container id="map"></v-container>
@@ -120,4 +120,4 @@ export default {
   width: 3000px;
   height: 1000px;
 }
-</style> -->
+</style>

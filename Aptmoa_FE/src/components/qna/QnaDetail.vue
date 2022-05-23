@@ -47,7 +47,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <h2 class="underline-hotpink"><b-icon icon="journals"></b-icon>댓글</h2>
+    <h2 class="underline-hotpink">댓글</h2>
     <v-row>
       <v-col v-if="comments.length">
         <v-data-table
