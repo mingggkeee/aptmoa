@@ -115,6 +115,9 @@
 <script>
 // import moment from "moment";
 import { getNotice, deleteNotice } from "@/api/notice";
+import { mapState } from "vuex";
+
+const userStore = "userStore";
 
 export default {
   name: "NoticeDetail",
@@ -128,7 +131,8 @@ export default {
       if (this.notice.content)
         return this.notice.content.split("\n").join("<br>");
       return "";
-    }
+    },
+    ...mapState(userStore, ["userInfo"])
   },
   created() {
     getNotice(
@@ -146,17 +150,26 @@ export default {
       this.$router.push({ name: "noticeList" });
     },
     moveModifyNotice() {
-      this.$router.replace({
-        name: "noticeModify",
-        params: { noticeno: this.notice.noticeno }
-      });
+      if (this.userInfo.userId === "admin") {
+        this.$router.replace({
+          name: "noticeModify",
+          params: { noticeno: this.notice.noticeno }
+        });
+      } else {
+        alert("관리자만 수정 가능합니다.");
+      }
+
       //   this.$router.push({ path: `/notice/modify/${this.notice.noticeno}` });
     },
     deleteNotice() {
-      if (confirm("정말로 삭제하시겠습니까?")) {
-        deleteNotice(this.notice.noticeno, () => {
-          this.$router.push({ name: "noticeList" });
-        });
+      if (this.userInfo.userId === "admin") {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+          deleteNotice(this.notice.noticeno, () => {
+            this.$router.push({ name: "noticeList" });
+          });
+        }
+      } else {
+        alert("관리자만 삭제 가능합니다.");
       }
     }
   }

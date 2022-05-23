@@ -31,6 +31,9 @@
 <script>
 import { listNotice } from "@/api/notice.js";
 import NoticeListItem from "@/components/notice/item/NoticeListItem";
+import { mapState } from "vuex";
+
+const userStore = "userStore";
 
 export default {
   name: "BoardList",
@@ -54,6 +57,9 @@ export default {
     hit: Number,
     regtime: String
   },
+  computed: {
+    ...mapState(userStore, ["userInfo"])
+  },
   created() {
     let param = {
       pg: 1,
@@ -74,7 +80,12 @@ export default {
   },
   methods: {
     moveWrite() {
-      this.$router.push({ name: "noticeRegister" });
+      // alert(this.userInfo.userId);
+      if (this.userInfo.userId === "admin") {
+        this.$router.push({ name: "noticeRegister" });
+      } else {
+        alert("관리자만 작성가능합니다.");
+      }
     },
     goDetail(value) {
       this.$router.push({

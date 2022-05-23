@@ -90,7 +90,7 @@
                   color="warning"
                   variant="outline-danger"
                   size="xsm"
-                  @click="deleteComment(comment.commentno, $event)"
+                  @click="deleteComment(comment, $event)"
                   >댓글삭제</v-btn
                 >
               </td>
@@ -253,26 +253,43 @@ export default {
       this.$router.push({ name: "qnaList" });
     },
     moveModifyQna() {
-      this.$router.replace({
-        name: "qnaModify",
-        params: { qnano: this.qna.qnano }
-      });
-      //   this.$router.push({ path: `/qna/modify/${this.qna.qnano}` });
+      if (this.userInfo.userId === this.qna.userId) {
+        this.$router.replace({
+          name: "qnaModify",
+          params: { qnano: this.qna.qnano }
+        });
+      } else {
+        alert("해당 게시글의 작성자만 수정 가능합니다.");
+      }
     },
     deleteQna() {
-      if (confirm("정말로 삭제하시겠습니까?")) {
-        deleteQna(this.qna.qnano, () => {
-          this.$router.push({ name: "qnaList" });
-        });
+      if (
+        this.userInfo.userId === this.qna.userId ||
+        this.userInfo.userId === "admin"
+      ) {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+          deleteQna(this.qna.qnano, () => {
+            this.$router.push({ name: "qnaList" });
+          });
+        }
+      } else {
+        alert("관리자이거나 해당 게시글의 작성자만 삭제 가능합니다.");
       }
     },
     deleteComment(value) {
-      console.log(value);
-      if (confirm("정말로 삭제하시겠습니까?")) {
-        deleteComment(value, () => {
-          this.$router.push({ name: "deleteComment" });
-        });
-        this.$router.go();
+      // console.log(value.commentno);
+      if (
+        this.userInfo.userId === value.userId ||
+        this.userInfo.userId === "admin"
+      ) {
+        if (confirm("정말로 삭제하시겠습니까?")) {
+          deleteComment(value.commentno, () => {
+            this.$router.push({ name: "deleteComment" });
+          });
+          this.$router.go();
+        }
+      } else {
+        alert("관리자이거나 해당 댓글의 작성자만 삭제 가능합니다.");
       }
     },
     commentSave() {
