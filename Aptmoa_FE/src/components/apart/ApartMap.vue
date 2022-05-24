@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
+  <b-container class=" mt-3 text-center">
     <b-container id="map">
       <ul id="category" style="padding-left: 0px">
         <!-- <li id="SW8" data-order="0">

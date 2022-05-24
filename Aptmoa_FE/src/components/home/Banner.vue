@@ -8,7 +8,7 @@
     >
       <v-row class="fill-height pa-3" align="center">
         <v-col cols="12" md="7" offset-md="5">
-          <h1 class="display-3 font-weight-bold">
+          <h1 class="display-3 font-weight-bold" id="banner_title">
             Aptmoa
           </h1>
 
@@ -27,3 +27,9 @@ export default {
   name: "HomeBanner"
 };
 </script>
+
+<style>
+#banner_title {
+  font-family: "Permanent Marker", cursive;
+}
+</style>

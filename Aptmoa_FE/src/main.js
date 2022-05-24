@@ -22,3 +22,5 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount("#app");
+
+window.Kakao.init("b2c30ed4ecb0bcb26c3807c56a8be980"); // Kakao Developers에서 요약 정보 -> JavaScript 키

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ import io.swagger.annotations.ApiOperation;
 @Api("NoticeController V1")
 @RestController
 @RequestMapping("/notice")
+@CrossOrigin("*")
 public class NoticeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);

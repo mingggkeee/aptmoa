@@ -126,41 +126,64 @@ export default {
       this.$router.push({ name: "findpwd" });
     },
     kakaoLoginBtn() {
-      window.Kakao.init("b2c30ed4ecb0bcb26c3807c56a8be980"); // Kakao Developers에서 요약 정보 -> JavaScript 키
-      if (window.Kakao.Auth.getAccessToken()) {
-        window.Kakao.API.request({
-          url: "/v1/user/unlink",
-          success: function(response) {
-            console.log(response);
-          },
-          fail: function(error) {
-            console.log(error);
-          }
-        });
-        window.Kakao.Auth.setAccessToken(undefined);
-      }
-      let userData = "";
+      console.log(window.Kakao);
       window.Kakao.Auth.login({
-        success: function() {
-          window.Kakao.API.request({
-            url: "/v2/user/me",
-            data: {
-              property_keys: ["kakao_account.email"]
-            },
-            success: async function(response) {
-              console.log(response);
-              userData = response;
-            },
-            fail: function(error) {
-              console.log(error);
-            }
-          });
+        scope: "profile_nickname, account_email",
+        success: this.getKakaoAccount
+      });
+      // main.js에 앱 키 옮김
+      // if (window.Kakao.Auth.getAccessToken()) {
+      //   window.Kakao.API.request({
+      //     url: "/v1/user/unlink",
+      //     success: function(response) {
+      //       console.log(response);
+      //     },
+      //     fail: function(error) {
+      //       console.log(error);
+      //     }
+      //   });
+      //   window.Kakao.Auth.setAccessToken(undefined);
+      // }
+      // let userData = "";
+      // window.Kakao.Auth.login({
+      //   success: function() {
+      //     window.Kakao.API.request({
+      //       url: "/v2/user/me",
+      //       data: {
+      //         property_keys: ["kakao_account.email"]
+      //       },
+      //       success: async function(response) {
+      //         console.log(response);
+      //         userData = response;
+      //       },
+      //       fail: function(error) {
+      //         console.log(error);
+      //       }
+      //     });
+      //   },
+      //   fail: function(error) {
+      //     console.log(error);
+      //   }
+      // });
+      // console.log("카카오 계정 정보", userData);
+    },
+    getKakaoAccount() {
+      window.Kakao.API.request({
+        url: "/v2/user/me",
+        success: res => {
+          const kakao_account = res.kakao_account;
+          console.log(kakao_account);
+          const nickname = kakao_account.profile.nickname;
+          const email = kakao_account.email;
+          console.log("nickname", nickname);
+          console.log("email", email);
+
+          alert("카카오 로그인 성공!");
         },
-        fail: function(error) {
+        fail: error => {
           console.log(error);
         }
       });
-      console.log("카카오 계정 정보", userData);
     }
   }
 };
