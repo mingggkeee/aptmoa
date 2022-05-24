@@ -1,18 +1,25 @@
 <template>
-  <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
+  <v-container class="bv-example-row mt-3">
+    <v-row>
+      <v-col>
         <h1>로그인</h1>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col></b-col>
-      <b-col>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col></v-col>
+      <v-col>
         <v-card class="text-center" style="max-width: 40rem" align="left">
-          <v-form class="text-left">
-            <b-alert show variant="danger" v-if="isLoginError"
-              >아이디 또는 비밀번호를 확인하세요.</b-alert
-            >
+          <v-form>
+            <v-col>
+              <v-alert
+                color="red"
+                dense
+                outlined
+                type="warning"
+                v-if="isLoginError"
+                >아이디 또는 비밀번호를 확인하세요.</v-alert
+              >
+            </v-col>
             <!-- <b-form-group label="아이디:" label-for="userid"> -->
             <v-col>
               <v-row class="ma-3">
@@ -37,35 +44,46 @@
                 ></v-text-field>
               </v-row>
 
+              <br />
               <div class="text-sm-center">
                 <v-btn
                   type="button"
                   color="primary"
-                  class="ma-2"
                   @click="confirm"
+                  id="btn_login"
                   >로그인</v-btn
                 >
+              </div>
+              <div class="text-sm-center">
                 <v-btn
                   type="button"
                   variant="success"
-                  class="ma-2"
                   @click="movePage"
+                  id="btn_register"
                   >회원가입</v-btn
                 >
-                <v-btn type="button" class="ma-2" @click="movePwFindPage"
+              </div>
+              <div class="text-sm-center">
+                <v-btn type="button" @click="movePwFindPage" id="btn_findpw"
                   >비밀번호찾기</v-btn
                 >
-                <v-btn type="button" class="ma-2" @click="kakaoLoginBtn"
-                  >카카오 연동</v-btn
+              </div>
+              <div class="text-sm-center">
+                <button
+                  type="button"
+                  @click="kakaoLoginBtn"
+                  id="btn_kakaologin"
                 >
+                  <img src="@/assets/icon/kakao_login_medium_wide.png" />
+                </button>
               </div>
             </v-col>
           </v-form>
         </v-card>
-      </b-col>
-      <b-col></b-col>
-    </b-row>
-  </b-container>
+      </v-col>
+      <v-col></v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -148,4 +166,24 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#btn_login {
+  width: 300px;
+  height: 45px;
+  margin-top: 10px;
+}
+#btn_register {
+  width: 300px;
+  height: 45px;
+  margin-top: 10px;
+}
+#btn_findpw {
+  width: 300px;
+  height: 45px;
+  margin-top: 10px;
+}
+#btn_kakaologin {
+  width: 300px;
+  margin-top: 10px;
+}
+</style>

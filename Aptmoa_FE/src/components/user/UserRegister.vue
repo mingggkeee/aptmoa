@@ -71,16 +71,16 @@
                   <v-btn
                     color="primary"
                     elevation="2"
-                    class="m-1 ma-3"
-                    id="submitbtn"
+                    id="btn_register"
                     @click="checkValue"
                     >회원가입</v-btn
                   >
+                  <!-- </div>
+                <div class="text-sm-center"> -->
                   <v-btn
                     color="second"
                     elevation="2"
-                    class="m-1 ma-3"
-                    id="resetBrn"
+                    id="btn_reset"
                     type="reset"
                     >초기화</v-btn
                   >
@@ -166,5 +166,19 @@ export default {
 <style scoped>
 #registTitle {
   margin-top: 10px;
+}
+#btn_register {
+  width: 300px;
+  height: 45px;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+#btn_reset {
+  width: 300px;
+  height: 45px;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 </style>

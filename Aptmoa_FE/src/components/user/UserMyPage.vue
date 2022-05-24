@@ -47,6 +47,7 @@
             variant="primary"
             href="#"
             class="mr-1"
+            color="primary"
             @click="moveModifyUserInfo"
             >정보수정</v-btn
           >
