@@ -1,8 +1,10 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <v-container>
     <v-row>
       <v-col v-if="interests.length">
-        <v-col>행을 클릭하시면 상세정보를 볼 수 있습니다.</v-col>
+        <v-col
+          >행을 클릭하시면 상세정보 및 가격변동 그래프를 볼 수 있습니다.</v-col
+        >
         <br />
         <v-data-table
           :headers="headers"
@@ -12,46 +14,59 @@
           class="elevation-1"
           @click:row="goDetail"
         ></v-data-table>
-        <v-dialog v-model="dialog" persistent max-width="1800px">
+        <v-dialog v-model="dialog">
           <v-card>
             <v-card-title>
-              <v-col>{{ infos[0].apartmentName }}</v-col>
+              <v-col
+                ><h1>{{ infos[0].apartmentName }}</h1></v-col
+              >
               <v-btn color="blue darken-1" text @click="deleteInterest">
                 관심목록삭제하기
+              </v-btn>
+              <v-btn color="blue darken-1" text @click="dialog = false">
+                닫기
               </v-btn>
             </v-card-title>
             <v-card-text>
               <v-container>
                 <v-row>
                   <v-col>
-                    주소 : {{ infos[0].sidoName }} {{ infos[0].gugunName }}
-                    {{ infos[0].dong }} {{ infos[0].jibun }}
+                    <h2>
+                      주소 : {{ infos[0].sidoName }} {{ infos[0].gugunName }}
+                      {{ infos[0].dong }} {{ infos[0].jibun }}
+                    </h2>
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col> 건축년도 : {{ infos[0].buildYear }}년 </v-col>
+                  <v-col>
+                    <h2>건축년도 : {{ infos[0].buildYear }}년</h2></v-col
+                  >
                 </v-row>
               </v-container>
-              <v-row><h2>가격변동보기</h2></v-row>
-              <line-chart
-                ref="lineChart"
-                :chartData="chart.data"
-                :options="chart.options"
-                id="chart"
-              ></line-chart>
+              <v-container
+                fluid
+                style="margin: 0px; padding: 0px; width: 2000px; height:1000px"
+              >
+                <line-chart
+                  ref="lineChart"
+                  :chartData="chart.data"
+                  :options="chart.options"
+                  id="chart"
+                ></line-chart>
+              </v-container>
             </v-card-text>
-            <v-card-actions>
+            <!-- <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="dialog = false">
                 닫기
               </v-btn>
-            </v-card-actions>
+            </v-card-actions> -->
           </v-card>
         </v-dialog>
       </v-col>
       <v-col v-else class="text-center">관심 목록이 없습니다.</v-col>
     </v-row>
-  </b-container>
+  </v-container>
 </template>
 
 <script>
@@ -99,37 +114,30 @@ export default {
       ],
       chart: {
         data: {
-          labels: [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
+          labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
           datasets: [
             {
-              label: "인원수",
-              backgroundColor: "rgb(255,153,204, 0.5)",
-              pointBackgroundColor: "hotpink",
-              fill: true,
+              label: "가격",
               tension: 0.1,
-              borderColor: "hotpink",
-              pointBorderColor: "hotpink",
-              borderWidth: 1,
-              pointBorderWidth: 1,
-              data: [450, 300, 100, 1000, 750, 600, 900, 1500, 1200, 2000]
+              borderColor: "red",
+              pointBorderColor: "red",
+              borderWidth: 3,
+              pointBorderWidth: 3,
+              data: [
+                91000,
+                103000,
+                95000,
+                96000,
+                117000,
+                149000,
+                183000,
+                179000
+              ]
             }
           ]
         },
         options: {
           plugins: {
-            legend: {
-              display: true,
-              position: "left",
-              labels: {
-                boxWidth: 8,
-                padding: 10,
-                usePointStyle: true,
-                pointStyle: "circle",
-                font: { size: 14 }
-              },
-              fullSize: true,
-              align: "center"
-            },
             tooltip: { boxWidth: 15, bodyFont: { size: 14 } }
           },
           scales: {
@@ -169,7 +177,6 @@ export default {
   },
   methods: {
     goDetail(value) {
-      console.log(value);
       this.interest = value;
       this.dialog = true;
       apartListByCode(
@@ -182,6 +189,12 @@ export default {
         }
       );
       console.log(this.infos);
+      let temps = [];
+      for (let i = 0; i < this.infos.length; i++) {
+        console.log(this.infos[i].dealAmount);
+        temps[i] = this.infos[i].dealAmount.replace(",", "");
+      }
+      this.chart.data.datasets[0].data = temps;
     },
     deleteInterest() {
       if (confirm("정말로 삭제하시겠습니까?")) {

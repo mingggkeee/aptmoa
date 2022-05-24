@@ -47,7 +47,8 @@
 	<select id="getAptInfo" parameterType="string" resultType="houseInfoDto">
 		select hi.aptCode, hi.buildYear, hi.roadName, hi.dong, hi.apartmentName, hi.jibun, hd.dealAmount, hd.dealYear, hd.dealMonth, hd.dealDay, hd.area, hd.floor, si.sidoname, gu.gugunname
 		from houseinfo hi join housedeal hd on hi.aptCode = hd.aptCode left join sidocode si on left(hi.dongcode,2) = left(si.sidocode,2) left join guguncode gu on left(hi.dongcode,5) = left(gu.guguncode,5)
-		where hi.aptCode = #{aptCode};
+		where hi.aptCode = #{aptCode}
+		group by hd.dealYear
 	</select>
 	
 </mapper>
