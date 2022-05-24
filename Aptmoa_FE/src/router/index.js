@@ -78,11 +78,6 @@ export default new Router({
           name: "findpwd",
           component: () => import("@/components/user/FindPwd.vue"),
         },
-        // {
-        //   path: "kakaologin",
-        //   name: "kakaologin",
-          
-        // }
       ]
     },
     {

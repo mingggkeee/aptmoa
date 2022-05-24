@@ -74,7 +74,7 @@
                   @click="kakaoLoginBtn"
                   id="btn_kakaologin"
                 >
-                  <img src="@/assets/icon/kakao_login_medium_wide.png" />
+                  <img src="@/assets/img/kakao_login_medium_wide.png" />
                 </button>
               </div>
             </v-col>
@@ -88,6 +88,8 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import http from "@/util/http-common";
+import { nullLiteral } from "@babel/types";
 
 const userStore = "userStore";
 
@@ -98,7 +100,10 @@ export default {
     return {
       user: {
         userId: null,
-        userPwd: null
+        userPwd: null,
+        kakaoId: null,
+        kakaoNickname: null,
+        kakaoId: null
       }
     };
   },
@@ -114,6 +119,7 @@ export default {
     async confirm() {
       await this.userConfirm(this.user);
       let token = sessionStorage.getItem("access-token");
+      console.log("token : ", token);
       if (this.isLogin) {
         await this.getUserInfo(token);
         this.$router.push({ name: "home" });
@@ -131,41 +137,6 @@ export default {
         scope: "profile_nickname, account_email",
         success: this.getKakaoAccount
       });
-      // main.js에 앱 키 옮김
-      // if (window.Kakao.Auth.getAccessToken()) {
-      //   window.Kakao.API.request({
-      //     url: "/v1/user/unlink",
-      //     success: function(response) {
-      //       console.log(response);
-      //     },
-      //     fail: function(error) {
-      //       console.log(error);
-      //     }
-      //   });
-      //   window.Kakao.Auth.setAccessToken(undefined);
-      // }
-      // let userData = "";
-      // window.Kakao.Auth.login({
-      //   success: function() {
-      //     window.Kakao.API.request({
-      //       url: "/v2/user/me",
-      //       data: {
-      //         property_keys: ["kakao_account.email"]
-      //       },
-      //       success: async function(response) {
-      //         console.log(response);
-      //         userData = response;
-      //       },
-      //       fail: function(error) {
-      //         console.log(error);
-      //       }
-      //     });
-      //   },
-      //   fail: function(error) {
-      //     console.log(error);
-      //   }
-      // });
-      // console.log("카카오 계정 정보", userData);
     },
     getKakaoAccount() {
       window.Kakao.API.request({
@@ -173,17 +144,58 @@ export default {
         success: res => {
           const kakao_account = res.kakao_account;
           console.log(kakao_account);
-          const nickname = kakao_account.profile.nickname;
-          const email = kakao_account.email;
-          console.log("nickname", nickname);
-          console.log("email", email);
+          this.kakaoNickname = kakao_account.profile.nickname;
+          this.kakaoEmail = kakao_account.email;
+          console.log("kakaoNickname", this.kakaoNickname);
+          console.log("kakaoEmail", this.kakaoEmail);
 
-          alert("카카오 로그인 성공!");
+          const makeId = this.kakaoEmail.split("@");
+          this.kakaoId = makeId[0];
+          console.log("kakaoId", this.kakaoId);
+
+          this.kakaoIdCheck();
         },
         fail: error => {
           console.log(error);
         }
       });
+    },
+    kakaoIdCheck() {
+      http.get(`/user/idcheck/${this.kakaoId}`).then(({ data }) => {
+        if (data === "success") {
+          console.log("소셜 회원가입");
+          this.kakaoRegistUser();
+        } else {
+          this.kakaoLogin();
+        }
+      });
+    },
+    kakaoRegistUser() {
+      console.log("kakaoId:", this.kakaoId);
+      http
+        .post("/user/", {
+          userId: this.kakaoId,
+          userPwd: "1234",
+          userName: this.kakaoNickname,
+          email: this.kakaoEmail
+        })
+        .then(({ data }) => {
+          if (data === "success") {
+            this.kakaoLogin();
+          } else {
+            let msg = "회원가입 처리시 문제가 발생했습니다.";
+            alert(msg);
+          }
+          // this.$router.push({ name: "login" });
+        });
+    },
+    kakaoLogin() {
+      console.log("소셜 로그인으로 이동");
+      this.user.userId = this.kakaoId;
+      this.user.userPwd = "1234";
+      console.log(this.user.userId);
+      console.log(this.user.userPwd);
+      this.confirm();
     }
   }
 };

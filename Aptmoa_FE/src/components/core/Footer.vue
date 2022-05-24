@@ -17,7 +17,7 @@
         </v-col>
 
         <v-col cols="6">
-          <div id="logo">
+          <div id="logo2">
             © 2022.
             <v-img
               :src="require('@/assets/logo2.jpg')"
@@ -85,7 +85,7 @@ export default {
 #footer {
   background: #0e3047;
 }
-#logo {
+#logo2 {
   display: flex;
   font-size: 30px;
 }
