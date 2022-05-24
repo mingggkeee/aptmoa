@@ -2,7 +2,7 @@
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert variant="secondary" show><h1>로그인</h1></b-alert>
+        <h1>로그인</h1>
       </b-col>
     </b-row>
     <b-row>
@@ -41,23 +41,23 @@
                 <v-btn
                   type="button"
                   color="primary"
-                  class="m-1 ma-3"
+                  class="ma-2"
                   @click="confirm"
-                  elevation="2"
                   >로그인</v-btn
                 >
                 <v-btn
                   type="button"
                   variant="success"
-                  class="m-1 ma-3"
+                  class="ma-2"
                   @click="movePage"
-                  elevation="2"
                   >회원가입</v-btn
                 >
-                <v-btn type="button" @click="movePwFindPage"
+                <v-btn type="button" class="ma-2" @click="movePwFindPage"
                   >비밀번호찾기</v-btn
                 >
-                <v-btn type="button" @click="kakaoLoginBtn">카카오 연동</v-btn>
+                <v-btn type="button" class="ma-2" @click="kakaoLoginBtn"
+                  >카카오 연동</v-btn
+                >
               </div>
             </v-col>
           </v-form>

@@ -38,7 +38,7 @@ public class MailService {
 		SimpleMailMessage simpleMessage = new SimpleMailMessage();
 		UserDto tempDto = userService.getUser(userId);
 		
-		simpleMessage.setFrom("관리자 <gpfls0506@gmail.com>");
+		simpleMessage.setFrom("APTMOA관리자 <ohyeah0506@gmail.com>");
 		//수신자 설정
 		simpleMessage.setTo(emailAddr);
 		
@@ -47,10 +47,10 @@ public class MailService {
 		userService.updateUser(tempDto);
 		
 		//메일 제목
-		simpleMessage.setSubject("APTMOA 임시 비밀번호를 발급해드립니다.");
+		simpleMessage.setSubject("APTMOA에서 임시 비밀번호를 발급해드립니다.");
 		
 		//메일 내용
-		simpleMessage.setText("임시 비밀번호 : "+tempPwd);
+		simpleMessage.setText("임시 비밀번호는 "+tempPwd+" 입니다. \n로그인 후 반드시 비밀번호를 변경해주세요!");
 		
 		//메일 발송
 		javaMailSender.send(simpleMessage);
