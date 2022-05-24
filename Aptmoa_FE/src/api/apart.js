@@ -31,4 +31,11 @@ function apartListByName(params, success, fail) {
     .catch(fail);
 }
 
-export { sidoList, gugunList, apartList, apartListByName };
+function apartListByCode(aptCode, success, fail) {
+  api
+    .get(`/map/info/${aptCode}`)
+    .then(success)
+    .catch(fail);
+}
+
+export { sidoList, gugunList, apartList, apartListByName, apartListByCode };

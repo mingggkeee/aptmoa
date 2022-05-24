@@ -40,4 +40,9 @@ public class HouseMapServiceImpl implements HouseMapService {
 		return houseMapMapper.getAptInSearch(apartName, sido);
 	}
 
+	@Override
+	public List<HouseInfoDto> getAptInfo(String aptCode) throws Exception {
+		return houseMapMapper.getAptInfo(aptCode);
+	}
+
 }
