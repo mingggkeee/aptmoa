@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pjt.aptmoa.dto.Interest;
@@ -60,4 +61,17 @@ public class InterestController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 	
+    @ApiOperation(value = "중복체크", notes = "중복체크")
+    @GetMapping("/dupcheck")
+	public ResponseEntity<String> checkInterest(@RequestParam String userId, @RequestParam String aptName) {
+		logger.debug("checkInterest - 호출");
+		int cnt = iService.checkInterest(userId, aptName);
+		if (cnt==0) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		else if(cnt==1) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
 }
