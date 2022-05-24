@@ -10,6 +10,7 @@
       <v-select
         v-model="sidoCode"
         :items="sidos"
+        label="지역"
         @change="gugunList"
       ></v-select>
     </v-col>
