@@ -16,7 +16,7 @@
 		insert into interest(
 			userId, aptName, buildYear, aptCode
 		) values (
-			#{userId}, #{aptName}, #{buildYear}, (select aptCode from houseinfo where apartmentName = #{aptName} limit 1)
+			#{userId}, #{aptName}, #{buildYear}, (select aptCode from houseinfo where apartmentName = #{aptName} and buildYear = #{buildYear} limit 1)
 		)
 	</insert>
 	

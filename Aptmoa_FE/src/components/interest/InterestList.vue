@@ -171,6 +171,7 @@ export default {
   },
   methods: {
     goDetail(value) {
+      console.log(value.aptCode);
       this.interest = value;
       apartListByCode(
         value.aptCode,
