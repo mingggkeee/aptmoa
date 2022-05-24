@@ -14,7 +14,7 @@
           class="elevation-1"
           @click:row="goDetail"
         ></v-data-table>
-        <v-dialog v-model="dialog">
+        <v-dialog v-model="dialog" width="50%">
           <v-card>
             <v-card-title>
               <v-col
@@ -43,18 +43,18 @@
                   >
                 </v-row>
               </v-container>
-              <v-container
-                fluid
-                style="margin: 0px; padding: 0px; width: 2000px; height:1000px"
-              >
-                <line-chart
-                  ref="lineChart"
-                  :chartData="chart.data"
-                  :options="chart.options"
-                  id="chart"
-                ></line-chart>
-              </v-container>
             </v-card-text>
+            <v-container
+              fluid
+              style="margin-bottom: 10px; width: 1000px; height: 500px"
+            >
+              <line-chart
+                ref="lineChart"
+                :chartData="chart.data"
+                :options="chart.options"
+                id="chart"
+              ></line-chart>
+            </v-container>
             <!-- <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="dialog = false">
@@ -178,29 +178,34 @@ export default {
   methods: {
     goDetail(value) {
       this.interest = value;
-      this.dialog = true;
       apartListByCode(
         value.aptCode,
-        response => {
-          this.infos = response.data;
+        async response => {
+          console.log(response.data);
+          this.infos = await response.data;
+          this.inputData();
+          this.dialog = true;
         },
         error => {
           console.log(error);
         }
       );
-      console.log(this.infos);
-      let temps = [];
-      for (let i = 0; i < this.infos.length; i++) {
-        console.log(this.infos[i].dealAmount);
-        temps[i] = this.infos[i].dealAmount.replace(",", "");
-      }
-      this.chart.data.datasets[0].data = temps;
+
+      // console.log(this.infos);
     },
     deleteInterest() {
       if (confirm("정말로 삭제하시겠습니까?")) {
         deleteInterest(this.interest.no, () => {});
         this.$router.go();
       }
+    },
+    inputData() {
+      let temps = [];
+      for (let i = 0; i < this.infos.length; i++) {
+        // console.log(this.infos[i].dealAmount);
+        temps[i] = this.infos[i].dealAmount.replace(",", "");
+      }
+      this.chart.data.datasets[0].data = temps;
     }
   }
 };
