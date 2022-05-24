@@ -8,15 +8,15 @@
 	<select id="selectInterestById" resultType="interest">
 		select *
 		from interest
-		where userid = #{userid}
+		where userId = #{userId}
 	</select>
 	
 	<!-- 관심목록 등록 -->
 	<insert id="insertInterest" parameterType="interest">
 		insert into interest(
-			userid, aptcode, dongcode
+			userId, aptName, aptCode
 		) values (
-			#{userid}, #{aptcode}, #{dongcode}
+			#{userId}, #{aptName}, (select aptCode from houseinfo where apartmentName = #{aptName} limit 1)
 		)
 	</insert>
 	
@@ -26,5 +26,12 @@
 		from interest
 		where no = #{no}
 	</delete>
+	
+	<!-- 관심목록 중복확인 -->
+	<select id="checkInterest" parameterType="string" resultType="int">
+		select count(*)
+		from interest
+		where userId=#{userId} and aptName=#{aptName}
+	</select>
 	
 </mapper>

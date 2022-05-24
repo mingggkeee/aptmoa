@@ -16,6 +16,9 @@
       <v-card>
         <v-card-title>
           <v-col>{{ apart.아파트 }} 상세보기</v-col>
+          <v-btn color="blue darken-1" text @click="interestSave">
+            관심아파트 저장
+          </v-btn>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -65,7 +68,10 @@
     <v-dialog v-model="dialog2" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <span class="text-h5">{{ apart2.apartmentName }} 상세보기</span>
+          <v-col>{{ apart2.apartmentName }} 상세보기</v-col>
+          <v-btn color="blue darken-1" text @click="interestSave2">
+            관심아파트 저장
+          </v-btn>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -110,8 +116,11 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+import { checkInterest, writeInterest } from "@/api/interest";
+import http from "@/util/http-common";
 
 const apartStore = "apartStore";
+const userStore = "userStore";
 
 export default {
   name: "ApartList",
@@ -141,7 +150,12 @@ export default {
     };
   },
   computed: {
-    ...mapState(apartStore, ["aparts", "nameApts"]),
+    // apartStore, ["aparts", "nameApts"], userStore, ["userInfo"]
+    ...mapState({
+      aparts: state => state.apartStore.aparts,
+      nameApts: state => state.apartStore.nameApts,
+      userInfo: state => state.userStore.userInfo
+    }),
     methods: {
       ...mapActions(apartStore, ["getApartList", "getApartListByName"])
     }
@@ -161,6 +175,63 @@ export default {
       this.apart2 = value;
       this.dialog2 = true;
       console.log(this.dialog);
+    },
+    interestSave() {
+      // console.log("관심목록 저장");
+      // console.log(this.userInfo.userId);
+      // console.log(this.apart.아파트);
+      http
+        .get(`/interest/dupcheck`, {
+          params: { userId: this.userInfo.userId, aptName: this.apart.아파트 }
+        })
+        .then(({ data }) => {
+          if (data === "success") {
+            writeInterest(
+              {
+                userId: this.userInfo.userId,
+                aptName: this.apart.아파트
+              },
+              ({ data }) => {
+                let msg = "등록 처리시 문제가 발생했습니다.";
+                if (data === "success") {
+                  msg = "등록이 완료되었습니다.";
+                }
+                alert(msg);
+              }
+            );
+          } else {
+            alert("이미 관심목록에 있는 아파트입니다.");
+          }
+        });
+    },
+    interestSave2() {
+      // console.log(this.userInfo.userId);
+      http
+        .get(`/interest/dupcheck`, {
+          params: {
+            userId: this.userInfo.userId,
+            aptName: this.apart2.apartmentName
+          }
+        })
+        .then(({ data }) => {
+          if (data === "success") {
+            writeInterest(
+              {
+                userId: this.userInfo.userId,
+                aptName: this.apart2.apartmentName
+              },
+              ({ data }) => {
+                let msg = "등록 처리시 문제가 발생했습니다.";
+                if (data === "success") {
+                  msg = "등록이 완료되었습니다.";
+                }
+                alert(msg);
+              }
+            );
+          } else {
+            alert("이미 관심목록에 있는 아파트입니다.");
+          }
+        });
     }
   },
   filters: {
