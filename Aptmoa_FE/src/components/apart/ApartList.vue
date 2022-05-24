@@ -182,7 +182,11 @@ export default {
       // console.log(this.apart.아파트);
       http
         .get(`/interest/dupcheck`, {
-          params: { userId: this.userInfo.userId, aptName: this.apart.아파트 }
+          params: {
+            userId: this.userInfo.userId,
+            aptName: this.apart.아파트,
+            dong: this.apart.법정동.replace(" ", "")
+          }
         })
         .then(({ data }) => {
           if (data === "success") {
@@ -190,7 +194,8 @@ export default {
               {
                 userId: this.userInfo.userId,
                 aptName: this.apart.아파트,
-                buildYear: this.apart.건축년도
+                buildYear: this.apart.건축년도,
+                dong: this.apart.법정동.replace(" ", "")
               },
               ({ data }) => {
                 let msg = "등록 처리시 문제가 발생했습니다.";
@@ -211,7 +216,8 @@ export default {
         .get(`/interest/dupcheck`, {
           params: {
             userId: this.userInfo.userId,
-            aptName: this.apart2.apartmentName
+            aptName: this.apart2.apartmentName,
+            dong: this.apart2.dong
           }
         })
         .then(({ data }) => {
@@ -220,7 +226,8 @@ export default {
               {
                 userId: this.userInfo.userId,
                 aptName: this.apart2.apartmentName,
-                buildYear: this.apart2.buildYear
+                buildYear: this.apart2.buildYear,
+                dong: this.apart2.dong
               },
               ({ data }) => {
                 let msg = "등록 처리시 문제가 발생했습니다.";

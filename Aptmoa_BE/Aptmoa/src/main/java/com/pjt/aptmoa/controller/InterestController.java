@@ -65,9 +65,9 @@ public class InterestController {
 	
     @ApiOperation(value = "중복체크", notes = "중복체크")
     @GetMapping("/dupcheck")
-	public ResponseEntity<String> checkInterest(@RequestParam String userId, @RequestParam String aptName) {
+	public ResponseEntity<String> checkInterest(@RequestParam String userId, @RequestParam String aptName, @RequestParam String dong) {
 		logger.debug("checkInterest - 호출");
-		int cnt = iService.checkInterest(userId, aptName);
+		int cnt = iService.checkInterest(userId, aptName, dong);
 		if (cnt==0) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}

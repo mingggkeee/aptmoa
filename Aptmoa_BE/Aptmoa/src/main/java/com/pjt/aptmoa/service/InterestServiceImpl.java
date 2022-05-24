@@ -30,8 +30,8 @@ public class InterestServiceImpl implements InterestService{
 	}
 
 	@Override
-	public int checkInterest(String userId, String aptName) {
-		return interestMapper.checkInterest(userId, aptName);
+	public int checkInterest(String userId, String aptName, String dong) {
+		return interestMapper.checkInterest(userId, aptName, dong);
 	}
 
 }

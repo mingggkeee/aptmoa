@@ -12,6 +12,6 @@ public interface InterestMapper {
 	public List<Interest> selectInterestById(String userId);
 	public int insertInterest(Interest interest);
 	public int deleteInterest(int no);
-	public int checkInterest(String userId, String aptName);
+	public int checkInterest(String userId, String aptName, String dong);
 	
 }

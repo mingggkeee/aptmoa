@@ -14,9 +14,9 @@
 	<!-- 관심목록 등록 -->
 	<insert id="insertInterest" parameterType="interest">
 		insert into interest(
-			userId, aptName, buildYear, aptCode
+			userId, aptName, buildYear, dong, aptCode
 		) values (
-			#{userId}, #{aptName}, #{buildYear}, (select aptCode from houseinfo where apartmentName = #{aptName} and buildYear = #{buildYear} limit 1)
+			#{userId}, #{aptName}, #{buildYear}, #{dong}, (select aptCode from houseinfo where apartmentName = #{aptName} and dong = #{dong} limit 1)
 		)
 	</insert>
 	
@@ -31,7 +31,7 @@
 	<select id="checkInterest" parameterType="string" resultType="int">
 		select count(*)
 		from interest
-		where userId=#{userId} and aptName=#{aptName}
+		where userId=#{userId} and aptName=#{aptName} and dong=#{dong}
 	</select>
 	
 </mapper>

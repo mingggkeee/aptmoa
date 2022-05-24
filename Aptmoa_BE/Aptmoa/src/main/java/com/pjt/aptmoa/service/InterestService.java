@@ -8,5 +8,5 @@ public interface InterestService {
 	public List<Interest> retrieveInterest(String userId);
 	public boolean writeInterest(Interest interest);
 	public boolean deleteInterest(int no);
-	public int checkInterest(String userId, String aptName);
+	public int checkInterest(String userId, String aptName, String dong);
 }

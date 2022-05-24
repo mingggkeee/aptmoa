@@ -19,4 +19,5 @@ public class Interest {
 	private String aptName;
 	private long aptCode;
 	private int buildYear;
+	private String dong;
 }

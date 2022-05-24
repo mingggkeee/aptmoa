@@ -28,12 +28,13 @@ CREATE TABLE `interest` (
   `aptCode` bigint NOT NULL,
   `aptName` varchar(40) DEFAULT NULL,
   `buildYear` int DEFAULT NULL,
+  `dong` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`no`),
   KEY `interest_to_member_fk` (`userId`),
   KEY `interest_to_aptCode` (`aptCode`),
   CONSTRAINT `interest_to_aptCode` FOREIGN KEY (`aptCode`) REFERENCES `houseinfo` (`aptCode`),
   CONSTRAINT `interest_to_member_fk` FOREIGN KEY (`userId`) REFERENCES `user` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +43,7 @@ CREATE TABLE `interest` (
 
 LOCK TABLES `interest` WRITE;
 /*!40000 ALTER TABLE `interest` DISABLE KEYS */;
-INSERT INTO `interest` VALUES (54,'admin',27170000000007,'광장타운1차',1984),(56,'admin',11140000000027,'남산SKLEADERSVIEW',2010),(57,'admin',11650000000118,'반포자이',2009),(58,'admin',11230000000136,'래미안크레시티',2014),(59,'admin',11350000000017,'미륭',1986),(60,'admin',11170000000153,'래미안첼리투스아파트',2015),(61,'admin',41190000000215,'부천우방유쉘',2010),(62,'admin',41190000000054,'리첸시아중동',2012),(63,'admin',11170000000054,'한남더힐',2011);
+INSERT INTO `interest` VALUES (54,'admin',27170000000007,'광장타운1차',1984,'내당동'),(56,'admin',11140000000027,'남산SKLEADERSVIEW',2010,'회현동1가'),(57,'admin',11650000000118,'반포자이',2009,'반포동'),(58,'admin',11230000000136,'래미안크레시티',2014,'전농동'),(59,'admin',11350000000017,'미륭',1986,'월계동'),(60,'admin',11170000000153,'래미안첼리투스아파트',2015,'이촌동'),(61,'admin',41190000000215,'부천우방유쉘',2010,'송내동'),(62,'admin',41190000000054,'리첸시아중동',2012,'중동'),(63,'admin',11170000000054,'한남더힐',2011,'한남동'),(66,'mksu234',11620000000091,'무학',1998,'봉천동'),(67,'mksu234',11110000000073,'로얄팰리스스위트',2005,'수송동'),(68,'mksu234',11680000000067,'청담자이',2011,'청담동'),(69,'mksu234',11110000000044,'경희궁의아침2단지',2004,'내수동');
 /*!40000 ALTER TABLE `interest` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-24 16:56:20
+-- Dump completed on 2022-05-24 17:43:36

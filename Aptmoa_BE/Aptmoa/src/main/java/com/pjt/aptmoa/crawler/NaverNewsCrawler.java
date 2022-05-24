@@ -101,7 +101,7 @@ public class NaverNewsCrawler {
 	
 	public static void main(String[] args) throws IOException{
 		
-		crawling("20220501");
+		crawling("20220522");
 		
 	}
 }
