@@ -50,6 +50,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import axios from "axios";
+import { tsImportEqualsDeclaration } from "@babel/types";
 const apartStore = "apartStore";
 export default {
   name: "KakaoMap",
@@ -69,7 +70,9 @@ export default {
       ps: "",
       id: "",
       placeOverlay: "",
-      contentNode: ""
+      contentNode: "",
+      infowin: [],
+      infowinPrice: []
     };
   },
   created() {
@@ -109,7 +112,6 @@ export default {
     initMap() {
       // console.log("init에서 지도새로뜸!");
       this.placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
-
       this.contentNode = document.createElement("b-container"); // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
       const container = document.getElementById("map");
       const options = {
@@ -227,7 +229,6 @@ export default {
       console.log(this.markerCategory);
       return this.markerCategory;
     },
-
     removeMarker() {
       console.log(this.markers);
       for (var i = 0; i < this.markers.length; i++) {
@@ -236,7 +237,6 @@ export default {
       this.markers = [];
       console.log("removeMarker");
     },
-
     removeCategoryMarker() {
       for (var i = 0; i < this.markersCategory.length; i++) {
         this.markersCategory[i].setMap(null);
@@ -244,7 +244,6 @@ export default {
       this.markersCategory = [];
       console.log("removeCategoryMarker");
     },
-
     displayPlaceInfo(place) {
       var content =
         '<div class="placeinfo">' +
@@ -412,6 +411,7 @@ export default {
             " " +
             building_code
         );
+        this.infowin.push(this.aparts[i]["아파트"]);
         this.Dong.push(this.aparts[i]["법정동"]);
         console.log(building_code);
       }
@@ -419,10 +419,12 @@ export default {
       console.warn(full_address);
       this.movePosition(full_address[0]);
       for (let i = 0; i < full_address.length; i++) {
-        this.setMark(full_address[i]);
+        this.setMark(full_address[i], this.infowin[i]);
+        // this.infowin.push(this.aparts[i]["아파트"]);
       }
     },
-    setMark(address) {
+    setMark(address, infowin) {
+      console.log("setMark안에 infowin : " + infowin);
       var geocoder = new kakao.maps.services.Geocoder();
       geocoder.addressSearch(address, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
@@ -432,7 +434,9 @@ export default {
             position: coords, // 마커를 표시할 위치
             clickable: true //클릭 가능 여부 true
           });
-          this.addMarker(marker, result);
+          this.addMarker(marker, result, infowin);
+          console.log("marker", marker);
+          console.log("result", result);
         }
       });
     },
@@ -448,10 +452,12 @@ export default {
         }
       });
     },
-    addMarker(marker, result) {
+    addMarker(marker, result, infowin) {
       console.log("addMarker");
+      console.log("addMarker안에 infowin : ", infowin);
       kakao.maps.event.addListener(marker, "mouseover", () => {
-        this.displayInfoWindow(result, this.index - 1);
+        this.displayInfoWindow(result, this.index - 1, infowin);
+        // console.log("infowin", infowin[this.index - 1]);
       });
       kakao.maps.event.addListener(marker, "mouseout", () => {
         this.closeOverlay();
@@ -460,68 +466,26 @@ export default {
       kakao.maps.event.addListener(marker, "click", () => {
         //해당 위치의 상세정보를 표현한다.
       });
-      kakao.maps.event.addListener(marker, "click", () => {
-        //해당 위치의 상세정보를 표현한다.
-      });
       marker.setMap(this.map); // 지도 위에 마커를 표출합니다
       this.markers.push(marker); // 배열에 생성된 마커를 추가합니다
       return marker;
     },
-    displayInfoWindow(result, idx) {
+    displayInfoWindow(result, idx, infowin) {
       if (this.infowindow && this.infowindow.getMap()) {
         //이미 생성한 인포윈도우가 있기 때문에 지도 중심좌표를 인포윈도우 좌표로 이동시킨다.
         // this.map.setCenter(this.infowindow.getPosition());
         return;
       }
-      const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${result[0].y}&lon=${result[0].x}&appid=e0e4e08f4b94cdb719181e535eb81808`;
-      axios.get(URL).then(({ data }) => {
-        let wData = data;
-        let temp = Number(wData.main.temp) - 273;
-        var imgURL = `http://openweathermap.org/img/w/${wData.weather[0].icon}.png`;
-        console.log(imgURL);
-        console.log(wData);
-        console.log(wData.main.temp);
-        console.log(wData.weather);
-        console.log("idx : " + idx);
-        console.log(result[idx]);
-        //console.log(result[0].y, result[0].x);
-        //var iwContent = `<div style="padding:5px;"> ${result[0].y}</div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-        var iwContent =
-            // `<div class="info-title">
-            // <div style="padding:5px;"> ${this.Dong[idx]}의 날씨 </div>` +
-            // `<div style="padding:5px;"> 현재온도 ${Math.ceil(
-            //   temp
-            // )}도<img src="${imgURL}" width="30" height="30"></div></div>`,
+      console.log("displayInfoWindow안에 infowin : " + infowin);
 
-            // `<div class="wrap">
-            //     <div class="info">
-            //         <div class="title">
-            //             ${this.Dong[idx]}의 날씨
-            //             <div class="close" @click="closeOverlay" title="닫기"></div>
-            //         </div>
-            //         <div class="body">
-            //             <div class="img">
-            //                 <img src="${imgURL}" width="73" height="70">
-            //            </div>
-            //             <div class="desc">
-            //                 <div class="ellipsis">현재온도 ${Math.ceil(
-            //                   temp
-            //                 )}도</div>
-            //             </div>
-            //         </div>
-            //     </div>
-            // </div>`,
-
-            //iwPosition = new kakao.maps.LatLng(33.450701, 126.570667), //인포윈도우 표시 위치입니다
-            (iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x)),
-          iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-        this.infowindow = new kakao.maps.CustomOverlay({
-          map: this.map, // 인포윈도우가 표시될 지도
-          position: iwPosition,
-          content: iwContent,
-          removable: iwRemoveable
-        });
-        // this.map.setCenter(iwPosition);
+      var iwContent = `<div style="padding:5px;">${infowin}</div>`,
+        iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x),
+        iwRemoveable = true;
+      this.infowindow = new kakao.maps.InfoWindow({
+        map: this.map,
+        position: iwPosition,
+        content: iwContent,
+        removeable: iwRemoveable
       });
     },
     closeOverlay() {
@@ -546,7 +510,6 @@ export default {
 button {
   margin: 0 3px;
 }
-
 #category li {
   float: left;
   list-style: none;
