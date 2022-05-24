@@ -14,9 +14,9 @@
 	<!-- 관심목록 등록 -->
 	<insert id="insertInterest" parameterType="interest">
 		insert into interest(
-			userId, aptName, aptCode
+			userId, aptName, buildYear, aptCode
 		) values (
-			#{userId}, #{aptName}, (select aptCode from houseinfo where apartmentName = #{aptName} limit 1)
+			#{userId}, #{aptName}, #{buildYear}, (select aptCode from houseinfo where apartmentName = #{aptName} limit 1)
 		)
 	</insert>
 	

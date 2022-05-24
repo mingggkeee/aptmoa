@@ -1,10 +1,5 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <v-row>
-      <v-col>
-        <v-alert show><h1>Q&A목록</h1></v-alert>
-      </v-col>
-    </v-row>
     <v-row class="mb-1">
       <v-col class="text-right">
         <v-btn color="primary" variant="outline-primary" @click="moveWrite()"
@@ -17,7 +12,7 @@
         <v-data-table
           :headers="headers"
           :items="qnas"
-          :items-per-page="5"
+          :items-per-page="10"
           item-key="subject"
           class="elevation-1"
           @click:row="goDetail"

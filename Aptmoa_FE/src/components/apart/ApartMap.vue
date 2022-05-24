@@ -44,10 +44,6 @@
         </li>
       </ul>
     </b-container>
-    <!-- <b-container class="button-group">
-      <v-btn @click="changeSize(0)">Hide</v-btn>
-      <v-btn @click="changeSize(800)">show</v-btn>
-    </b-container> -->
   </b-container>
 </template>
 
@@ -83,8 +79,7 @@ export default {
     const script = document.createElement("script");
     /* global kakao */
     script.onload = () => kakao.maps.load(this.initMap);
-    script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=42e048e8ec29da9ca8929be862cf0d24&libraries=services";
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAOMAP_KEY}&libraries=services`;
     document.head.appendChild(script);
     // }
   },
@@ -119,7 +114,7 @@ export default {
       const container = document.getElementById("map");
       const options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3
+        level: 5
       };
       this.map = new kakao.maps.Map(container, options);
       if (navigator.geolocation) {
@@ -127,7 +122,7 @@ export default {
           let lat = position.coords.latitude,
             lon = position.coords.longitude;
           let locPosition = new kakao.maps.LatLng(lat, lon),
-            message = '<v-row style="padding:5px;">여기에 계신가요?!</v-row>';
+            message = '<v-row style="padding:5px;">현재 당신의 위치</v-row>';
           console.log(locPosition);
           this.displayMarker(locPosition, message);
           console.log(locPosition);
@@ -497,26 +492,28 @@ export default {
             // `<div style="padding:5px;"> 현재온도 ${Math.ceil(
             //   temp
             // )}도<img src="${imgURL}" width="30" height="30"></div></div>`,
-            `<div class="wrap">
-                <div class="info">
-                    <div class="title">
-                        ${this.Dong[idx]}의 날씨
-                        <div class="close" @click="closeOverlay" title="닫기"></div>
-                    </div>
-                    <div class="body">
-                        <div class="img">
-                            <img src="${imgURL}" width="73" height="70">
-                       </div>
-                        <div class="desc">
-                            <div class="ellipsis">현재온도 ${Math.ceil(
-                              temp
-                            )}도</div>
-                        </div>
-                    </div>
-                </div>
-            </div>`,
-          //iwPosition = new kakao.maps.LatLng(33.450701, 126.570667), //인포윈도우 표시 위치입니다
-          iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x),
+
+            // `<div class="wrap">
+            //     <div class="info">
+            //         <div class="title">
+            //             ${this.Dong[idx]}의 날씨
+            //             <div class="close" @click="closeOverlay" title="닫기"></div>
+            //         </div>
+            //         <div class="body">
+            //             <div class="img">
+            //                 <img src="${imgURL}" width="73" height="70">
+            //            </div>
+            //             <div class="desc">
+            //                 <div class="ellipsis">현재온도 ${Math.ceil(
+            //                   temp
+            //                 )}도</div>
+            //             </div>
+            //         </div>
+            //     </div>
+            // </div>`,
+
+            //iwPosition = new kakao.maps.LatLng(33.450701, 126.570667), //인포윈도우 표시 위치입니다
+            (iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x)),
           iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
         this.infowindow = new kakao.maps.CustomOverlay({
           map: this.map, // 인포윈도우가 표시될 지도
