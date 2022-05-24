@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ import com.pjt.aptmoa.service.HouseMapService;
 
 @RestController
 @RequestMapping("/map")
-@CrossOrigin("*")
+//@CrossOrigin("*")
 public class HouseMapController {
 	
 	private final Logger logger = LoggerFactory.getLogger(HouseMapController.class);
@@ -52,6 +53,11 @@ public class HouseMapController {
 	@GetMapping("/search")
 	public ResponseEntity<List<HouseInfoDto>> searchApt(@RequestParam("apartName") String apartName, @RequestParam("sido") String sido) throws Exception {
 		return new ResponseEntity<List<HouseInfoDto>>(hmService.getAptInSearch(apartName, sido), HttpStatus.OK);
+	}
+	
+	@GetMapping("/info/{aptCode}")
+	public ResponseEntity<List<HouseInfoDto>> aptInfo(@PathVariable String aptCode) throws Exception {
+		return new ResponseEntity<List<HouseInfoDto>>(hmService.getAptInfo(aptCode), HttpStatus.OK);
 	}
 	
 }

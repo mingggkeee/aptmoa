@@ -23,9 +23,12 @@ public class HouseInfoDto {
 	private String lat;
 	private String lng;
 	private String img;
-	private String recentPrice;
+	private String dealAmount;
 	private String floor;
 	private String roadName;
 	private String roadNameBonbun;
 	private String roadNameBubun;
+	private String area;
+	private int dealMonth;
+	private int dealDay;
 }

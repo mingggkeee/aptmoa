@@ -15,7 +15,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <v-col>{{ apart.아파트 }} 상세보기</v-col>
+          <v-col>{{ apart.아파트 }}</v-col>
           <v-btn color="blue darken-1" text @click="interestSave">
             관심아파트 저장
           </v-btn>
@@ -68,7 +68,7 @@
     <v-dialog v-model="dialog2" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <v-col>{{ apart2.apartmentName }} 상세보기</v-col>
+          <v-col>{{ apart2.apartmentName }}</v-col>
           <v-btn color="blue darken-1" text @click="interestSave2">
             관심아파트 저장
           </v-btn>
@@ -93,7 +93,7 @@
             <v-row>
               <v-col>
                 최근거래금액 :
-                {{ apart2.recentPrice }} 만원
+                {{ apart2.dealAmount }} 만원
               </v-col>
             </v-row>
           </v-container>
@@ -140,7 +140,7 @@ export default {
         { text: "법정동", value: "dong" },
         // { text: "거래월", value: "월" },
         { text: "이름", value: "apartmentName" },
-        { text: "거래금액", value: "recentPrice" }
+        { text: "거래금액", value: "dealAmount" }
         // { text: "전용면적", value: "전용면적" }
       ],
       dialog: false,
