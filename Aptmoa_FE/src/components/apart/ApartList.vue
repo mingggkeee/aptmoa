@@ -189,7 +189,8 @@ export default {
             writeInterest(
               {
                 userId: this.userInfo.userId,
-                aptName: this.apart.아파트
+                aptName: this.apart.아파트,
+                buildYear: this.apart.건축년도
               },
               ({ data }) => {
                 let msg = "등록 처리시 문제가 발생했습니다.";
@@ -218,7 +219,8 @@ export default {
             writeInterest(
               {
                 userId: this.userInfo.userId,
-                aptName: this.apart2.apartmentName
+                aptName: this.apart2.apartmentName,
+                buildYear: this.apart2.buildYear
               },
               ({ data }) => {
                 let msg = "등록 처리시 문제가 발생했습니다.";

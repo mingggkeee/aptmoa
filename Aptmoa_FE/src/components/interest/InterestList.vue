@@ -55,12 +55,6 @@
                 id="chart"
               ></line-chart>
             </v-container>
-            <!-- <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="dialog = false">
-                닫기
-              </v-btn>
-            </v-card-actions> -->
           </v-card>
         </v-dialog>
       </v-col>
@@ -85,8 +79,8 @@ export default {
       interests: [],
       interest: {},
       headers: [
-        { text: "아파트코드", value: "aptCode" },
-        { text: "아파트이름", value: "aptName" }
+        { text: "아파트이름", value: "aptName" },
+        { text: "건축년도", value: "buildYear" }
       ],
       dialog: false,
       infos: [
@@ -190,8 +184,6 @@ export default {
           console.log(error);
         }
       );
-
-      // console.log(this.infos);
     },
     deleteInterest() {
       if (confirm("정말로 삭제하시겠습니까?")) {
