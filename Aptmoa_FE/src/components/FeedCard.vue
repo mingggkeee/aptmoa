@@ -71,9 +71,16 @@ export default {
           params: { newsno: this.value.newsno }
         });
       } else if (this.value.category === "Notice") {
-        console.log("notice");
+        this.$router.push({
+          name: "noticeDetail",
+          params: { noticeno: this.value.noticesno }
+        });
       } else {
         console.log("Q&A");
+        this.$router.push({
+          name: "qnaDetail",
+          params: { qnano: this.value.qnano }
+        });
       }
     }
   }

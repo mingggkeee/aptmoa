@@ -104,7 +104,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-text-field label="내용" readonly dense :value="notice.content" />
+            <v-textarea label="내용" readonly dense :value="notice.content" />
           </v-col>
         </v-row>
       </v-card-text>

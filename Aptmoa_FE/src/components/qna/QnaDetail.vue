@@ -50,7 +50,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-text-field label="내용" readonly dense :value="qna.content" />
+            <v-textarea label="내용" readonly dense :value="qna.content" />
           </v-col>
         </v-row>
         Reply ({{ comments.length }})<br />
