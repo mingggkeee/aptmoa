@@ -1,29 +1,15 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
-    <h3 class="underline-hotpink">
-      Apart Service
-    </h3>
+  <v-container class="bv-example-row mt-3 text-center">
     <v-row>
       <v-col>
-        <apart-map class="map"></apart-map>
+        <apart-map></apart-map>
       </v-col>
       <v-col>
         <apart-search-bar></apart-search-bar>
         <apart-list />
       </v-col>
     </v-row>
-    <!-- <v-row>
-      <v-col cols="100">
-        <apart-search-bar></apart-search-bar>
-      </v-col>
-    </v-row> -->
-    <!-- <v-row>
-      <v-col cols="6">
-        <apart-detail />
-        <apart-detail2 />
-      </v-col>
-    </v-row> -->
-  </b-container>
+  </v-container>
 </template>
 
 <script>
@@ -48,31 +34,8 @@ export default {
     };
   },
 
-  mounted() {
-    // if (!window.kakao || !window.kakao.maps) {
-    //   const script = document.createElement("script");
-    //   script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAOMAP_KEY}`;
-    //   script.addEventListener("load", () => {
-    //     console.log("loaded", window.kakao);
-    //     kakao.maps.load(this.initMap);
-    //   });
-    //   document.head.appendChild(script);
-    // } else {
-    //   console.log("이미 로딩 완료: ", window.kakao);
-    //   this.initMap();
-    // }
-  },
-  methods: {
-    // initMap() {
-    //   const container = document.getElementById("map");
-    //   console.log(container);
-    //   const options = {
-    //     center: new kakao.maps.LatLng(37.5666, 126.9774),
-    //     level: 3
-    //   };
-    //   this.map = new kakao.maps.Map(container, options);
-    // }
-  }
+  mounted() {},
+  methods: {}
 };
 </script>
 <style scoped>
