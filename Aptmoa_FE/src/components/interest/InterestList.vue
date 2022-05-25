@@ -83,29 +83,7 @@ export default {
         { text: "건축년도", value: "buildYear" }
       ],
       dialog: false,
-      infos: [
-        {
-          aptCode: 11140000000027,
-          apartmentName: "남산SKLEADERSVIEW",
-          dongCode: null,
-          dong: "회현동1가",
-          sidoName: "서울특별시",
-          gugunName: "중구",
-          buildYear: 2010,
-          jibun: "206",
-          lat: null,
-          lng: null,
-          img: null,
-          dealAmount: "97,000",
-          floor: "19",
-          roadName: "퇴계로",
-          roadNameBonbun: null,
-          roadNameBubun: null,
-          area: "122.7",
-          dealMonth: 2,
-          dealDay: 10
-        }
-      ],
+      infos: [{}],
       chart: {
         data: {
           labels: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
@@ -117,16 +95,7 @@ export default {
               pointBorderColor: "red",
               borderWidth: 3,
               pointBorderWidth: 3,
-              data: [
-                91000,
-                103000,
-                95000,
-                96000,
-                117000,
-                149000,
-                183000,
-                179000
-              ]
+              data: []
             }
           ]
         },
@@ -140,7 +109,8 @@ export default {
               ticks: {
                 callback: (val, index) => {
                   return val !== 0
-                    ? val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                    ? val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") +
+                        "만원"
                     : "";
                 },
                 padding: 10
@@ -158,8 +128,8 @@ export default {
   created() {
     listInterest(
       this.userInfo.userId,
-      response => {
-        this.interests = response.data;
+      async response => {
+        this.interests = await response.data;
       },
       error => {
         console.log(error);
