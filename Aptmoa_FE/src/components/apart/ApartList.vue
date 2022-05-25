@@ -144,9 +144,7 @@ export default {
       dialog: false,
       dialog2: false,
       apart: {},
-      apart2: {},
-      startRoute: null,
-      endRoute: null
+      apart2: {}
     };
   },
   computed: {
@@ -234,9 +232,6 @@ export default {
             alert("이미 관심목록에 있는 아파트입니다.");
           }
         });
-    },
-    findRoute() {
-      location.href = `https://map.kakao.com/?sName=${this.startRoute}&eName=${this.endRoute}`;
     }
   },
   filters: {

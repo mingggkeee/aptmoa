@@ -98,7 +98,9 @@ export default {
         { value: "10", text: "10월" },
         { value: "11", text: "11월" },
         { value: "12", text: "12월" }
-      ]
+      ],
+      endRoute: "",
+      startRoute: ""
     };
   },
   computed: {
@@ -164,6 +166,11 @@ export default {
         };
         if (this.aptName) this.getApartListByName(param);
       }
+    },
+    findRoute() {
+      window.open(
+        `https://map.kakao.com/?sName=${this.startRoute}&eName=${this.endRoute}`
+      );
     }
   }
 };

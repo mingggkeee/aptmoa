@@ -1,14 +1,14 @@
 <template>
   <v-container class="bv-example-row mt-3 text-center">
-    <v-row>
-      <v-col>
-        <apart-map></apart-map>
-      </v-col>
-      <v-col>
+    <v-container>
+      <v-row>
         <apart-search-bar></apart-search-bar>
         <apart-list />
-      </v-col>
-    </v-row>
+      </v-row>
+    </v-container>
+    <v-container>
+      <apart-map></apart-map>
+    </v-container>
   </v-container>
 </template>
 
@@ -29,26 +29,11 @@ export default {
     ApartMap
   },
   data() {
-    return {
-      map: null
-    };
+    return {};
   },
 
   mounted() {},
   methods: {}
 };
 </script>
-<style scoped>
-#map {
-  width: 3000px;
-  height: 1000px;
-}
-.underline-hotpink {
-  display: inline-block;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 70%,
-    rgba(231, 27, 139, 0.3) 30%
-  );
-}
-</style>
+<style scoped></style>
