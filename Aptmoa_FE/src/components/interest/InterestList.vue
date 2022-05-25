@@ -18,7 +18,7 @@
           <v-card>
             <v-card-title>
               <v-col
-                ><h1>{{ infos[0].apartmentName }}</h1></v-col
+                ><h3 id="nametext">{{ infos[0].apartmentName }}</h3></v-col
               >
               <v-btn color="blue darken-1" text @click="deleteInterest">
                 관심목록삭제하기
@@ -120,7 +120,7 @@ export default {
           },
           responsive: true,
           maintainAspectRatio: false,
-          animation: { duration: 5000 }
+          animation: { duration: 1000 }
         }
       }
     };
@@ -182,5 +182,8 @@ export default {
 .tdSubject {
   width: 300px;
   text-align: left;
+}
+#nametext {
+  font-size: 50px;
 }
 </style>

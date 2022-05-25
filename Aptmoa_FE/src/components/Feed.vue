@@ -27,7 +27,7 @@ export default {
   },
 
   data: () => ({
-    layout: [2, 2, 2, 2, 1, 3, 3, 3, 3, 3, 3]
+    layout: [2, 2, 2, 2, 3, 3, 3, 3, 3, 3]
   }),
 
   computed: {

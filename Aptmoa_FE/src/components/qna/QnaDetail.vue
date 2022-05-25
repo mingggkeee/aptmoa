@@ -14,7 +14,7 @@
           >글수정</v-btn
         >
         <v-btn
-          color="primary"
+          color="warning"
           variant="outline-danger"
           size="sm"
           @click="deleteQna"
@@ -22,103 +22,130 @@
         >
       </v-col>
     </v-row>
-    <v-card elevation="10" outlined width="100%" class="mx-auto">
+    <v-card elevation="10" outlined width="100%" class="background_light mt-5">
       <v-card-title>
-        <span class="mr-2">Detail</span>
+        <span class="mr-2" id="qna_question">Question</span>
       </v-card-title>
       <v-card-text>
-        <v-row>
-          <v-col>
-            <v-text-field label="제목" readonly :value="qna.subject" />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-text-field label="작성자" readonly dense :value="qna.userId" />
-          </v-col>
-          <v-col>
-            <v-text-field
+        <div class="ml-5">
+          <v-row>
+            <v-col>
+              <span id="qna_title" class="float-left"> {{ qna.subject }}</span>
+              <!-- <v-text-field label="제목" readonly :value="qna.subject" /> -->
+            </v-col>
+          </v-row>
+          <v-row><br /><br /></v-row>
+          <!-- <v-row> -->
+          <!-- <v-col> -->
+          <div class="float-left">
+            <!-- <v-text-field label="작성자" readonly dense :value="qna.userId" /> -->
+            <span id="qna_userId">작성자 : {{ qna.userId }}</span>
+          </div>
+          <!-- </v-col> -->
+          <v-col></v-col>
+          <!-- <v-col> -->
+          <!-- <v-text-field
               label="작성 시간"
               readonly
               dense
               :value="qna.regtime"
-            />
-          </v-col>
+            /> -->
+          <div class="float-left">
+            <span id="qna_regtime">작성시간 : {{ qna.regtime }}</span>
+          </div>
+          <!-- </v-col> -->
           <!-- <v-col>
             <v-text-field label="View" readonly dense :value="qna.hit" />
           </v-col> -->
-        </v-row>
-        <v-row>
-          <v-col>
-            <v-textarea label="내용" readonly dense :value="qna.content" />
-          </v-col>
-        </v-row>
-        Reply ({{ comments.length }})<br />
-        <v-simple-table dense>
-          <tbody>
-            <tr v-for="(comment, index) in comments" :key="index">
-              <td style="width:110px; padding: 0;" v-if="comments.length">
-                <v-icon small>
-                  mdi-account
-                </v-icon>
-                {{ comment.userId }}
-              </td>
-              <td style="width:40px; padding: 0;" v-else>
-                <Tooltip
-                  bottom
-                  iconName="mdi-account"
-                  title="작성자"
-                  :content="userInfo.userId"
-                />
-              </td>
-              <td style="padding: 0;">{{ comment.content }}</td>
-              <td style="width:140px; padding: 0;" v-if="comments.length">
-                {{ comment.regtime }}
-              </td>
-              <td style="width:40px; padding: 0;" v-else>
-                <Tooltip
-                  bottom
-                  iconName="mdi-clock-outline"
-                  title="작성일시"
-                  :content="comment.regtime"
-                />
-              </td>
-              <td style="width:30px; padding: 0;">
-                <v-btn
-                  depressed
-                  small
-                  color="warning"
-                  variant="outline-danger"
-                  size="xsm"
-                  @click="deleteComment(comment, $event)"
-                  >댓글삭제</v-btn
-                >
-              </td>
-            </tr>
-          </tbody>
-        </v-simple-table>
-        <v-divider></v-divider>
-        <v-row>
-          <v-col cols="12" md="11" style="padding: 0px 12px;">
-            <v-textarea
-              clearable
-              clear-icon="mdi-close-circle"
-              rows="2"
-              no-resize
-              full-width
-              v-model="comment.content"
-            ></v-textarea>
-          </v-col>
-          <v-col md="1" align-self="center" style="padding: 0px 10px;">
-            <v-btn
-              color="primary"
-              variant="outline-danger"
-              size="sm"
-              @click="commentSave('comment.commentno')"
-              >댓글 작성</v-btn
-            >
-          </v-col>
-        </v-row>
+          <!-- </v-row> -->
+          <v-row><br /><br /></v-row>
+          <v-row>
+            <v-col>
+              <!-- <v-textarea label="내용" readonly dense :value="qna.content" /> -->
+              <div id="qna_content" class="float-left">
+                {{ qna.content }}
+              </div>
+            </v-col>
+          </v-row>
+        </div>
+        </v-card-text>
+        </v-card>
+        <!-- </v-row> -->
+        <v-card elevation="10" outlined width="100%" class="mt-10 background_white" >
+        <v-card-title>
+          <span class="mr-2" id="qna_question"
+            >Answer ({{ comments.length }})</span
+          >
+        </v-card-title>
+        <v-card-text class="mt-3">
+          <!-- Reply ({{ comments.length }})<br /> -->
+          <v-simple-table dense class="mt-5">
+            <tbody>
+              <tr v-for="(comment, index) in comments" :key="index">
+                <td style="width:110px; padding: 0;" v-if="comments.length">
+                  <v-icon small>
+                    mdi-account
+                  </v-icon>
+                  {{ comment.userId }}
+                </td>
+                <td style="width:40px; padding: 0;" v-else>
+                  <Tooltip
+                    bottom
+                    iconName="mdi-account"
+                    title="작성자"
+                    :content="userInfo.userId"
+                  />
+                </td>
+                <td style="padding: 0;">{{ comment.content }}</td>
+                <td style="width:140px; padding: 0;" v-if="comments.length">
+                  {{ comment.regtime }}
+                </td>
+                <td style="width:40px; padding: 0;" v-else>
+                  <Tooltip
+                    bottom
+                    iconName="mdi-clock-outline"
+                    title="작성일시"
+                    :content="comment.regtime"
+                  />
+                </td>
+                <td style="width:30px; padding: 0;">
+                  <v-btn
+                    depressed
+                    small
+                    color="warning"
+                    variant="outline-danger"
+                    size="xsm"
+                    id="qna_button"
+                    @click="deleteComment(comment, $event)"
+                    >댓글삭제</v-btn
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </v-simple-table>
+          <!-- <v-divider></v-divider> -->
+          <v-row class="mt-10">
+            <v-col cols="12" md="11" style="padding: 0px 12px;">
+              <v-textarea
+                clearable
+                clear-icon="mdi-close-circle"
+                rows="2"
+                no-resize
+                full-width
+                v-model="comment.content"
+              ></v-textarea>
+            </v-col>
+            <v-col md="1" align-self="center" style="padding: 0px 10px;">
+              <v-btn
+                color="primary"
+                variant="outline-danger"
+                size="sm"
+                @click="commentSave('comment.commentno')"
+                >댓글 작성</v-btn
+              >
+            </v-col>
+          </v-row>
+        </v-card-text>
       </v-card-text>
     </v-card>
     <!-- <v-row> <br /><br /> </v-row>
@@ -316,12 +343,31 @@ export default {
 </script>
 
 <style scoped>
-.underline-hotpink {
-  display: inline-block;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0) 70%,
-    rgba(231, 27, 139, 0.3) 30%
-  );
+#qna_question {
+  font-family: "Changa One", cursive;
+  font-size: 40px;
+  color: #364a73;
+  float: left;
+  margin-top: 10px;
+}
+#qna_button {
+  margin-left: 10px;
+}
+#qna_title {
+  font-weight: bold;
+  font-size: 30px;
+  color: black;
+}
+#qna_userId {
+  font-size: 15px;
+  /* float: right; */
+}
+#qna_regtime {
+  font-size: 15px;
+  /* float: right; */
+}
+#qna_content {
+  font-size: 25px;
+  color: black;
 }
 </style>

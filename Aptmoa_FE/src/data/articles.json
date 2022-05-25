@@ -31,11 +31,7 @@
 		"newsno": 112,
 		"hero": "news4.jpg"
 	},
-	{
-		"title": "HanGang",
-		"hero": "hangang.jpg",
-		"prominent": true
-	},
+	
 	{
 		"title": "Aptmoa 이용수칙 안내드립니다.",
 		"author": "1. 로그인은 꼭 해주셔야합니다. 2. 카카오 연동로그인으로 귀찮은 회원가입을 생략해보세요!",
