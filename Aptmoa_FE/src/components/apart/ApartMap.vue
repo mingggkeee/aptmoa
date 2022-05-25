@@ -351,7 +351,9 @@ export default {
       let building_code = 0;
       let building_sub_code = 0;
       let full_address = [];
+
       for (var i = 0; i < this.nameApts.length; i++) {
+        // console.warn("getAPTNameData()안에 nameApts : ", this.nameApts[i]);
         building_code = Number.parseInt(this.nameApts[i]["roadNameBonbun"]);
         building_sub_code =
           Number.parseInt(this.nameApts[i]["roadNameBubun"]) + "";
@@ -411,12 +413,19 @@ export default {
             " " +
             building_code
         );
-        this.infowin.push(this.aparts[i]["아파트"]);
+        this.infowin.push(
+          this.aparts[i]["아파트"] +
+            "@" +
+            this.aparts[i]["건축년도"] +
+            "@" +
+            full_address[i]
+        );
+        // console.log("getAptData안에 infowin : ", this.infowin[i]);
         this.Dong.push(this.aparts[i]["법정동"]);
-        console.log(building_code);
+        // console.log(building_code);
       }
-      console.log("full_address");
-      console.warn(full_address);
+      // console.log("full_address");
+      // console.warn(full_address);
       this.movePosition(full_address[0]);
       for (let i = 0; i < full_address.length; i++) {
         this.setMark(full_address[i], this.infowin[i]);
@@ -435,7 +444,7 @@ export default {
             clickable: true //클릭 가능 여부 true
           });
           this.addMarker(marker, result, infowin);
-          console.log("marker", marker);
+          // console.log("marker", marker);
           console.log("result", result);
         }
       });
@@ -457,15 +466,19 @@ export default {
       console.log("addMarker안에 infowin : ", infowin);
       kakao.maps.event.addListener(marker, "mouseover", () => {
         this.displayInfoWindow(result, this.index - 1, infowin);
+        // this.displayInfoWindow(marker, infowin);
+
         // console.log("infowin", infowin[this.index - 1]);
       });
       kakao.maps.event.addListener(marker, "mouseout", () => {
-        this.closeOverlay();
+        // this.closeOverlay();
+        this.infowindow.close();
       });
       // 마커에 click 이벤트를 등록합니다
-      kakao.maps.event.addListener(marker, "click", () => {
-        //해당 위치의 상세정보를 표현한다.
-      });
+
+      // kakao.maps.event.addListener(marker, "click", () => {
+      //   //해당 위치의 상세정보를 표현한다.
+      // });
       marker.setMap(this.map); // 지도 위에 마커를 표출합니다
       this.markers.push(marker); // 배열에 생성된 마커를 추가합니다
       return marker;
@@ -477,8 +490,28 @@ export default {
         return;
       }
       console.log("displayInfoWindow안에 infowin : " + infowin);
-
-      var iwContent = `<div style="padding:5px;">${infowin}</div>`,
+      var subInfoWin = infowin.split("@");
+      // console.log("subInfoWin", subInfoWin[0]);
+      // <img src="${imgURL}" width="73" height="70">
+      var aptimg =
+        "https://cdn.econovill.com/news/photo/202009/412693_346873_1450.jpg";
+      var iwContent =
+          `<div class="placeinfo">` +
+          `<div class="apttitle">` +
+          subInfoWin[0] +
+          `</div>
+          <div class="img">
+            <img src="${aptimg}" width="70" height="70" />
+          </div>
+          <div>
+          <span>건축년도 : ` +
+          subInfoWin[1] +
+          `</span>
+          <span>지번 : ` +
+          subInfoWin[2] +
+          `</span>
+          </div>
+          `,
         iwPosition = new kakao.maps.LatLng(result[0].y, result[0].x),
         iwRemoveable = true;
       this.infowindow = new kakao.maps.InfoWindow({
@@ -628,6 +661,18 @@ button {
   background: #d95050
     url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png)
     no-repeat right 14px center;
+}
+.placeinfo .img {
+  margin-top: 5px;
+}
+.placeinfo .apttitle {
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 6px 6px 0 0;
+  margin: -1px -1px 0 -1px;
+  padding: 10px;
+  color: #fff;
+  background: #4552d9;
 }
 .placeinfo .tel {
   color: #0f7833;
