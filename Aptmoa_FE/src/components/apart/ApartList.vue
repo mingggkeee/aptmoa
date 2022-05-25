@@ -116,7 +116,7 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
-import { checkInterest, writeInterest } from "@/api/interest";
+import { writeInterest } from "@/api/interest";
 import http from "@/util/http-common";
 
 const apartStore = "apartStore";
@@ -138,10 +138,8 @@ export default {
       headers2: [
         { text: "법정구", value: "gugunName" },
         { text: "법정동", value: "dong" },
-        // { text: "거래월", value: "월" },
         { text: "이름", value: "apartmentName" },
         { text: "거래금액", value: "dealAmount" }
-        // { text: "전용면적", value: "전용면적" }
       ],
       dialog: false,
       dialog2: false,
@@ -150,7 +148,6 @@ export default {
     };
   },
   computed: {
-    // apartStore, ["aparts", "nameApts"], userStore, ["userInfo"]
     ...mapState({
       aparts: state => state.apartStore.aparts,
       nameApts: state => state.apartStore.nameApts,
@@ -164,22 +161,17 @@ export default {
     ...mapActions(apartStore, ["detailApart", "detailApart2"]),
     selectApart(value) {
       console.log(value);
-      // this.detailApart(value);
       this.apart = value;
       this.dialog = true;
       console.log(this.dialog);
     },
     selectApart2(value) {
       console.log(value);
-      // this.detailApart2(value);
       this.apart2 = value;
       this.dialog2 = true;
       console.log(this.dialog);
     },
     interestSave() {
-      // console.log("관심목록 저장");
-      // console.log(this.userInfo.userId);
-      // console.log(this.apart.아파트);
       http
         .get(`/interest/dupcheck`, {
           params: {
@@ -211,7 +203,6 @@ export default {
         });
     },
     interestSave2() {
-      // console.log(this.userInfo.userId);
       http
         .get(`/interest/dupcheck`, {
           params: {

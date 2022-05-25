@@ -2,10 +2,6 @@
   <b-container class=" mt-3 text-center">
     <b-container id="map">
       <ul id="category" style="padding-left: 0px">
-        <!-- <li id="SW8" data-order="0">
-          <span class="category_bg metro"></span>
-          지하철역
-        </li> -->
         <li id="BK9" data-order="0">
           <span class="category_bg bank"></span>
           은행
@@ -76,15 +72,10 @@ export default {
     };
   },
   created() {
-    // if (window.kakao && window.kakao.maps) {
-    //   this.initMap();
-    // } else {
     const script = document.createElement("script");
-    /* global kakao */
     script.onload = () => kakao.maps.load(this.initMap);
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=${process.env.VUE_APP_KAKAOMAP_KEY}&libraries=services`;
     document.head.appendChild(script);
-    // }
   },
   watch: {
     aparts: function(object, old) {
@@ -110,7 +101,6 @@ export default {
   methods: {
     ...mapActions(apartStore, ["getApartList", "getApartListByName"]),
     initMap() {
-      // console.log("init에서 지도새로뜸!");
       this.placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
       this.contentNode = document.createElement("b-container"); // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
       const container = document.getElementById("map");
@@ -415,8 +405,8 @@ export default {
         this.Dong.push(this.aparts[i]["법정동"]);
         console.log(building_code);
       }
-      console.log("full_address");
-      console.warn(full_address);
+      // console.log("full_address");
+      // console.warn(full_address);
       this.movePosition(full_address[0]);
       for (let i = 0; i < full_address.length; i++) {
         this.setMark(full_address[i], this.infowin[i]);
@@ -562,12 +552,6 @@ button {
 #category li .store {
   background-position: -10px -180px;
 }
-/* #category li .kindergarden {
-  background-position: -10px -216px;
-}
-#category li .metro {
-  background-position: -10px -252px;
-} */
 #category li.on .category_bg {
   background-position-x: -46px;
 }
