@@ -125,6 +125,18 @@ export default {
       this.SET_IS_LOGIN(false);
       this.SET_USER_INFO(null);
       sessionStorage.removeItem("access-token");
+
+      //kakao 캐시 지우기
+      window.Kakao.API.request({
+        url: "/v1/user/unlink",
+        success: function(response) {
+          console.log(response);
+        },
+        fail: function(error) {
+          console.log(error);
+        }
+      });
+
       if (this.$route.path != "/") this.$router.push({ name: "home" });
     }
   }
