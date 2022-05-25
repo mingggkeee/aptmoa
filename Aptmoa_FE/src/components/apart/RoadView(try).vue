@@ -1,6 +1,14 @@
 <template>
   <v-container>
     <v-container id="map">
+      <v-container id="mapWrapper" style="width:50%;height:300px;float:left">
+        <v-row id="map" style="width:100%;height:100%"></v-row>
+        <!-- 지도를 표시할 div 입니다 -->
+      </v-container>
+      <v-container id="rvWrapper">
+        <v-row id="roadview"></v-row>
+        <!-- 로드뷰를 표시할 div 입니다 -->
+      </v-container>
       <ul id="category" style="padding-left: 1230px">
         <li id="BK9" data-order="0">
           <span class="category_bg bank"></span>
@@ -91,7 +99,13 @@ export default {
       placeOverlay: "",
       contentNode: "",
       infowin: [],
-      infowinPrice: []
+      infowinPrice: [],
+      rv: null,
+      rvClient: null,
+      locPosition: {
+        La: "127.0507572",
+        Ma: "37.5768249"
+      }
     };
   },
   created() {
@@ -127,25 +141,27 @@ export default {
       this.placeOverlay = new kakao.maps.CustomOverlay({ zIndex: 1 });
       this.contentNode = document.createElement("v-container"); // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
       const container = document.getElementById("map");
+      const mapWrapper = document.getElementById("mapWrapper");
       const options = {
         center: new kakao.maps.LatLng(33.450701, 126.570667),
         level: 3
       };
       this.map = new kakao.maps.Map(container, options);
+      this.map.addOverlayMapTypeId(kakao.maps.MapTypeId.ROADVIEW);
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
           let lat = position.coords.latitude,
-            lon = position.coords.longitude;
-          let locPosition = new kakao.maps.LatLng(lat, lon),
+            lon = position.coords.longitude,
             message = '<v-row style="padding:5px;">현재 당신의 위치</v-row>';
-          console.log(locPosition);
-          this.displayMarker(locPosition, message);
-          console.log(locPosition);
+          this.locPosition = new kakao.maps.LatLng(lat, lon);
+          console.log(this.locPosition);
+          this.displayMarker(this.locPosition, message);
+          // console.log(locPosition);
         });
       } else {
-        let locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-          message = "geolocation을 사용할수 없어요..";
-        this.displayMarker(locPosition, message);
+        this.locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
+        let message = "geolocation을 사용할수 없어요..";
+        this.displayMarker(this.locPosition, message);
       }
       // 장소 검색 객체를 생성합니다
       this.ps = new kakao.maps.services.Places(this.map);
@@ -163,6 +179,48 @@ export default {
       );
       this.placeOverlay.setContent(this.contentNode);
       this.addCategoryClickEvent();
+
+      var rvContainer = document.getElementById("roadview"); //로드뷰를 표시할 div
+      this.rv = new kakao.maps.Roadview(rvContainer); //로드뷰 객체
+      this.rvClient = new kakao.maps.RoadviewClient(); //좌표로부터 로드뷰 파노ID를 가져올 로드뷰 helper객
+      console.log(this.locPosition);
+      this.toggleRoadview(this.locPosition);
+
+      var markImage = new kakao.maps.MarkerImage(
+        "https://t1.daumcdn.net/localimg/localimages/07/2018/pc/roadview_minimap_wk_2018.png",
+        new kakao.maps.Size(26, 46),
+        {
+          // 스프라이트 이미지를 사용합니다.
+          // 스프라이트 이미지 전체의 크기를 지정하고
+          spriteSize: new kakao.maps.Size(1666, 168),
+          // 사용하고 싶은 영역의 좌상단 좌표를 입력합니다.
+          // background-position으로 지정하는 값이며 부호는 반대입니다.
+          spriteOrigin: new kakao.maps.Point(705, 114),
+          offset: new kakao.maps.Point(13, 46)
+        }
+      );
+
+      // 드래그가 가능한 마커를 생성합니다.
+      var rvMarker = new kakao.maps.Marker({
+        image: markImage,
+        position: this.locPosition,
+        draggable: true,
+        map: this.map
+      });
+
+      //마커에 dragend 이벤트를 할당합니다
+      kakao.maps.event.addListener(rvMarker, "dragend", function(mouseEvent) {
+        var position = rvMarker.getPosition(); //현재 마커가 놓인 자리의 좌표
+        this.toggleRoadview(position); //로드뷰를 토글합니다
+      });
+
+      kakao.maps.event.addListener(this.map, "click", function(mouseEvent) {
+        // 현재 클릭한 부분의 좌표를 리턴
+        var position = mouseEvent.latLng;
+
+        rvMarker.setPosition(position);
+        this.toggleRoadview(position); //로드뷰를 토글합니다
+      });
     },
     addEventHandle(target, type, callback) {
       if (target.addEventListener) {
@@ -214,6 +272,23 @@ export default {
         })(this.markerCategory, places[i]);
         console.log("places[]", places[0]);
       }
+    },
+    toggleRoadview(position) {
+      //전달받은 좌표(position)에 가까운 로드뷰의 panoId를 추출하여 로드뷰를 띄웁니다
+      // console.log(this.rvClient);
+      this.rvClient.getNearestPanoId(position, 50, panoId => {
+        if (panoId === null) {
+          this.rvContainer.style.display = "none"; //로드뷰를 넣은 컨테이너를 숨깁니다
+          this.mapWrapper.style.width = "100%";
+          this.map.relayout();
+        } else {
+          this.mapWrapper.style.width = "50%";
+          this.map.relayout(); //지도를 감싸고 있는 영역이 변경됨에 따라, 지도를 재배열합니다
+          this.rvContainer.style.display = "block"; //로드뷰를 넣은 컨테이너를 보이게합니다
+          this.rv.setPanoId(panoId, position); //panoId를 통한 로드뷰 실행
+          this.rv.relayout(); //로드뷰를 감싸고 있는 영역이 변경됨에 따라, 로드뷰를 재배열합니다
+        }
+      });
     },
     addMarker2(position, order) {
       // var imageSrc =

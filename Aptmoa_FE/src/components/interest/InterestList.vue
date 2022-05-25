@@ -120,7 +120,7 @@ export default {
           },
           responsive: true,
           maintainAspectRatio: false,
-          animation: { duration: 5000 }
+          animation: { duration: 1000 }
         }
       }
     };
