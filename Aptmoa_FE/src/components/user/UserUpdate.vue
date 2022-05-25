@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <v-container class="bv-example-row mt-3">
     <div>
       <h3 id="category_title">
         MODIFY
@@ -90,11 +90,11 @@
               </v-col>
             </v-form>
           </v-card>
-        </b-col>
+        </v-col>
         <b-col class="col-3"></b-col>
-      </b-row>
+      </v-row>
     </div>
-  </b-container>
+  </v-container>
 </template>
 
 <script>

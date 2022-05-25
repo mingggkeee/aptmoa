@@ -15,8 +15,6 @@
           />
         </router-link>
 
-        <!-- <b-navbar-toggle target="nav-collapse"></b-navbar-toggle> -->
-
         <router-link :to="{ name: 'home' }" class="link" id="appbar">
           HOME
         </router-link>
@@ -33,24 +31,19 @@
           Q&A
         </router-link>
 
-        <!-- <v-btn
-          v-for="(link, i) in links"
-          :key="i"
-          v-bind="link"
-          class="hidden-sm-and-down"
-          text
-          @click="onClick($event, link)"
-          color="white"
-        >
-          {{ link.text }}
-        </v-btn> -->
-
         <v-spacer />
 
         <div id="detail">
           <div v-if="userInfo">
             <a class="mr-4" id="username"
               >{{ userInfo.userName }}({{ userInfo.userId }})님</a
+            >
+            <router-link
+              v-if="userInfo.userId === 'admin'"
+              :to="{ name: 'manage' }"
+              class="link align-self-center mr-4"
+              id="appbar"
+              >회원관리</router-link
             >
             <router-link
               :to="{ name: 'mypage' }"
@@ -84,13 +77,6 @@
             >
           </div>
         </div>
-        <!-- <v-text-field
-          append-icon="mdi-magnify"
-          flat
-          hide-details
-          solo-inverted
-          style="max-width: 300px;"
-        /> -->
       </v-row>
     </v-container>
   </v-app-bar>

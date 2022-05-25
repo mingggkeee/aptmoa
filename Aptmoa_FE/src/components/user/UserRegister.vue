@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <v-container class="bv-example-row mt-3">
     <div>
       <h3 id="category_title">
         SIGN UP
@@ -49,9 +49,6 @@
                     name="pwdcheck"
                   ></v-text-field>
                 </v-row>
-
-                <!-- 이름 한글 입력이 안됨,, -->
-                <!-- https://yado.tistory.com/31 한글..?? -->
                 <v-row class="ma-3">
                   <v-text-field
                     v-model="userName"
@@ -75,8 +72,6 @@
                     @click="checkValue"
                     >회원가입</v-btn
                   >
-                  <!-- </div>
-                <div class="text-sm-center"> -->
                   <v-btn
                     color="second"
                     elevation="2"
@@ -88,11 +83,11 @@
               </v-col>
             </v-form>
           </v-card>
-        </b-col>
+        </v-col>
         <b-col class="col-3"></b-col>
-      </b-row>
+      </v-row>
     </div>
-  </b-container>
+  </v-container>
 </template>
 
 <script>

@@ -3,23 +3,6 @@
     <v-row class="mb-1">
       <v-col class="text-left">
         <v-btn variant="outline-primary" @click="listNews">목록</v-btn>
-        <!-- </v-col>
-      <v-col class="text-right">
-        <v-btn
-          variant="outline-info"
-          size="sm"
-          color="primary"
-          @click="moveModifyNews"
-          class="mr-2"
-          >글수정</v-btn
-        >
-        <v-btn
-          color="primary"
-          variant="outline-danger"
-          size="sm"
-          @click="deleteNews"
-          >글삭제</v-btn
-        > -->
       </v-col>
     </v-row>
     <v-card elevation="10" outlined width="100%" class="mx-auto mt-10">

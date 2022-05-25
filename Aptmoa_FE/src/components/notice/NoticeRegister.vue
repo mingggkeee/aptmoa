@@ -1,12 +1,12 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <v-container class="bv-example-row mt-3">
     <v-row>
       <v-col>
         <v-alert show><h1>공지사항 작성</h1></v-alert>
       </v-col>
     </v-row>
     <notice-input-item type="register" />
-  </b-container>
+  </v-container>
 </template>
 
 <script>

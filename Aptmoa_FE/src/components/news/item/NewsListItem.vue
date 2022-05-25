@@ -1,15 +1,15 @@
 <template>
-  <b-tr>
-    <b-td>{{ newsno }}</b-td>
-    <b-th class="text-left">
+  <v-tr>
+    <v-td>{{ newsno }}</v-td>
+    <v-th class="text-left">
       <router-link :to="{ name: 'newsDetail', params: { newsno: newsno } }">{{
         subject
       }}</router-link>
-    </b-th>
-    <b-td>{{ hit }}</b-td>
-    <b-td>{{ newsurl }}</b-td>
-    <b-td>{{ regtime | dateFormat }}</b-td>
-  </b-tr>
+    </v-th>
+    <v-td>{{ hit }}</v-td>
+    <v-td>{{ newsurl }}</v-td>
+    <v-td>{{ regtime | dateFormat }}</v-td>
+  </v-tr>
 </template>
 
 <script>

@@ -1,6 +1,7 @@
 package com.pjt.aptmoa.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pjt.aptmoa.dto.Interest;
 import com.pjt.aptmoa.dto.UserDto;
 import com.pjt.aptmoa.service.JwtServiceImpl;
 import com.pjt.aptmoa.service.MailService;
@@ -160,7 +162,16 @@ public class UserController {
 		}
 	}
 	
-	
+	@ApiOperation(value="회원리스트 불러오기")
+	@GetMapping("/getuser")
+	public ResponseEntity<?> getUserList(){
+		try {
+			return new ResponseEntity<List<UserDto>>(userService.getUsers(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+	}
 	
 	
 }

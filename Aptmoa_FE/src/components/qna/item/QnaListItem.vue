@@ -1,15 +1,15 @@
 <template>
-  <b-tr>
-    <b-td>{{ qnano }}</b-td>
-    <b-th class="text-left">
+  <v-tr>
+    <v-td>{{ qnano }}</v-td>
+    <v-th class="text-left">
       <router-link :to="{ name: 'qnaDetail', params: { qnano: qnano } }">{{
         subject
       }}</router-link>
-    </b-th>
-    <b-td>{{ hit }}</b-td>
-    <b-td>{{ userId }}</b-td>
-    <b-td>{{ regtime | dateFormat }}</b-td>
-  </b-tr>
+    </v-th>
+    <v-td>{{ hit }}</v-td>
+    <v-td>{{ userId }}</v-td>
+    <v-td>{{ regtime | dateFormat }}</v-td>
+  </v-tr>
 </template>
 
 <script>

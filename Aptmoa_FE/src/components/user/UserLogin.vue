@@ -20,7 +20,6 @@
                 >아이디 또는 비밀번호를 확인하세요.</v-alert
               >
             </v-col>
-            <!-- <b-form-group label="아이디:" label-for="userid"> -->
             <v-col>
               <v-row class="ma-3">
                 <v-text-field
@@ -31,8 +30,6 @@
                   @keyup.enter="confirm"
                 ></v-text-field>
               </v-row>
-              <!-- <b-form-group label="비밀번호:" label-for="userpwd"> -->
-
               <v-row class="ma-3">
                 <v-text-field
                   type="password"
@@ -43,7 +40,6 @@
                   @keyup.enter="confirm"
                 ></v-text-field>
               </v-row>
-
               <br />
               <div class="text-sm-center">
                 <v-btn

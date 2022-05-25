@@ -1,10 +1,10 @@
 <template>
-  <b-container class="bv-example-row mt-3 text-center">
+  <v-container class="bv-example-row mt-3 text-center">
     <!-- <h2 class="underline-hotpink">
       <b-icon icon="journals"></b-icon>User Page
     </h2> -->
     <router-view></router-view>
-  </b-container>
+  </v-container>
 </template>
 
 <script>

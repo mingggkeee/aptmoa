@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <v-container class="bv-example-row mt-3">
     <v-row class="mb-1">
       <v-col class="text-right">
         <v-btn color="primary" variant="outline-primary" @click="moveWrite()"
@@ -20,7 +20,7 @@
       </v-col>
       <v-col v-else class="text-center">공지사항이 없습니다.</v-col>
     </v-row>
-  </b-container>
+  </v-container>
 </template>
 
 <script>

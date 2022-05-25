@@ -11,7 +11,7 @@
         <b-jumbotron>
           <template #lead> 내 정보 확인페이지입니다. </template>
           <hr class="my-4" />
-          <b-container class="mt-4">
+          <v-container class="mt-4">
             <v-row>
               <v-col cols="2"></v-col>
               <v-col cols="2" align-self="end">아이디</v-col
@@ -40,7 +40,7 @@
               }}</v-col>
               <v-col cols="2"></v-col>
             </v-row>
-          </b-container>
+          </v-container>
           <hr class="my-4" />
 
           <v-btn

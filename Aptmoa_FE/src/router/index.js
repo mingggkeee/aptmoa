@@ -22,22 +22,6 @@ const onlyAuthUser = async (to, from, next) => {
   }
 };
 
-// admin만 확인하는 함수 만들어보기
-// const onlyAuthUser = async (to, from, next) => {
-//   const checkUserInfo = store.getters["userStore/checkUserInfo"];
-//   const getUserInfo = store._actions["userStore/getUserInfo"];
-//   let token = sessionStorage.getItem("access-token");
-//   if (checkUserInfo == null && token) {
-//     await getUserInfo(token);
-//   }
-//   if (checkUserInfo === null) {
-//     alert("로그인이 필요한 페이지입니다.");
-//     next({ name: "login" });
-//   } else {
-//     next();
-//   }
-// };
-
 export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
@@ -76,8 +60,13 @@ export default new Router({
         {
           path: "findpwd",
           name: "findpwd",
-          component: () => import("@/components/user/FindPwd.vue"),
+          component: () => import("@/components/user/FindPwd.vue")
         },
+        {
+          path: "manage",
+          name: "manage",
+          component: () => import("@/components/user/ManageUser.vue")
+        }
       ]
     },
     {

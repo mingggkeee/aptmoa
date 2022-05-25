@@ -48,4 +48,9 @@
 		where userId=#{userID}
 	</select>
 	
+		<select id="getUsers" resultType="userDto">
+		select *
+		from user
+	</select>
+	
 </mapper>

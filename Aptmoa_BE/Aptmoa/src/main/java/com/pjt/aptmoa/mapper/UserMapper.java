@@ -1,12 +1,13 @@
 package com.pjt.aptmoa.mapper;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.pjt.aptmoa.dto.UserDto;
 
 
 public interface UserMapper {
-
+	public List<UserDto> getUsers() throws SQLException;
 	public UserDto login(UserDto userDto) throws SQLException;
 	public UserDto userInfo(String userid) throws SQLException;
 	public int idCheck(String checkId) throws Exception;
