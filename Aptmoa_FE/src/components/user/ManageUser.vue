@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <v-alert variant="secondary" show><h1>회원관리</h1></v-alert>
+        <h3 id="category_title">Member Management</h3>
       </v-col>
     </v-row>
     <v-row>
