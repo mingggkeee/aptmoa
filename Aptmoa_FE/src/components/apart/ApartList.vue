@@ -1,5 +1,5 @@
 <template>
-  <b-container v-if="aparts && aparts.length != 0" class="bv-example-row mt-3">
+  <v-container v-if="aparts && aparts.length != 0" class="bv-example-row mt-3">
     <apart-list-item
       v-for="(apart, index) in aparts"
       :key="index"
@@ -53,8 +53,8 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </b-container>
-  <b-container
+  </v-container>
+  <v-container
     v-else-if="nameApts && nameApts.length != 0"
     class="bv-example-row mt-3"
   >
@@ -106,12 +106,12 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </b-container>
-  <b-container v-else class="bv-example-row mt-3">
+  </v-container>
+  <!-- <v-container v-else class="bv-example-row mt-3">
     <v-row>
       <v-col><v-alert show>주택 목록이 없습니다.</v-alert></v-col>
     </v-row>
-  </b-container>
+  </v-container> -->
 </template>
 
 <script>

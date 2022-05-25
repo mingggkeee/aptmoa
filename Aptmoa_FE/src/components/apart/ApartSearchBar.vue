@@ -4,6 +4,7 @@
       <v-radio-group v-model="row" row>
         <v-radio label="지역기반으로 검색" value="locations"></v-radio>
         <v-radio label="아파트명으로 검색" value="apartName"></v-radio>
+        <v-radio label="길 찾기" value="route"></v-radio>
       </v-radio-group>
     </v-container>
     <v-col class="sm-3" v-if="row === 'locations'">
@@ -23,7 +24,6 @@
     <v-col class="sm-3" v-if="row === 'locations'">
       <v-select v-model="month" :items="months" label="Month"></v-select>
     </v-col>
-
     <v-col class="sm-3" v-if="row === 'apartName'">
       <v-select v-model="sidoName" :items="sidosName"></v-select>
     </v-col>
@@ -33,10 +33,18 @@
         v-model="aptName"
       ></v-text-field>
     </v-col>
-
-    <v-col class="text-right">
+    <v-col class="text-right" v-if="row != 'route'">
       <v-btn variant="outline-primary" @click="searchApt">조회</v-btn>
     </v-col>
+    <v-col v-if="row === 'route'">
+      <v-text-field label="출발지" v-model="startRoute"></v-text-field>
+    </v-col>
+    <v-col v-if="row === 'route'">
+      <v-text-field label="도착지" v-model="endRoute"></v-text-field>
+    </v-col>
+    <v-col class="text-right" v-if="row === 'route'">
+      <v-btn @click="findRoute">길찾기</v-btn></v-col
+    >
   </v-row>
 </template>
 
@@ -90,7 +98,9 @@ export default {
         { value: "10", text: "10월" },
         { value: "11", text: "11월" },
         { value: "12", text: "12월" }
-      ]
+      ],
+      endRoute: "",
+      startRoute: ""
     };
   },
   computed: {
@@ -156,6 +166,11 @@ export default {
         };
         if (this.aptName) this.getApartListByName(param);
       }
+    },
+    findRoute() {
+      window.open(
+        `https://map.kakao.com/?sName=${this.startRoute}&eName=${this.endRoute}`
+      );
     }
   }
 };
