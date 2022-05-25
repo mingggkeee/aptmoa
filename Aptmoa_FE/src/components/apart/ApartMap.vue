@@ -721,6 +721,7 @@ button {
   position: relative;
   z-index: 2;
   background-color: white;
+  font-size: 17px;
 }
 #category li.on {
   background: #eee;

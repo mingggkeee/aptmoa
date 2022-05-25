@@ -6,9 +6,9 @@
       </h3>
       <br />
       <br />
-      <b-row>
-        <b-col class="col-3"></b-col>
-        <b-col class="col-6">
+      <v-row>
+        <v-col class="col-3"></v-col>
+        <v-col class="col-6">
           <v-card class="text-center">
             <v-form>
               <v-col>
@@ -91,7 +91,7 @@
             </v-form>
           </v-card>
         </v-col>
-        <b-col class="col-3"></b-col>
+        <v-col class="col-3"></v-col>
       </v-row>
     </div>
   </v-container>
