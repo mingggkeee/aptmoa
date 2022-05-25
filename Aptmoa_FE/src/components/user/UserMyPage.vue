@@ -1,10 +1,10 @@
 <template>
   <b-container class="mt-4" v-if="userInfo">
-    <v-row>
-      <v-col>
-        <v-alert show><h1>내 정보</h1></v-alert>
-      </v-col>
-    </v-row>
+    <h3 id="category_title">
+      MY PAGE
+    </h3>
+    <br />
+    <br />
     <v-row>
       <v-col></v-col>
       <v-col cols="8">
@@ -106,6 +106,12 @@ export default {
 </script>
 
 <style scope>
+/* * {
+  margin: 0;
+  padding: 0;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+} */
 .tdClass {
   width: 50px;
   text-align: center;
@@ -113,5 +119,11 @@ export default {
 .tdSubject {
   width: 300px;
   text-align: left;
+}
+#category_title {
+  font-family: "Changa One", cursive;
+  font-size: 50px;
+  background: #f2f2f2;
+  color: #364a73;
 }
 </style>

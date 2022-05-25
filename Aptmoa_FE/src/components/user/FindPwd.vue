@@ -1,10 +1,8 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <h1>비밀번호 찾기</h1>
-      </v-col>
-    </v-row>
+    <h3 id="category_title">
+      FIND PASSWORD
+    </h3>
     <div>
       <br />
       <p id="subtitle">아래 이메일 주소로 임시 비밀번호를 알려드립니다.</p>
@@ -102,5 +100,11 @@ export default {
 <style scoped>
 #subtitle {
   font-size: 18px;
+}
+#category_title {
+  font-family: "Changa One", cursive;
+  font-size: 50px;
+  background: #f2f2f2;
+  color: #364a73;
 }
 </style>

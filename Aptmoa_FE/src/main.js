@@ -5,6 +5,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
+import 'vuetify/dist/vuetify.min.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
+
+
+
 Vue.config.productionTip = false;
 
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";

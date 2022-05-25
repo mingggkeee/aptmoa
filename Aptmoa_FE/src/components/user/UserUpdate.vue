@@ -1,11 +1,11 @@
 <template>
   <b-container class="bv-example-row mt-3">
     <div>
-      <b-row>
-        <b-col>
-          <b-alert variant="secondary" show><h1>회원정보 수정</h1></b-alert>
-        </b-col>
-      </b-row>
+      <h3 id="category_title">
+        MODIFY
+      </h3>
+      <br />
+      <br />
       <b-row>
         <b-col class="col-3"></b-col>
         <b-col class="col-6">
@@ -177,4 +177,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#category_title {
+  font-family: "Changa One", cursive;
+  font-size: 50px;
+  background: #f2f2f2;
+  color: #364a73;
+}
+</style>

@@ -6,13 +6,13 @@
       height="400"
       width="100%"
     >
-      <v-row class="fill-height pa-3" align="center">
-        <v-col cols="12" md="7" offset-md="5">
-          <h1 class="display-3 font-weight-bold" id="banner_title">
+      <v-row class="fill-height " align="center">
+        <v-col>
+          <p class="text-center" id="banner_title">
             Aptmoa
-          </h1>
+          </p>
 
-          <div class="subheading pl-2 pt-5">
+          <div class="text-subtitle-2 text-center" id="banner_subtitle">
             나에게 맞는 아파트를 찾아보세요. <br />
             찾는 아파트의 주변 인프라 정보도 확인해보세요.
           </div>
@@ -30,6 +30,11 @@ export default {
 
 <style>
 #banner_title {
-  font-family: "Permanent Marker", cursive;
+  font-family: "Changa One", cursive;
+  font-size: 80px;
+}
+#banner_subtitle {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 20px;
 }
 </style>

@@ -84,9 +84,11 @@ export default {
 <style scoped>
 #footer {
   background: #0e3047;
+  font-family: "Noto Sans KR", sans-serif;
 }
 #logo2 {
   display: flex;
   font-size: 30px;
+  font-family: "'Noto Sans KR', sans-serif;";
 }
 </style>

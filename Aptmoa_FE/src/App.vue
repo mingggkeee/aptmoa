@@ -19,3 +19,9 @@ export default {
   }
 };
 </script>
+<style>
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 18px;
+}
+</style>

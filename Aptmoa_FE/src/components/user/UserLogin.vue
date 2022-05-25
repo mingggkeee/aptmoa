@@ -1,10 +1,10 @@
 <template>
   <v-container class="bv-example-row mt-3">
-    <v-row>
-      <v-col>
-        <h1>로그인</h1>
-      </v-col>
-    </v-row>
+    <h3 id="category_title">
+      LOGIN
+    </h3>
+    <br />
+    <br />
     <v-row>
       <v-col></v-col>
       <v-col>
@@ -220,5 +220,11 @@ export default {
 #btn_kakaologin {
   width: 300px;
   margin-top: 10px;
+}
+#category_title {
+  font-family: "Changa One", cursive;
+  font-size: 50px;
+  background: #f2f2f2;
+  color: #364a73;
 }
 </style>

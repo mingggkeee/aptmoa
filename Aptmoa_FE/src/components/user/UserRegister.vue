@@ -1,11 +1,11 @@
 <template>
   <b-container class="bv-example-row mt-3">
     <div>
-      <b-row>
-        <b-col>
-          <b-alert variant="secondary" show><h1>회원가입</h1></b-alert>
-        </b-col>
-      </b-row>
+      <h3 id="category_title">
+        SIGN UP
+      </h3>
+      <br />
+      <br />
       <b-row>
         <b-col class="col-3"></b-col>
         <b-col class="col-6">
@@ -180,5 +180,11 @@ export default {
   margin-top: 10px;
   margin-left: 5px;
   margin-right: 5px;
+}
+#category_title {
+  font-family: "Changa One", cursive;
+  font-size: 50px;
+  background: #f2f2f2;
+  color: #364a73;
 }
 </style>
