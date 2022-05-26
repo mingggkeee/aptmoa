@@ -17,6 +17,22 @@
 ### 노션 주소
 https://www.notion.so/APTMOA-Springboot-Vue-e7a3ee8c53b7478e8bba3841a17cd3aa
 
+### 요구사항 정의서
+![요구사항정의서](https://user-images.githubusercontent.com/16608930/170436966-42bf9358-7c11-447e-b662-2dab0bd03186.png)
+
+### DB-ERD
+![DB설계도](https://user-images.githubusercontent.com/16608930/170437005-82b6678a-4727-40c1-bfe0-df8e45707f5f.png)
+
+### 클래스 다이어그램
+![클래스다이어그램](https://user-images.githubusercontent.com/16608930/170437115-1c0de1bb-af47-4c5c-8457-3f0fa319c6e9.png)
+
+### 화면설계서
+![화면설계서](https://user-images.githubusercontent.com/16608930/170437140-1cdd6b5c-16ad-409f-9966-5ac0bcf12196.png)
+
+### 시스템 아키텍처
+![시스템 아키텍처](https://user-images.githubusercontent.com/16608930/170437197-0ca7b2ed-4f6f-4949-a180-363b03100c0c.png)
+
+
 ### 프로젝트 일정
 ![image](https://user-images.githubusercontent.com/16608930/170436026-82d914c8-96e7-4801-a987-d21b3f7756a6.png)
 ![image](https://user-images.githubusercontent.com/16608930/170436069-ceb99342-bb1d-4ad1-96e4-cb786df88245.png)
