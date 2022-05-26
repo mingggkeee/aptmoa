@@ -38,9 +38,6 @@ https://www.notion.so/APTMOA-Springboot-Vue-e7a3ee8c53b7478e8bba3841a17cd3aa
 ![image](https://user-images.githubusercontent.com/16608930/170436069-ceb99342-bb1d-4ad1-96e4-cb786df88245.png)
 <!-- ### 개인별 일정 -->
 
-### 개발환경 및 전체 시스템 구조도
-![image](https://user-images.githubusercontent.com/16608930/170436175-07d75aa7-1fe9-4f54-91fc-6e5ce7d8f99d.png)
-
 ### 향후 발전계획
 - 로드뷰(일부 구현이라 완성하기)
 
