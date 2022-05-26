@@ -33,7 +33,7 @@ https://www.notion.so/APTMOA-Springboot-Vue-e7a3ee8c53b7478e8bba3841a17cd3aa
 - 매입자 연령대별 부동산거래 조회 서비스
 
 - 프롭테크 웹으로 거듭나도록 꾸준한 추가개발
-  - 주요 고객은 은행, 캐피털, P2P 업체 등 대출 운용 기관 및 프롭테크(Proptech) 기업 등이다. 프롭테크는 부동산(Property)과 기술(Technology)의 합성어로, 부동산에 첨단 기술을 접목한 것을 뜻한다.
+  - 프롭테크는 부동산(Property)과 기술(Technology)의 합성어로, 부동산에 첨단 기술을 접목한 것을 뜻한다.
  
 - **3D 실내공간 정보 제공**
 
