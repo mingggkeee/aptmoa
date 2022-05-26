@@ -50,28 +50,50 @@ https://www.notion.so/APTMOA-Springboot-Vue-e7a3ee8c53b7478e8bba3841a17cd3aa
  
 - **3D 실내공간 정보 제공**
 
-## 개발 스크린샷 (이따 추가)
+## 개발 스크린샷
 
-### 지도 한눈에 보기
+### 메인 홈 화면
+![main_login](https://user-images.githubusercontent.com/16608930/170482169-d25123fd-a0b0-4546-9091-479b6ef6665b.png)
 
-
-### 실거래가 마커 클러스터러
-
-
-### 검색
+### 지역 기반, 시간 기반 검색
+![apart_dong](https://user-images.githubusercontent.com/16608930/170481637-e8863c5c-eabb-4324-a985-e1c9f57e507a.png)
 
 
+### 아파트 이름으로 검색
+![apart_name](https://user-images.githubusercontent.com/16608930/170481542-af6970dd-ab85-4243-875a-8010bcf0cbea.png)
 
-### 최근거래 - 모든거래
+### 관심목록에 등록한 아파트의 실거래가 변동 추이 확인
+![apart_interest_detail](https://user-images.githubusercontent.com/16608930/170481699-7234a124-beb1-44a8-b272-03ccb4285610.png)
 
+### 키워드로 주변 인프라 검색
+![map_search](https://user-images.githubusercontent.com/16608930/170481803-3feb4405-5a66-46e6-8f1d-044b7c6accac.png)
 
+### 인프라 조회
+![map_infowindow](https://user-images.githubusercontent.com/16608930/170481835-e222f2c8-5ab3-44c4-aa65-6007919dfeda.png)
 
-### 인프라
+### 길 찾기
+![map_findload](https://user-images.githubusercontent.com/16608930/170482213-f137c5b8-aa64-4eda-85ee-35f2146ed909.png)
 
+### 비밀번호 찾기
+![findpassword](https://user-images.githubusercontent.com/16608930/170482083-5ed76f69-609f-42a7-8013-2ece6257af56.png)
 
+### 임시 비밀번호 발급
+![findpassword_email](https://user-images.githubusercontent.com/16608930/170482106-d2b38a41-771c-4a83-9b0f-f764f506cba5.png)
 
-### 리뷰
+### 소셜 로그인
+![login_kakao](https://user-images.githubusercontent.com/16608930/170482139-7db26742-3dc5-48e9-863c-17ead7f485e7.png)
 
+### 부동산 관련 뉴스 모아보기
+![news_list](https://user-images.githubusercontent.com/16608930/170482251-9ed4f991-cfed-424a-9a5d-0fa2ee1bc892.png)
 
+### 관리자만 작성가능한 공지사항
+![notice_list](https://user-images.githubusercontent.com/16608930/170482304-827b9a2c-f376-4df8-bf34-b170e912b868.png)
 
+### 유저들의 질의응답 게시판
+![qna_list](https://user-images.githubusercontent.com/16608930/170482337-46d3337b-10d1-4e43-96e3-9cf0aad301b3.png)
 
+### 질의응답에 응답하는 덧글 기능
+![qna_list](https://user-images.githubusercontent.com/16608930/170482373-a181fb33-0870-428a-9471-e35503c7a97f.png)
+
+### 관리자의 유저관리
+![admin_member_management](https://user-images.githubusercontent.com/16608930/170482443-dc3b13b1-7cf5-4a19-9991-5e1f9115e126.png)
